@@ -6,10 +6,13 @@ import Cards.*;
 public class Location {
     // possible location abilities
     // players draw 2 cards and can play 2 cards this game
-    // player with the lowest power hear wins
+    // player with the lowest power here wins
     // cards with power 4 and below, +2 power here
     // picture cards get + 2 power here
     // both players can only place 1 card here.
+    // no abilities here
+    // no pictures cards can be placed here
+    // 
     private String[] possibleLocations = { "SCIS", "LKCSB", "School of Accounting", "SIC", "SOE" };
     private String name;
     private int p1Power;

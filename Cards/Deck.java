@@ -6,7 +6,6 @@ public class Deck {
     public ArrayList<Card> deck = new ArrayList<>();
     //create a deck of 53 cards
     public Deck() {
-        deck.add(new Card(1, 'A', 'S'));
         deck.add(new Card(2, 'A', 'S'));
         deck.add(new Card(3, 'A', 'S'));
         deck.add(new Card(4, 'A', 'S'));
@@ -16,11 +15,11 @@ public class Deck {
         deck.add(new Card(8, 'A', 'S'));
         deck.add(new Card(9, 'A', 'S'));
         deck.add(new Card(10, 'A', 'S'));
-        deck.add(new Jack(0, 'J', 'S'));
-        deck.add(new Card(0, 'Q', 'S'));
-        deck.add(new Card(0, 'K', 'S'));
+        deck.add(new Jack(7, 'J', 'S'));
+        deck.add(new Card(7, 'Q', 'S'));
+        deck.add(new Card(6, 'K', 'S'));
+        deck.add(new Card(1, 'A', 'S'));
 
-        deck.add(new Card(1, 'A', 'C'));
         deck.add(new Card(2, 'A', 'C'));
         deck.add(new Card(3, 'A', 'C'));
         deck.add(new Card(4, 'A', 'C'));
@@ -30,11 +29,11 @@ public class Deck {
         deck.add(new Card(8, 'A', 'C'));
         deck.add(new Card(9, 'A', 'C'));
         deck.add(new Card(10, 'A', 'C'));
-        deck.add(new Jack(0, 'J', 'C'));
-        deck.add(new Card(0, 'Q', 'C'));
-        deck.add(new Card(0, 'K', 'C'));
+        deck.add(new Jack(7, 'J', 'C'));
+        deck.add(new Card(7, 'Q', 'C'));
+        deck.add(new Card(6, 'K', 'C'));
+        deck.add(new Card(1, 'A', 'C'));
 
-        deck.add(new Card(1, 'A', 'H'));
         deck.add(new Card(2, 'A', 'H'));
         deck.add(new Card(3, 'A', 'H'));
         deck.add(new Card(4, 'A', 'H'));
@@ -44,11 +43,11 @@ public class Deck {
         deck.add(new Card(8, 'A', 'H'));
         deck.add(new Card(9, 'A', 'H'));
         deck.add(new Card(10, 'A', 'H'));
-        deck.add(new Jack(0, 'J', 'H'));
-        deck.add(new Card(0, 'Q', 'H'));
-        deck.add(new Card(0, 'K', 'H'));
+        deck.add(new Jack(7, 'J', 'H'));
+        deck.add(new Card(7, 'Q', 'H'));
+        deck.add(new Card(6, 'K', 'H'));
+        deck.add(new Card(1, 'A', 'H'));
 
-        deck.add(new Card(1, 'A', 'D'));
         deck.add(new Card(2, 'A', 'D'));
         deck.add(new Card(3, 'A', 'D'));
         deck.add(new Card(4, 'A', 'D'));
@@ -58,9 +57,10 @@ public class Deck {
         deck.add(new Card(8, 'A', 'D'));
         deck.add(new Card(9, 'A', 'D'));
         deck.add(new Card(10, 'A', 'D'));
-        deck.add(new Jack(0, 'J', 'D'));
-        deck.add(new Card(0, 'Q', 'D'));
-        deck.add(new Card(0, 'K', 'D'));
+        deck.add(new Jack(7, 'J', 'D'));
+        deck.add(new Card(7, 'Q', 'D'));
+        deck.add(new Card(6, 'K', 'D'));
+        deck.add(new Card(1, 'A', 'D'));
 
         deck.add(new Card(0, 'Z', 'D'));
     }
