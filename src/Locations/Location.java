@@ -1,7 +1,7 @@
 package Locations;
-
-import java.util.*;
 import Cards.*;
+import Exception.*;
+import java.util.*;
 
 public class Location {
     // possible location abilities

@@ -1,8 +1,6 @@
 package Locations;
-
 import Cards.*;
-import src.Exception.*;
-
+import Exception.*;
 import java.util.*;
 
 public class Admin extends Location {

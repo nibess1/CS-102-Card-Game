@@ -1,7 +1,7 @@
 package Locations;
-
-import Cards.Card;
-import src.Exception.LocationRejectionException;
+import Cards.*;
+import Exception.*;
+import java.util.*;
 
 public class SOL extends Location {
 

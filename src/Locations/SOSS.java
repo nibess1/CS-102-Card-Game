@@ -1,6 +1,7 @@
 package Locations;
-
-import Cards.Card;
+import Cards.*;
+import Exception.*;
+import java.util.*;
 
 public class SOSS extends Location {
 
