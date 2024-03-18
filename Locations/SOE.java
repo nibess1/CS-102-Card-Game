@@ -10,10 +10,7 @@ public class SOE extends Location {
 
     @Override
     public boolean playerWins() {
-        if (p1Power < p2Power) {
-            return true;
-        }
-        return false;
+        return !super.playerWins();
     }
 
     
