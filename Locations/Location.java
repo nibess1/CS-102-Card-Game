@@ -105,5 +105,11 @@ public class Location {
         return this.name + ", Your Power:" + this.p1Power + ", Enemy Power:" + this.p2Power;
     }
 
+    public int getP1NumLiveCards(){
+        return this.p1LiveCards.size();
+    }
 
+    public int getP2NumLiveCards(){
+        return this.p2LiveCards.size();
+    }
 }
