@@ -16,7 +16,7 @@ public class Deck {
         deck.add(new Card(9, 'A', 'S'));
         deck.add(new Card(10, 'A', 'S'));
         deck.add(new Jack(7, 'J', 'S'));
-        deck.add(new Card(7, 'Q', 'S'));
+        deck.add(new Queen(7, 'Q', 'S'));
         deck.add(new Card(6, 'K', 'S'));
         deck.add(new Card(1, 'A', 'S'));
 
@@ -30,7 +30,7 @@ public class Deck {
         deck.add(new Card(9, 'A', 'C'));
         deck.add(new Card(10, 'A', 'C'));
         deck.add(new Jack(7, 'J', 'C'));
-        deck.add(new Card(7, 'Q', 'C'));
+        deck.add(new Queen(7, 'Q', 'C'));
         deck.add(new Card(6, 'K', 'C'));
         deck.add(new Card(1, 'A', 'C'));
 
@@ -44,7 +44,7 @@ public class Deck {
         deck.add(new Card(9, 'A', 'H'));
         deck.add(new Card(10, 'A', 'H'));
         deck.add(new Jack(7, 'J', 'H'));
-        deck.add(new Card(7, 'Q', 'H'));
+        deck.add(new Queen(7, 'Q', 'H'));
         deck.add(new Card(6, 'K', 'H'));
         deck.add(new Card(1, 'A', 'H'));
 
@@ -58,7 +58,7 @@ public class Deck {
         deck.add(new Card(9, 'A', 'D'));
         deck.add(new Card(10, 'A', 'D'));
         deck.add(new Jack(7, 'J', 'D'));
-        deck.add(new Card(7, 'Q', 'D'));
+        deck.add(new Queen(7, 'Q', 'D'));
         deck.add(new Card(6, 'K', 'D'));
         deck.add(new Card(1, 'A', 'D'));
 

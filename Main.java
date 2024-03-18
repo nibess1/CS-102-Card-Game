@@ -70,7 +70,8 @@ public class Main {
                 Card cardToPlay = hand.getCard(userChoices[0]);
                 if (cardToPlay instanceof Jack) {
                     location1.placeJack((Jack) cardToPlay, p1, deck);
-                } else {
+                }
+                 else {
                     location1.placeCard(cardToPlay, p1);
                 }
                 break;
@@ -83,6 +84,19 @@ public class Main {
             default:
                 System.out.println("Error has occured attempting to place a card");
                 break;
+        }
+
+    }
+
+    public static void hasQueen(Location location1, Location location2, Location location3){
+        int currentLocation = 1;
+        int currentIndex = 0;
+        ArrayList<Card> location1Cards = location1.getCards(true);
+        for(int i = 0; i < location1Cards.size(); i++){
+            if((location1Cards.get(i) instanceof Queen) && location1Cards.get(i).canMove()){
+                currentIndex = i;
+                System.out.println("You have a queen at location 1, would you like to move?");
+            }
         }
 
     }
@@ -110,6 +124,8 @@ public class Main {
             locationDecider(userChoices, location1, location2, location3, userHand, true, deck);
             System.out.println("Here are your cards after your move");
             getHandCards(userHand);
+
+
         }
 
         System.out.println("\nPC is making it's move...");

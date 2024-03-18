@@ -32,6 +32,11 @@ public class Card{
         this.destroyed = true;
     }
 
+    public boolean canMove(){
+        //nth
+        return false;
+    }
+
     
 
     
