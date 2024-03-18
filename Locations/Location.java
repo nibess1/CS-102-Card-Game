@@ -14,7 +14,7 @@ public class Location {
     // no pictures cards can be placed here
     //
     private String name;
-    private String locationPowerDescription;
+    private String description;
     private int p1Power;
     private int p2Power;
     private ArrayList<Card> p1LiveCards;
@@ -22,8 +22,12 @@ public class Location {
     private ArrayList<Card> p2LiveCards;
     private ArrayList<Card> p2DestroyedCards;
 
+<<<<<<< HEAD
     public Location(String location) {
         this.name = location;
+=======
+    public Location() {
+>>>>>>> 855975ea61c4ad502f65bc203ba5bae314571bce
         this.p1Power = 0;
         this.p2Power = 0;
         this.p1LiveCards = new ArrayList<>();
@@ -94,7 +98,23 @@ public class Location {
         return this.p1Power;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public String toString() {
         return this.name + ", Your Power:" + this.p1Power + ", Enemy Power:" + this.p2Power;
+    }
+
+    public int getP1NumLiveCards(){
+        return this.p1LiveCards.size();
+    }
+
+    public int getP2NumLiveCards(){
+        return this.p2LiveCards.size();
     }
 }

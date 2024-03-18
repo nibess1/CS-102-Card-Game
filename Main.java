@@ -4,6 +4,7 @@ import Locations.*;
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 import java.lang.*;
+import java.lang.*;
 
 public class Main {
     // meant to print the names, and power of each location
