@@ -2,6 +2,7 @@ package Locations;
 
 import Cards.*;
 import java.util.*;
+import Exception.*;
 
 public class Admin extends Location {
     public Admin() {
