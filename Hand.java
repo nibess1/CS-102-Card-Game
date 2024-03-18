@@ -28,6 +28,5 @@ public class Hand {
     //to add cards in hand
     public void handDraw(Deck deck) {
         this.hand.add(deck.draw());
-        //HELLO
     }
 }
