@@ -1,11 +1,13 @@
 package Locations;
-
-import Cards.Card;
+import Cards.*;
+import Exception.*;
+import java.util.*;
 
 public class SOB extends Location {
 
     public SOB(){
-        super("SOB", "All club cards here gain a power increase of 2.");
+        super.setName("SOB");
+        super.setDescription("All club cards here gain a power increase of 2.");
     }
 
     public void placeCard(Card cardToBePlaced, boolean p1) {
@@ -17,5 +19,4 @@ public class SOB extends Location {
     
     }
     
-    //test
 }

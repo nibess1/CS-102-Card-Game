@@ -1,10 +1,13 @@
 package Locations;
-import Cards.Card;
+import Cards.*;
+import Exception.*;
+import java.util.*;
 
 public class SOA extends Location {
 
     public SOA(){
-        super("SOA", "All heart cards here gain a power increase of 2.");
+        super.setName("SOA");
+        super.setDescription("All heart cards here gain a power increase of 2.");
     }
 
     public void placeCard(Card cardToBePlaced, boolean p1) {
@@ -14,7 +17,5 @@ public class SOA extends Location {
         }  
         super.placeCard(cardToBePlaced, p1);
     }
-
-    //test
     
 }

@@ -1,12 +1,12 @@
 package Locations;
-
 import Cards.*;
-import java.util.*;
 import Exception.*;
+import java.util.*;
 
 public class Admin extends Location {
     public Admin() {
-        super("Admin Building", "You can only place one card here");
+        super.setName("Admin Building");
+        super.setDescription("You can only place one card here");
     }
 
     public void placeCard(Card cardToBePlaced, boolean p1) throws LocationRejectionException {

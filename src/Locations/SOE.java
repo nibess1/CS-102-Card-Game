@@ -1,11 +1,13 @@
 package Locations;
-
-import Cards.Card;
+import Cards.*;
+import Exception.*;
+import java.util.*;
 
 public class SOE extends Location {
 
     public SOE(){
-        super("SOE", "The card with the lowest power wins.");
+        super.setName("SOE");
+        super.setDescription("The card with the lowest power wins.");
     }
 
     @Override
@@ -13,5 +15,4 @@ public class SOE extends Location {
         return !super.playerWins();
     }
 
-    
 }
