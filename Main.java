@@ -21,7 +21,7 @@ public class Main {
     }
 
     // meant to prompt user for choices
-    public static int[] userTurn(Scanner sc) {
+    public static int[] promptUserInput(Scanner sc) {
         System.out.println("Which card would you like to place this turn?");
         int currentCard = sc.nextInt();
         System.out.println("Where would you like to place this card at?");
@@ -70,7 +70,8 @@ public class Main {
                 Card cardToPlay = hand.getCard(userChoices[0]);
                 if (cardToPlay instanceof Jack) {
                     location1.placeJack((Jack) cardToPlay, p1, deck);
-                } else {
+                }
+                 else {
                     location1.placeCard(cardToPlay, p1);
                 }
                 break;
@@ -89,23 +90,41 @@ public class Main {
 
     public static void nextTurn(Scanner sc, Hand pcHand, Hand userHand, Deck deck, Location location1,
             Location location2, Location location3) {
-        {
-            pcHand.handDraw(deck);
+
+        // user draws
+        for (int i = 0; i < userHand.getNumberOfCards(); i++) {
             userHand.handDraw(deck);
-            System.out.println("Here are your cards after drawing a card for the next turn");
-            getHandCards(userHand);
-            int userChoices[] = userTurn(sc);
+        }
+        // pc draws
+        for (int i = 0; i < pcHand.getNumberOfCards(); i++) {
+            pcHand.handDraw(deck);
+        }
+
+        System.out.println("Here are your cards after drawing a card for the next turn");
+        // display user cards
+        getHandCards(userHand);
+
+        // prompt user input and play his card based on his choice based on the number
+        // of times he can
+        for (int i = 0; i < userHand.getNumberOfCards(); i++) {
+            int userChoices[] = promptUserInput(sc);
             locationDecider(userChoices, location1, location2, location3, userHand, true, deck);
-
-            pcTurn(location1, location2, location3, pcHand, deck);
-            System.out.println("\nPC is making it's move...");
-
-            System.out.println("\nHere are the locations after the first turn");
-            getAllLocation(location1, location2, location3);
-
             System.out.println("Here are your cards after your move");
             getHandCards(userHand);
+
+
         }
+
+        System.out.println("\nPC is making it's move...");
+        for (int i = 0; i < pcHand.getNumberOfCards(); i++) {
+            pcTurn(location1, location2, location3, pcHand, deck);
+        }
+
+        // display changes.
+        System.out.println("\nHere are the locations after the first turn");
+        getAllLocation(location1, location2, location3);
+        System.out.println("Here are your cards after your move");
+        getHandCards(userHand);
     }
 
     public static void main(String[] args) {
@@ -139,18 +158,7 @@ public class Main {
         System.out.println("Here are your cards!");
         getHandCards(userHand);
 
-        int userChoices[] = userTurn(sc);
-        locationDecider(userChoices, location1, location2, location3, userHand, true, deck);
-
-        pcTurn(location1, location2, location3, pcHand, deck);
-        System.out.println("\nPC is making it's move...");
-
-        System.out.println("\nHere are the locations after the first turn");
-        getAllLocation(location1, location2, location3);
-
-        System.out.println("Here are your cards after your move");
-        getHandCards(userHand);
-
+        nextTurn(sc, pcHand, userHand, deck, location1, location2, location3);
         nextTurn(sc, pcHand, userHand, deck, location1, location2, location3);
         nextTurn(sc, pcHand, userHand, deck, location1, location2, location3);
         nextTurn(sc, pcHand, userHand, deck, location1, location2, location3);
