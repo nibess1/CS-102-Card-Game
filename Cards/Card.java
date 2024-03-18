@@ -4,9 +4,10 @@ public class Card {
     private int power; // the number on the card
     private char picture; // the picture of the card "J / Q / K / A / Z" (A is normal, Z is joker)
     private char suite; // the symbol / group the card belongs to "H / C / S / D"
+    private String description;
     private boolean destroyed; // check if the card has been destroyed
 
-    public Card(int power, char picture, char suite) {
+    public Card(int power, char picture, char suite, String description) {
         this.power = power;
         this.picture = picture;
         this.suite = suite;
