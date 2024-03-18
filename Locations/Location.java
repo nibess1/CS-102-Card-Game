@@ -13,7 +13,6 @@ public class Location {
     // no abilities here
     // no pictures cards can be placed here
     //
-    private String[] possibleLocations = { "SCIS", "LKCSB", "School of Accounting", "SIC", "SOE" };
     private String name;
     private String locationPowerDescription;
     private int p1Power;
@@ -23,10 +22,8 @@ public class Location {
     private ArrayList<Card> p2LiveCards;
     private ArrayList<Card> p2DestroyedCards;
 
-    Random random = new Random();
-
-    public Location() {
-        this.name = possibleLocations[random.nextInt(possibleLocations.length)];
+    public Location(String location) {
+        this.name = location;
         this.p1Power = 0;
         this.p2Power = 0;
         this.p1LiveCards = new ArrayList<>();

@@ -137,9 +137,11 @@ public class Main {
         deck.shuffle();
         System.out.println("Shuffling deck...\n");
 
-        Location location1 = new Location();
-        Location location2 = new Location();
-        Location location3 = new Location();
+        List<String> possibleLocations = new ArrayList<String>(Arrays.asList("SCIS", "SOB", "SOA", "Admin", "CIS", "SOE", "SOL", "SOSS"));
+        Collections.shuffle(possibleLocations); 
+        Location location1 = new Location(possibleLocations.get(0));
+        Location location2 = new Location(possibleLocations.get(1));
+        Location location3 = new Location(possibleLocations.get(2));
         System.out.println("Randomizing Locations...\n");
 
         Hand userHand = new Hand();
