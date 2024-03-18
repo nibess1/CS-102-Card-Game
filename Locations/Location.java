@@ -22,12 +22,12 @@ public class Location {
     private ArrayList<Card> p2LiveCards;
     private ArrayList<Card> p2DestroyedCards;
 
-<<<<<<< HEAD
+
     public Location(String location) {
         this.name = location;
-=======
+    }
+    
     public Location() {
->>>>>>> 855975ea61c4ad502f65bc203ba5bae314571bce
         this.p1Power = 0;
         this.p2Power = 0;
         this.p1LiveCards = new ArrayList<>();

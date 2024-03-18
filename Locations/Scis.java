@@ -2,8 +2,8 @@ package Locations;
 
 import Cards.Card;
 
-public class Scis extends Location {
-    public Scis(){
+public class SCIS extends Location {
+    public SCIS(){
         super.setName("SCIS");
         super.setDescription("All spade cards here gain a power increase of 2.");
     }

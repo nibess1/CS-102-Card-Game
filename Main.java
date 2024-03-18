@@ -140,7 +140,7 @@ public class Main {
         deck.shuffle();
         System.out.println("Shuffling deck...\n");
 
-        List<String> possibleLocations = new ArrayList<String>(Arrays.asList("SCIS", "SOB", "SOA", "Admin", "CIS", "SOE", "SOL", "SOSS"));
+        List<String> possibleLocations = new ArrayList<String>(Arrays.asList("Locations.SCIS", "Locations.SOB", "Locations.SOA", "Locations.Admin", "Locations.CIS", "Locations.SOE", "Locations.SOL", "Locations.SOSS"));
         Collections.shuffle(possibleLocations); 
 
         Location[] location = new Location[3];
@@ -152,7 +152,7 @@ public class Main {
                 location[i] = (Location) instance;
             }
         } catch (ClassNotFoundException | NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e){
-            e.printStackTrace();
+            System.out.println("Oops, something happened");;
         }
 
         Location location1 = location[0];
