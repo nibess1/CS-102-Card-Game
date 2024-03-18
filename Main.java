@@ -1,7 +1,9 @@
 import Cards.*;
 import Locations.*;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.*;
+import java.lang.*;
 
 public class Main {
     // meant to print the names, and power of each location
@@ -139,9 +141,25 @@ public class Main {
 
         List<String> possibleLocations = new ArrayList<String>(Arrays.asList("SCIS", "SOB", "SOA", "Admin", "CIS", "SOE", "SOL", "SOSS"));
         Collections.shuffle(possibleLocations); 
-        Location location1 = new Location(possibleLocations.get(0));
-        Location location2 = new Location(possibleLocations.get(1));
-        Location location3 = new Location(possibleLocations.get(2));
+
+        Location[] location = new Location[3];
+
+        try{
+            for(int i = 0; i < 3; i++){
+                Class<?> className = Class.forName(possibleLocations.get(i));
+                Object instance = className.getDeclaredConstructor().newInstance();
+                location[i] = (Location) instance;
+            }
+        } catch (ClassNotFoundException | NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e){
+            e.printStackTrace();
+        }
+
+        Location location1 = location[0];
+        Location location2 = location[1];
+        Location location3 = location[2];
+        
+        
+
         System.out.println("Randomizing Locations...\n");
 
         Hand userHand = new Hand();
