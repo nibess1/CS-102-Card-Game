@@ -23,6 +23,10 @@ public class Card{
         return this.power;
     }
 
+    public char getSuite(){
+        return this.symbol;
+    }
+
     @Override
     public String toString() {
         return "[power=" + power + ", picture=" + picture + ", symbol=" + symbol +  "]";
