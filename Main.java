@@ -88,19 +88,6 @@ public class Main {
 
     }
 
-    public static void hasQueen(Location location1, Location location2, Location location3){
-        int currentLocation = 1;
-        int currentIndex = 0;
-        ArrayList<Card> location1Cards = location1.getCards(true);
-        for(int i = 0; i < location1Cards.size(); i++){
-            if((location1Cards.get(i) instanceof Queen) && location1Cards.get(i).canMove()){
-                currentIndex = i;
-                System.out.println("You have a queen at location 1, would you like to move?");
-            }
-        }
-
-    }
-
     public static void nextTurn(Scanner sc, Hand pcHand, Hand userHand, Deck deck, Location location1,
             Location location2, Location location3) {
 
