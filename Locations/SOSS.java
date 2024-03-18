@@ -5,7 +5,8 @@ import Cards.Card;
 public class SOSS extends Location {
 
     public SOSS() {
-        super("SOSS", "All diamond cards here gain a power increase of 2.");
+        super.setName("SOSS");
+        super.setDescription("All diamond cards here gain a power increase of 2.");
     }
 
     public void placeCard(Card cardToBePlaced, boolean p1) {
@@ -15,7 +16,5 @@ public class SOSS extends Location {
         }
         super.placeCard(cardToBePlaced, p1);
     }
-
-    //test
 
 }
