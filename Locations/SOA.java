@@ -14,5 +14,7 @@ public class SOA extends Location {
         }  
         super.placeCard(cardToBePlaced, p1);
     }
+
+    //test
     
 }

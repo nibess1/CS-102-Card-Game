@@ -16,4 +16,6 @@ public class SOSS extends Location {
         super.placeCard(cardToBePlaced, p1);
     }
 
+    //test
+
 }
