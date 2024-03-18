@@ -22,11 +22,7 @@ public class Location {
     private ArrayList<Card> p2LiveCards;
     private ArrayList<Card> p2DestroyedCards;
 
-    Random random = new Random();
-
-    public Location(String name, String description) {
-        this.name = name;
-        this.description = description;
+    public Location() {
         this.p1Power = 0;
         this.p2Power = 0;
         this.p1LiveCards = new ArrayList<>();
@@ -97,7 +93,17 @@ public class Location {
         return this.p1Power;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public String toString() {
         return this.name + ", Your Power:" + this.p1Power + ", Enemy Power:" + this.p2Power;
     }
+
+
 }
