@@ -18,7 +18,7 @@ public class Deck {
         deck.add(new Card(10, 'A', 'S', ""));
         deck.add(new Jack(7, 'J', 'S', "Gives all cards here with the same suite +2 power"));
         deck.add(new Queen(7, 'Q', 'S', "This card can move once"));
-        deck.add(new Card(6, 'K', 'S', "Destroys all enemy cards powerd 4 and below at this location"));
+        deck.add(new King(6, 'K', 'S', "Destroys all enemy cards powerd 4 and below at this location"));
         deck.add(new Card(1, 'A', 'S', "Activate your cards with abilities once more"));
 
         deck.add(new Card(2, 'A', 'C', ""));
@@ -46,7 +46,7 @@ public class Deck {
         deck.add(new Card(10, 'A', 'H', ""));
         deck.add(new Jack(7, 'J', 'H', "Gives all cards here with the same suite +2 power"));
         deck.add(new Queen(7, 'Q', 'H', "This card can move once"));
-        deck.add(new Card(6, 'K', 'H', "Destroys all enemy cards powerd 4 and below at this location"));
+        deck.add(new King(6, 'K', 'H', "Destroys all enemy cards powerd 4 and below at this location"));
         deck.add(new Card(1, 'A', 'H', "Activate your cards with abilities once more"));
 
         deck.add(new Card(2, 'A', 'D', ""));
@@ -60,7 +60,7 @@ public class Deck {
         deck.add(new Card(10, 'A', 'D', ""));
         deck.add(new Jack(7, 'J', 'D', "Gives all cards here with the same suite +2 power"));
         deck.add(new Queen(7, 'Q', 'D', "This card can move once"));
-        deck.add(new Card(6, 'K', 'D', "Destroys all enemy cards powerd 4 and below at this location"));
+        deck.add(new King(6, 'K', 'D', "Destroys all enemy cards powerd 4 and below at this location"));
         deck.add(new Card(1, 'A', 'D', "Activate your cards with abilities once more"));
 
         deck.add(new Card(0, 'Z', 'D', "Destroys the location this card is placed at"));
