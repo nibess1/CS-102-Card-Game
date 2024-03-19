@@ -46,7 +46,7 @@ public class Main {
             locationDecider(pcChoices, location1, location2, location3, pcHand, false, deck);
         } catch (IndexOutOfBoundsException e) {
             System.out.println("PC DOES NOT HAVE THIS CARD");
-            getHandCards(pcHand);
+            Hand.getHandCards(pcHand);
         }
 
     }
@@ -91,7 +91,7 @@ public class Main {
 
         System.out.println("Here are your cards after drawing a card for the next turn");
         // display user cards
-        getHandCards(userHand);
+        Hand.getHandCards(userHand);
 
         // prompt user input and play his card based on his choice based on the number
         // of times he can
@@ -99,7 +99,7 @@ public class Main {
             int userChoices[] = promptUserInput(sc);
             locationDecider(userChoices, location1, location2, location3, userHand, true, deck);
             System.out.println("Here are your cards after your move");
-            getHandCards(userHand);
+            Hand.getHandCards(userHand);
 
 
         }
@@ -111,9 +111,9 @@ public class Main {
 
         // display changes.
         System.out.println("\nHere are the locations after the first turn");
-        getAllLocation(location1, location2, location3);
+        Location.getAllLocation(location1, location2, location3);
         System.out.println("Here are your cards after your move");
-        getHandCards(userHand);
+        Hand.getHandCards(userHand);
     }
 
     public static void main(String[] args) {
@@ -161,10 +161,10 @@ public class Main {
         System.out.println("Handing out cards...\n");
 
         System.out.println("Here are the locations!");
-        getAllLocation(location1, location2, location3);
+        Location.getAllLocation(location1, location2, location3);
 
         System.out.println("Here are your cards!");
-        getHandCards(userHand);
+        Hand.getHandCards(userHand);
 
         nextTurn(sc, pcHand, userHand, deck, location1, location2, location3);
         nextTurn(sc, pcHand, userHand, deck, location1, location2, location3);
