@@ -22,7 +22,7 @@ public class Main {
     public static void pcTurn(Location location1, Location location2, Location location3, Hand pcHand, Deck deck) {
         int indexOfHighestPowerCard = 0;
         for (int i = 1; i < pcHand.getHand().size(); i++) {
-            if (pcHand.getHand().get(i).getPower() > pcHand.getHand().get(indexOfHighestPowerCard).getPower()) {
+            if (pcHand.getHand().get(i).getPower() < pcHand.getHand().get(indexOfHighestPowerCard).getPower()) {
                 indexOfHighestPowerCard = i;
             }
         }
