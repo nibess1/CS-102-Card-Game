@@ -7,8 +7,6 @@ import java.lang.*;
 
 public class Main {
 
-    
-
     // meant to prompt user for choices
     public static int[] promptUserInput(Scanner sc) {
         System.out.println("Which card would you like to place this turn?");
@@ -56,13 +54,7 @@ public class Main {
             Hand hand, boolean p1, Deck deck) {
         switch (userChoices[1]) {
             case 1:
-                Card cardToPlay = hand.getCard(userChoices[0]);
-                if (cardToPlay instanceof Jack) {
-                    location1.placeJack((Jack) cardToPlay, p1, deck);
-                }
-                 else {
-                    location1.placeCard(cardToPlay, p1);
-                }
+                location1.placeCard(hand.getCard(userChoices[0]), p1);
                 break;
             case 2:
                 location2.placeCard(hand.getCard(userChoices[0]), p1);
@@ -101,7 +93,6 @@ public class Main {
             System.out.println("Here are your cards after your move");
             Hand.getHandCards(userHand);
 
-
         }
 
         System.out.println("\nPC is making it's move...");
@@ -126,21 +117,24 @@ public class Main {
         deck.shuffle();
         System.out.println("Shuffling deck...\n");
 
-        //Picking 3 distinct locations by shuffling an arraylist of all possible locations and take the first 3.
-        List<String> possibleLocations = new ArrayList<String>(Arrays.asList("Locations.SCIS", "Locations.SOB", "Locations.SOA", "Locations.Admin", "Locations.CIS", "Locations.SOE", "Locations.SOL", "Locations.SOSS"));
-        Collections.shuffle(possibleLocations); 
-
+        // Picking 3 distinct locations by shuffling an arraylist of all possible
+        // locations and take the first 3.
+        List<String> possibleLocations = new ArrayList<String>(
+                Arrays.asList("Locations.SCIS", "Locations.SOB", "Locations.SOA", "Locations.Admin", "Locations.CIS",
+                        "Locations.SOE", "Locations.SOL", "Locations.SOSS"));
+        Collections.shuffle(possibleLocations);
 
         Location[] location = new Location[3];
 
-        //Instantiating locations
-        try{
-            for(int i = 0; i < 3; i++){
+        // Instantiating locations
+        try {
+            for (int i = 0; i < 3; i++) {
                 Class<?> className = Class.forName(possibleLocations.get(i));
                 Object instance = className.getDeclaredConstructor().newInstance();
                 location[i] = (Location) instance;
             }
-        } catch (ClassNotFoundException | NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e){
+        } catch (ClassNotFoundException | NoSuchMethodException | InstantiationException | IllegalAccessException
+                | InvocationTargetException e) {
             e.printStackTrace();
         }
 
