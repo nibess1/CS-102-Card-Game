@@ -1,4 +1,5 @@
 import Cards.*;
+import Exception.LocationRejectionException;
 import Locations.*;
 
 import java.lang.reflect.InvocationTargetException;
@@ -9,10 +10,23 @@ public class Main {
 
     // meant to prompt user for choices
     public static int[] promptUserInput(Scanner sc) {
-        System.out.println("Which card would you like to place this turn?");
-        int currentCard = sc.nextInt();
-        System.out.println("Where would you like to place this card at?");
-        int currentLocation = sc.nextInt();
+        int currentCard = 6;
+        int currentLocation = 0;
+        while (currentCard > 5 || currentCard < 1){
+            try {
+                System.out.println("Which card would you like to place this turn? (Pick from 1 - 5)");
+                currentCard = sc.nextInt();
+                System.out.println("Where would you like to place this card at? (Pick from 1 - 3)");
+                currentLocation = sc.nextInt();
+
+                if (currentCard > 5 || currentCard < 1 || currentLocation > 3 || currentLocation < 1){
+                    System.out.println("Please pick the correct range of numbers!");
+                }
+
+            } catch (LocationRejectionException e) {
+                System.out.println(e.getMessage());
+            }
+        }
         int test[] = { currentCard - 1, currentLocation };
         return test;
     }
