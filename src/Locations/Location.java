@@ -36,28 +36,51 @@ public class Location {
         this.p2DestroyedCards = new ArrayList<>();
     }
 
+    public void calculatePower(boolean p1) {
+        int totalPower = 0;
+
+        for (Card card : (p1 ? p1LiveCards : p2LiveCards)) {
+            totalPower += card.getPower();
+        }
+
+        if (p1) {
+            p1Power = totalPower;
+        }
+        p2Power = totalPower;
+    }
+
     // to place the card at the location
     public void placeCard(Card cardToBePlaced, boolean p1) {
+
+        if (cardToBePlaced instanceof Jack jackCard) {
+            for (Card card : (p1 ? p1LiveCards : p2LiveCards)) {
+                if (card.getSuite() == jackCard.getSuite()) {
+                    card.increasePower(2);
+                }
+            }
+        }
+
         if (p1) {
-            this.p1Power += cardToBePlaced.getPower();
             this.p1LiveCards.add(cardToBePlaced);
         } else {
-            this.p2Power += cardToBePlaced.getPower();
             this.p2LiveCards.add(cardToBePlaced);
         }
+
+        calculatePower(p1);
     }
 
     public Card removeCard(int index, boolean p1) {
+        Card cardToRemove;
         if (p1) {
-            Card cardToRemove = p1LiveCards.get(index);
+            cardToRemove = p1LiveCards.get(index);
             p1LiveCards.remove(index);
-            return cardToRemove;
 
         } else {
-            Card cardToRemove = p2LiveCards.get(index);
+            cardToRemove = p2LiveCards.get(index);
             p2LiveCards.remove(index);
-            return cardToRemove;
         }
+        calculatePower(p1);
+        return cardToRemove;
     }
 
     public ArrayList<Card> getCards(boolean p1) {
