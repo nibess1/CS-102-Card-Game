@@ -58,6 +58,12 @@ public class Location {
                     card.increasePower(2);
                 }
             }
+        } else if (cardToBePlaced instanceof King kingCard) {
+            for (Card card : (p1 ? p2LiveCards : p1LiveCards)) {
+                if (card.getPower() < kingCard.getPower()) {
+                    destroyCard(card, p1);
+                }
+            }
         }
 
         if (p1) {
@@ -67,6 +73,15 @@ public class Location {
         }
 
         calculatePower(p1);
+    }
+
+    public void destroyCard(Card card, boolean p1) {
+        if (p1) {
+            p1LiveCards.remove(card);
+            p1DestroyedCards.add(card);
+        }
+        p2LiveCards.remove(card);
+        p2DestroyedCards.add(card);
     }
 
     public Card removeCard(int index, boolean p1) {
