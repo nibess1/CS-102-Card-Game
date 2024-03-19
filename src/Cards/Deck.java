@@ -7,65 +7,24 @@ public class Deck {
 
     // create a deck of 53 cards
     public Deck() {
-        deck.add(new Card(2, 'A', 'S', ""));
-        deck.add(new Card(3, 'A', 'S', ""));
-        deck.add(new Card(4, 'A', 'S', ""));
-        deck.add(new Card(5, 'A', 'S', ""));
-        deck.add(new Card(6, 'A', 'S', ""));
-        deck.add(new Card(7, 'A', 'S', ""));
-        deck.add(new Card(8, 'A', 'S', ""));
-        deck.add(new Card(9, 'A', 'S', ""));
-        deck.add(new Card(10, 'A', 'S', ""));
-        deck.add(new Jack(7, 'J', 'S', "Gives all cards here with the same suite +2 power"));
-        deck.add(new Queen(7, 'Q', 'S', "This card can move once"));
-        deck.add(new King(6, 'K', 'S', "Destroys all enemy cards powerd 4 and below at this location"));
-        deck.add(new Card(1, 'A', 'S', "Activate your cards with abilities once more"));
 
-        deck.add(new Card(2, 'A', 'C', ""));
-        deck.add(new Card(3, 'A', 'C', ""));
-        deck.add(new Card(4, 'A', 'C', ""));
-        deck.add(new Card(5, 'A', 'C', ""));
-        deck.add(new Card(6, 'A', 'C', ""));
-        deck.add(new Card(7, 'A', 'C', ""));
-        deck.add(new Card(8, 'A', 'C', ""));
-        deck.add(new Card(9, 'A', 'C', ""));
-        deck.add(new Card(10, 'A', 'C', ""));
-        deck.add(new Jack(7, 'J', 'C', "Gives all cards here with the same suite +2 power"));
-        deck.add(new Queen(7, 'Q', 'C', "This card can move once"));
-        deck.add(new King(6, 'K', 'C', "Destroys all enemy cards powerd 4 and below at this location"));
-        deck.add(new Card(1, 'A', 'C', "Activate your cards with abilities once more"));
+        char[] suites = {'S', 'C', 'H', 'D'};
 
-        deck.add(new Card(2, 'A', 'H', ""));
-        deck.add(new Card(3, 'A', 'H', ""));
-        deck.add(new Card(4, 'A', 'H', ""));
-        deck.add(new Card(5, 'A', 'H', ""));
-        deck.add(new Card(6, 'A', 'H', ""));
-        deck.add(new Card(7, 'A', 'H', ""));
-        deck.add(new Card(8, 'A', 'H', ""));
-        deck.add(new Card(9, 'A', 'H', ""));
-        deck.add(new Card(10, 'A', 'H', ""));
-        deck.add(new Jack(7, 'J', 'H', "Gives all cards here with the same suite +2 power"));
-        deck.add(new Queen(7, 'Q', 'H', "This card can move once"));
-        deck.add(new King(6, 'K', 'H', "Destroys all enemy cards powerd 4 and below at this location"));
-        deck.add(new Card(1, 'A', 'H', "Activate your cards with abilities once more"));
+        for (char suite : suites){
+            for(int i = 2; i <= 10; i++){
+                deck.add(new Card(i, suite));
+            }
 
-        deck.add(new Card(2, 'A', 'D', ""));
-        deck.add(new Card(3, 'A', 'D', ""));
-        deck.add(new Card(4, 'A', 'D', ""));
-        deck.add(new Card(5, 'A', 'D', ""));
-        deck.add(new Card(6, 'A', 'D', ""));
-        deck.add(new Card(7, 'A', 'D', ""));
-        deck.add(new Card(8, 'A', 'D', ""));
-        deck.add(new Card(9, 'A', 'D', ""));
-        deck.add(new Card(10, 'A', 'D', ""));
-        deck.add(new Jack(7, 'J', 'D', "Gives all cards here with the same suite +2 power"));
-        deck.add(new Queen(7, 'Q', 'D', "This card can move once"));
-        deck.add(new King(6, 'K', 'D', "Destroys all enemy cards powerd 4 and below at this location"));
-        deck.add(new Card(1, 'A', 'D', "Activate your cards with abilities once more"));
+            deck.add(new Jack(suite));
+            deck.add(new Queen(suite));
+            deck.add(new King(suite));
+            deck.add(new Ace(suite));
+        }
 
-        deck.add(new Card(0, 'Z', 'D', "Destroys the location this card is placed at"));
+        deck.add(new Joker());
+
     }
-
+    
     // shuffle deck
     public void shuffle() {
         Collections.shuffle(deck);

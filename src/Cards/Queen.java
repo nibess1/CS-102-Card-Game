@@ -3,14 +3,13 @@ package Cards;
 import Locations.Location;
 
 public class Queen extends Card {
-    private boolean canMove;
+    private boolean canMove = true;
+    public static final String ability = "Destroys all enemy cards with power 4 and below at this location";
 
-    public Queen(int power, char picture, char suite, String description) {
-        super(power, picture, suite, description);
-        this.canMove = true;
+    public Queen(char suite) {
+        super(7, suite);
     }
-
-    @Override
+    
     public boolean canMove() {
         return this.canMove;
     }
@@ -21,7 +20,7 @@ public class Queen extends Card {
         }
 
         if (oldLocation.equals(newLocation)) {
-            throw new Exception("You're attempting to move him to the same place!");
+            throw new Exception("Unable to move to the same location!");
         }
 
         int indexOfQueen = -1;
@@ -40,7 +39,23 @@ public class Queen extends Card {
         this.canMove = false;
     }
 
-    public void hasMoved() {
-        this.canMove = false;
+    @Override
+    public String toString(){
+        return "[power = " + super.getPower() + ", suite = " + super.getSuite() + ", ability = " + ability + "]";
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+
+        if (!(obj instanceof Queen)) {
+            return false;
+        }
+
+        Queen card = (Queen) obj;
+
+        if (card.getPower() == getPower() && card.getSuite() == getSuite()) {
+            return true;
+        }
+        return false;
     }
 }

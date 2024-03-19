@@ -2,50 +2,42 @@ package Cards;
 
 public class Card {
     private int power; // the number on the card
-    private char picture; // the picture of the card "J / Q / K / A / Z" (A is normal, Z is joker)
-    private char suite; // the symbol / group the card belongs to "H / C / S / D"\
-    private String description;
-    private boolean destroyed; // check if the card has been destroyed
+    private final char suite; // the symbol / group the card belongs to "H / C / S / D"\
+    private boolean destroyed = false; // check if the card has been destroyed
 
-    public Card(int power, char picture, char suite, String description) {
+    public Card(int power, char suite) {
         this.power = power;
-        this.picture = picture;
         this.suite = suite;
-        this.description = description;
         this.destroyed = false;
     }
 
-    // increase power of card.
-    public void increasePower(int numberToIncrease) {
-        this.power += numberToIncrease;
+    public static boolean isPictureCard(Card card){
+        return (card instanceof Jack) || (card instanceof Queen) || (card instanceof King) || (card instanceof Ace) || (card instanceof Joker);
     }
-
+    
     // get power of card
     public int getPower() {
         return this.power;
     }
-
+    
     public char getSuite() {
         return this.suite;
     }
-
-    public char getPicture() {
-        return this.picture;
-    }
-
-    @Override
-    public String toString() {
-        return "[power=" + power + ", picture=" + picture + ", suite=" + suite + "]";
+    
+    // increase power of card.
+    public void increasePower(int numberToIncrease) {
+        this.power += numberToIncrease;
     }
 
     public void destroy() {
         this.destroyed = true;
     }
 
-    public boolean canMove() {
-        // nth
-        return false;
+    @Override
+    public String toString() {
+        return "[power = " + power + ", suite = " + suite + " ]";
     }
+
 
     public boolean equals(Object obj) {
 
@@ -55,7 +47,7 @@ public class Card {
 
         Card card = (Card) obj;
 
-        if (card.getPower() == this.power && card.getSuite() == this.suite && card.getPicture() == this.picture) {
+        if (card.getPower() == this.power && card.getSuite() == this.suite && !isPictureCard(card)) {
             return true;
         }
         return false;
