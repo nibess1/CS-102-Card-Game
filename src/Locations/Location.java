@@ -49,7 +49,7 @@ public class Location {
     // to place the card at the location
     public void placeCard(Card cardToBePlaced, boolean p1) {
         // if location is destroyed, throw error.
-        if (!isDestroyed) {
+        if (isDestroyed) {
             throw new LocationRejectionException("Location is destroyed!");
         }
 
