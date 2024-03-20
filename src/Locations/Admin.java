@@ -13,12 +13,16 @@ public class Admin extends Location {
         int validPlace1 = getP1NumLiveCards();
         int validPlace2 = getP2NumLiveCards();
 
-        if (validPlace1 > 2) {
-            throw new LocationRejectionException();
-        } else if (validPlace2 > 2) {
-            throw new LocationRejectionException();
-        }else{
+        if (validPlace1 == 0){
             super.placeCard(cardToBePlaced, p1);
+        } else{
+            throw new LocationRejectionException();
+        }
+
+        if (validPlace2 == 0){
+            super.placeCard(cardToBePlaced, !(p1));
+        } else{
+            throw new LocationRejectionException();
         }
     }
 }
