@@ -31,10 +31,10 @@ public class Main {
 
     // logic to calculate enemy (PC) on where to play it's cards
     // current logic: Put highest power card on hand at lowest power location
-    public static void pcTurn(Location location1, Location location2, Location location3, Player pcHand, Deck deck) {
+    public static void pcTurn(Location location1, Location location2, Location location3, Player player2, Deck deck) {
         int indexOfHighestPowerCard = 0;
-        for (int i = 1; i < pcHand.getHand().size(); i++) {
-            if (pcHand.getHand().get(i).getPower() > pcHand.getHand().get(indexOfHighestPowerCard).getPower()) {
+        for (int i = 1; i < player2.getHand().size(); i++) {
+            if (player2.getHand().get(i).getPower() > player2.getHand().get(indexOfHighestPowerCard).getPower()) {
                 indexOfHighestPowerCard = i;
             }
         }
@@ -53,10 +53,10 @@ public class Main {
         int pcChoices[] = { indexOfHighestPowerCard, lowestPowerLocation };
 
         try {
-            locationDecider(pcChoices, location1, location2, location3, pcHand, false, deck);
+            locationDecider(pcChoices, location1, location2, location3, player2, false, deck);
         } catch (IndexOutOfBoundsException e) {
             System.out.println("PC DOES NOT HAVE THIS CARD");
-            Player.getHandCards(pcHand);
+            Player.getHandCards(player2);
         }
 
     }
@@ -82,7 +82,7 @@ public class Main {
             }
     }
 
-    public static void nextTurn(Scanner sc, Player pcHand, Player userHand, Deck deck, Location location1,
+    public static void nextTurn(Scanner sc, Player player1, Player player2, Deck deck, Location location1,
             Location location2, Location location3) {
 
 
@@ -90,34 +90,33 @@ public class Main {
 
         System.out.println("Drawing cards ...");
         // user draws
-        for (int i = 0; i < userHand.getNumberOfCardsPerTurn(); i++) {
-            userHand.handDraw(deck);
+        for (int i = 0; i < player1.getNumberOfCardsPerTurn(); i++) {
+            player1.handDraw(deck);
         }
         // pc draws
-        for (int i = 0; i < pcHand.getNumberOfCardsPerTurn(); i++) {
-            pcHand.handDraw(deck);
+        for (int i = 0; i < player2.getNumberOfCardsPerTurn(); i++) {
+            player2.handDraw(deck);
         }
         
         // prompt user input and play his card based on his choice based on the number
         // of times he can
-        for (int i = 0; i < userHand.getNumberOfCardsPerTurn(); i++) {
+        for (int i = 0; i < player1.getNumberOfCardsPerTurn(); i++) {
             Location.getAllLocation(location1, location2, location3);
-            Player.getHandCards(userHand);
-            System.out.println("You have (" + (userHand.getNumberOfCardsPerTurn() - i) + ") cards left to play this turn");
+            Player.getHandCards(player1);
+            System.out.println("You have (" + (player1.getNumberOfCardsPerTurn() - i) + ") cards left to play this turn");
             int userChoices[] = promptUserInput(sc);
-            locationDecider(userChoices, location1, location2, location3, userHand, true, deck);
+            locationDecider(userChoices, location1, location2, location3, player1, true, deck);
         }
 
         System.out.println("\nPC is making it's move...");
-        for (int i = 0; i < pcHand.getNumberOfCardsPerTurn(); i++) {
-            pcTurn(location1, location2, location3, pcHand, deck);
+        for (int i = 0; i < player2.getNumberOfCardsPerTurn(); i++) {
+            pcTurn(location1, location2, location3, player2, deck);
         }
 
         // display changes.
         System.out.println("\nHere are the locations after the first turn");
         Location.getAllLocation(location1, location2, location3);
-// System.out.println("Here are your cards after your move");
-// Player.getHandCards(userHand);
+
     }
 
     public static void main(String[] args) {
@@ -158,11 +157,11 @@ public class Main {
 
         System.out.println("Randomizing Locations...\n");
 
-        Player userHand = new Player();
-        Player pcHand = new Player();
+        Player player1 = new Player();
+        Player player2 = new Player();
         for(int i = 0; i < 3; i++){
-            userHand.handDraw(deck);
-            pcHand.handDraw(deck);
+            player1.handDraw(deck);
+            player2.handDraw(deck);
         }
 
         System.out.println("Handing out cards...\n");
@@ -171,12 +170,12 @@ public class Main {
         Location.getAllLocation(location1, location2, location3);
 
         System.out.println("Here are your cards!");
-        Player.getHandCards(userHand);
+        Player.getHandCards(player1);
 
         //Game start
         for (int i = 0; i < 5; i++){
             System.out.println("-------------------------- Turn " + (i + 1) + " --------------------------");
-            nextTurn(sc, pcHand, userHand, deck, location1, location2, location3);
+            nextTurn(sc, player1, player2, deck, location1, location2, location3);
         }
 
         int playerWins = 0;
