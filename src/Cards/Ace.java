@@ -1,10 +1,26 @@
 package Cards;
 
+import Locations.Location;
+
 public class Ace extends Card implements Picture {
     public static final String ability = "Activate your cards with abilities once more";
 
     public Ace(char suite) {
         super(1, suite);
+    }
+
+    public static void abilities(boolean p1, Jack j, Location location) {
+        for (Card card : location.getCards(p1)) {
+            if (card instanceof Picture) {
+                if (card instanceof Queen q) {
+                    q.setCanMove();
+                } else {
+                    // remove and place the card again to retrigger effects
+                    location.removeCard(card, p1);
+                    location.placeCard(card, p1);
+                }
+            }
+        }
     }
 
     @Override
