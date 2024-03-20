@@ -1,10 +1,20 @@
 package Cards;
 
+import java.util.*;
+
 public class Jack extends Card implements Picture {
     public static final String ability = "Gives all cards here with the same suite +2 power";
 
     public Jack(char suite) {
         super(7, suite);
+    }
+
+    public static void abilities(boolean p1, Jack j, ArrayList<Card> p1LiveCards, ArrayList<Card> p2LiveCards) {
+        for (Card card : (p1 ? p1LiveCards : p2LiveCards)) {
+            if (card.getSuite() == j.getSuite()) {
+                card.increasePower(2);
+            }
+        }
     }
 
     // console representation of jack

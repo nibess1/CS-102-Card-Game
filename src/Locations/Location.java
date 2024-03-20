@@ -58,12 +58,8 @@ public class Location {
         if (cardToBePlaced instanceof Picture) {
 
             // jack ability
-            if (cardToBePlaced instanceof Jack jackCard) {
-                for (Card card : (p1 ? p1LiveCards : p2LiveCards)) {
-                    if (card.getSuite() == jackCard.getSuite()) {
-                        card.increasePower(2);
-                    }
-                }
+            if (cardToBePlaced instanceof Jack j) {
+                Jack.abilities(p1, j, p1LiveCards, p2LiveCards);
             }
             // king ability
             else if (cardToBePlaced instanceof King kingCard) {
@@ -80,7 +76,7 @@ public class Location {
                         if (card instanceof Queen q) {
                             q.setCanMove();
                         } else {
-                            //remove and place the card again to retrigger effects
+                            // remove and place the card again to retrigger effects
                             removeCard(card, p1);
                             placeCard(card, p1);
                         }
