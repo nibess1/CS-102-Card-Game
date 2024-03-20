@@ -9,7 +9,7 @@ public class Queen extends Card {
     public Queen(char suite) {
         super(7, suite);
     }
-    
+
     public boolean canMove() {
         return this.canMove;
     }
@@ -35,12 +35,14 @@ public class Queen extends Card {
             throw new Exception("Error! queen can't be found");
         }
 
-        newLocation.placeCard(oldLocation.removeCard(indexOfQueen, p1), p1);
+        newLocation.getCards(p1).add(oldLocation.removeCard(indexOfQueen, p1));
+
         this.canMove = false;
+        newLocation.calculatePower(p1);
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "[power = " + super.getPower() + ", suite = " + super.getSuite() + ", ability = " + ability + "]";
     }
 
