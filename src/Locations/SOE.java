@@ -7,7 +7,7 @@ public class SOE extends Location {
 
     public SOE(){
         super.setName("SOE");
-        super.setDescription("The card with the lowest power wins.");
+        super.setDescription("The player with the lowest power wins.");
     }
 
     @Override
