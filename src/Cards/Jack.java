@@ -11,7 +11,7 @@ public class Jack extends Card implements Picture {
         super(7, suite);
     }
 
-    public static void abilities(boolean p1, Jack j, Location location) {
+    public static void triggerAbility(boolean p1, Jack j, Location location) {
         for (Card card : location.getCards(p1)) {
             if (card.getSuite() == j.getSuite()) {
                 card.increasePower(2);

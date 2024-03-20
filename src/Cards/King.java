@@ -9,7 +9,7 @@ public class King extends Card implements Picture {
         super(6, suite);
     }
 
-    public static void abilities(boolean p1, King k, Location location) {
+    public static void triggerAbility(boolean p1, King k, Location location) {
         for (Card card : location.getCards(p1)) {
             if (card.getPower() < k.getPower()) {
                 location.destroyCard(card, p1);

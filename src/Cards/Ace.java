@@ -9,7 +9,7 @@ public class Ace extends Card implements Picture {
         super(1, suite);
     }
 
-    public static void abilities(boolean p1, Jack j, Location location) {
+    public static void triggerAbility(boolean p1, Location location) {
         for (Card card : location.getCards(p1)) {
             if (card instanceof Picture) {
                 if (card instanceof Queen q) {
