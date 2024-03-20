@@ -69,16 +69,20 @@ public class Main {
                 switch (userChoices[1]) {
                     case 1:
                         location1.placeCard(hand.getCard(userChoices[0]), p1);
+                        hand.removeCard(userChoices[0]);
                         break;
                     case 2:
                         location2.placeCard(hand.getCard(userChoices[0]), p1);
+                        hand.removeCard(userChoices[0]);
                         break;
                     case 3:
                         location3.placeCard(hand.getCard(userChoices[0]), p1);
+                        hand.removeCard(userChoices[0]);
                         break;
                 }
             } catch (LocationRejectionException e) {
-                e.getMessage();
+                e.getErrorMessage();
+                System.out.println();
             }
     }
 
@@ -100,12 +104,26 @@ public class Main {
         
         // prompt user input and play his card based on his choice based on the number
         // of times he can
-        for (int i = 0; i < player1.getNumberOfCardsPerTurn(); i++) {
-            Location.getAllLocation(location1, location2, location3);
-            Player.getHandCards(player1);
-            System.out.println("You have (" + (player1.getNumberOfCardsPerTurn() - i) + ") cards left to play this turn");
-            int userChoices[] = promptUserInput(sc);
-            locationDecider(userChoices, location1, location2, location3, player1, true, deck);
+        int userHandBefore = Hand.getCurrentNumberOfCards(userHand);
+        boolean invalidMove = true;
+
+        for (int i = 0; i < userHand.getNumberOfCards(); i++) {
+            while (invalidMove) {
+                int userChoices[] = promptUserInput(sc);
+                locationDecider(userChoices, location1, location2, location3, userHand, true, deck);
+
+                System.out.println("Here are your cards after your move");
+                Hand.getHandCards(userHand);
+                
+                if (userHandBefore != Hand.getCurrentNumberOfCards(userHand)){
+                    invalidMove = false;
+                } else{
+                    System.out.println("You did an invalid move, please input the card in other place.");
+                }
+            }
+
+            userHandBefore = Hand.getCurrentNumberOfCards(userHand);
+            invalidMove = true;
         }
 
         System.out.println("\nPC is making it's move...");

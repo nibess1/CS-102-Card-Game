@@ -21,8 +21,11 @@ public class Player {
     // to take the card from the hand. This is for placing card on locations.
     public Card getCard(int cardNumber) {
         Card tempCard = this.hand.get(cardNumber);
-        this.hand.remove(cardNumber);
         return tempCard;
+    }
+
+    public void removeCard(int cardNumber){
+        this.hand.remove(cardNumber); 
     }
 
     // to add cards in hand
@@ -36,5 +39,15 @@ public class Player {
             System.out.println("Card #" + (i + 1) + " " + player.getHand().get(i));
         }
         System.out.println("");
+    }
+
+    public static int getCurrentNumberOfCards(Hand hand){
+        int counterNumberCards = 0;
+
+        for (int i = 0; i < hand.getHand().size(); i++){
+            counterNumberCards++;
+        }
+
+        return counterNumberCards;
     }
 }

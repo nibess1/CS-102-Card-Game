@@ -17,13 +17,13 @@ public class Admin extends Location {
         if (validPlace1 == 0){
             super.placeCard(cardToBePlaced, p1);
         } else{
-            throw new LocationRejectionException();
+            throw new LocationRejectionException("You can only place one card here.");
         }
 
         if (validPlace2 == 0){
             super.placeCard(cardToBePlaced, !(p1));
         } else{
-            throw new LocationRejectionException();
+            throw new LocationRejectionException("You can only place one card here.");
         }
     }
 }

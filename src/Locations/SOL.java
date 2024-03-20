@@ -12,7 +12,7 @@ public class SOL extends Location {
 
     public void placeCard(Card cardToBePlaced, boolean p1) throws LocationRejectionException {
         if (Card.isPictureCard(cardToBePlaced)) {
-            throw new LocationRejectionException("This is a picture card");
+            throw new LocationRejectionException("No power cards can be placed here.");
         }
         super.placeCard(cardToBePlaced, p1);
     }
