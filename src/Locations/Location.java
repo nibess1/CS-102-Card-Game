@@ -22,6 +22,7 @@ public class Location {
     private ArrayList<Card> p1DestroyedCards = new ArrayList<>();
     private ArrayList<Card> p2LiveCards = new ArrayList<>();
     private ArrayList<Card> p2DestroyedCards = new ArrayList<>();
+    private boolean isDestroyed = false;
 
     public Location(String location) {
         this.name = location;
@@ -47,6 +48,10 @@ public class Location {
 
     // to place the card at the location
     public void placeCard(Card cardToBePlaced, boolean p1) {
+        // if location is destroyed, throw error.
+        if (!isDestroyed) {
+            throw new LocationRejectionException("Location is destroyed!");
+        }
 
         if (cardToBePlaced instanceof Jack jackCard) {
             for (Card card : (p1 ? p1LiveCards : p2LiveCards)) {
@@ -60,6 +65,11 @@ public class Location {
                     destroyCard(card, p1);
                 }
             }
+        }
+        // if its a joker, set destroyed and quit function.
+        else if (cardToBePlaced instanceof Joker) {
+            this.isDestroyed = true;
+            return;
         }
 
         if (p1) {
@@ -86,8 +96,7 @@ public class Location {
         if (p1) {
             cardToRemove = p1LiveCards.get(index);
             p1LiveCards.remove(index);
-        }
-        else{
+        } else {
             cardToRemove = p2LiveCards.get(index);
             p2LiveCards.remove(index);
         }
@@ -121,9 +130,9 @@ public class Location {
         return false;
     }
 
-    // to check if player wins at this location
+    // to check if player wins at this location, and location is NOT destroyed.
     public boolean playerWins() {
-        if (p1Power > p2Power) {
+        if (p1Power > p2Power && !isDestroyed) {
             return true;
         }
         return false;
@@ -154,11 +163,23 @@ public class Location {
         return this.p2LiveCards.size();
     }
 
+    public boolean checkDestroyed() {
+        return this.isDestroyed;
+    }
+
     // meant to print the names, and power of each location
     public static void getAllLocation(Location location1, Location location2, Location location3) {
-        System.out.println("#1:" + location1.toString());
-        System.out.println("#2:" + location2.toString());
-        System.out.println("#3:" + location3.toString());
+        if (!location1.checkDestroyed()) {
+            System.out.println("#1:" + location1.toString());
+        }
+
+        if (!location2.checkDestroyed()) {
+            System.out.println("#2:" + location2.toString());
+        }
+
+        if (!location3.checkDestroyed()) {
+            System.out.println("#3:" + location3.toString());
+        }
         System.out.println("");
     }
 }
