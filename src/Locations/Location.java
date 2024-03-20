@@ -108,16 +108,6 @@ public class Location {
         return this.p2LiveCards;
     }
 
-    // meant to initiate jack's abilities.
-    public void placeJack(Jack cardToBePlaced, boolean p1, Deck deck) {
-        Card newCard = deck.draw();
-        System.out.println("New card drawn is " + newCard);
-        cardToBePlaced.increasePower(newCard.getPower());
-        System.out.println("Jack's power is now " + cardToBePlaced.getPower());
-
-        this.placeCard(cardToBePlaced, p1);
-    }
-
     // for AI to decide which location has the least power to place the card
     public boolean isLessThan(Location location) {
         if (this.p2Power < location.p2Power) {
