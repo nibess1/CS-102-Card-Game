@@ -2,7 +2,7 @@ package Cards;
 
 import Locations.Location;
 
-public class Queen extends Card {
+public class Queen extends Card implements Picture{
     private boolean canMove = true;
     public static final String ability = "Destroys all enemy cards with power 4 and below at this location";
 

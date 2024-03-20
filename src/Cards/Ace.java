@@ -1,6 +1,6 @@
 package Cards;
 
-public class Ace extends Card {
+public class Ace extends Card implements Picture {
     public static final String ability = "Activate your cards with abilities once more";
 
     public Ace(char suite) {
@@ -8,7 +8,7 @@ public class Ace extends Card {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "[power = " + super.getPower() + ", suite = " + super.getSuite() + ", ability = " + ability + "]";
     }
 

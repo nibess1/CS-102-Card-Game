@@ -1,6 +1,6 @@
 package Cards;
 
-public class King extends Card {
+public class King extends Card implements Picture{
     public static final String ability = "Destroys all enemy cards with power lower than this card at this location";
 
     public King(char suite) {

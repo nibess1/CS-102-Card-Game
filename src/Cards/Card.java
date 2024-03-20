@@ -11,19 +11,19 @@ public class Card {
         this.destroyed = false;
     }
 
-    public static boolean isPictureCard(Card card){
-        return (card instanceof Jack) || (card instanceof Queen) || (card instanceof King) || (card instanceof Ace) || (card instanceof Joker);
+    public static boolean isPictureCard(Card card) {
+        return (card instanceof Picture);
     }
-    
+
     // get power of card
     public int getPower() {
         return this.power;
     }
-    
+
     public char getSuite() {
         return this.suite;
     }
-    
+
     // increase power of card.
     public void increasePower(int numberToIncrease) {
         this.power += numberToIncrease;
@@ -37,7 +37,6 @@ public class Card {
     public String toString() {
         return "[power = " + power + ", suite = " + suite + " ]";
     }
-
 
     public boolean equals(Object obj) {
 

@@ -1,5 +1,5 @@
 package Cards;
-public class Jack extends Card{
+public class Jack extends Card implements Picture{
     public static final String ability = "Gives all cards here with the same suite +2 power";
 
     public Jack(char suite) {
