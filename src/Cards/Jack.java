@@ -2,6 +2,8 @@ package Cards;
 
 import java.util.*;
 
+import Locations.Location;
+
 public class Jack extends Card implements Picture {
     public static final String ability = "Gives all cards here with the same suite +2 power";
 
@@ -9,8 +11,8 @@ public class Jack extends Card implements Picture {
         super(7, suite);
     }
 
-    public static void abilities(boolean p1, Jack j, ArrayList<Card> p1LiveCards, ArrayList<Card> p2LiveCards) {
-        for (Card card : (p1 ? p1LiveCards : p2LiveCards)) {
+    public static void abilities(boolean p1, Jack j, Location location) {
+        for (Card card : location.getCards(p1)) {
             if (card.getSuite() == j.getSuite()) {
                 card.increasePower(2);
             }

@@ -59,18 +59,14 @@ public class Location {
 
             // jack ability
             if (cardToBePlaced instanceof Jack j) {
-                Jack.abilities(p1, j, p1LiveCards, p2LiveCards);
+                Jack.abilities(p1, j, this);
             }
             // king ability
-            else if (cardToBePlaced instanceof King kingCard) {
-                for (Card card : (p1 ? p2LiveCards : p1LiveCards)) {
-                    if (card.getPower() < kingCard.getPower()) {
-                        destroyCard(card, p1);
-                    }
-                }
+            else if (cardToBePlaced instanceof King k) {
+                King.abilities(p1, k, this);
             }
             // ace abilities.
-            else if (cardToBePlaced instanceof Ace ace) {
+            else if (cardToBePlaced instanceof Ace) {
                 for (Card card : p1 ? p1LiveCards : p2LiveCards) {
                     if (card instanceof Picture) {
                         if (card instanceof Queen q) {
