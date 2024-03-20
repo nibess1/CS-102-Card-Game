@@ -53,23 +53,46 @@ public class Location {
             throw new LocationRejectionException("Location is destroyed!");
         }
 
-        if (cardToBePlaced instanceof Jack jackCard) {
-            for (Card card : (p1 ? p1LiveCards : p2LiveCards)) {
-                if (card.getSuite() == jackCard.getSuite()) {
-                    card.increasePower(2);
+        // only check the card's abilities if its a picture, to reduce load on all these
+        // checks
+        if (cardToBePlaced instanceof Picture) {
+
+            // jack ability
+            if (cardToBePlaced instanceof Jack jackCard) {
+                for (Card card : (p1 ? p1LiveCards : p2LiveCards)) {
+                    if (card.getSuite() == jackCard.getSuite()) {
+                        card.increasePower(2);
+                    }
                 }
             }
-        } else if (cardToBePlaced instanceof King kingCard) {
-            for (Card card : (p1 ? p2LiveCards : p1LiveCards)) {
-                if (card.getPower() < kingCard.getPower()) {
-                    destroyCard(card, p1);
+            // king ability
+            else if (cardToBePlaced instanceof King kingCard) {
+                for (Card card : (p1 ? p2LiveCards : p1LiveCards)) {
+                    if (card.getPower() < kingCard.getPower()) {
+                        destroyCard(card, p1);
+                    }
                 }
             }
-        }
-        // if its a joker, set destroyed and quit function.
-        else if (cardToBePlaced instanceof Joker) {
-            this.isDestroyed = true;
-            return;
+            // ace abilities.
+            else if (cardToBePlaced instanceof Ace ace) {
+                for (Card card : p1 ? p1LiveCards : p2LiveCards) {
+                    if (card instanceof Picture) {
+                        if (card instanceof Queen q) {
+                            q.setCanMove();
+                        } else {
+                            //remove and place the card again to retrigger effects
+                            removeCard(card, p1);
+                            placeCard(card, p1);
+                        }
+                    }
+                }
+            }
+
+            // if its a joker, set destroyed and quit function.
+            else if (cardToBePlaced instanceof Joker) {
+                this.isDestroyed = true;
+                return;
+            }
         }
 
         if (p1) {

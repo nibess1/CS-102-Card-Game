@@ -16,6 +16,10 @@ public class Queen extends Card implements Picture {
         return this.canMove;
     }
 
+    public void setCanMove() {
+        this.canMove = true;
+    }
+
     // move queen card.
     public void move(Location oldLocation, Location newLocation, boolean p1) throws Exception {
         // check if queen has moved
