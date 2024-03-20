@@ -13,7 +13,7 @@ public class Ace extends Card implements Picture {
         for (Card card : location.getCards(p1)) {
             if (card instanceof Picture) {
                 if (card instanceof Queen q) {
-                    q.setCanMove();
+                    q.setCanMove(true);
                 } else {
                     // remove and place the card again to retrigger effects
                     location.removeCard(card, p1);

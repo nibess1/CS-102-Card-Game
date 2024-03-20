@@ -16,8 +16,8 @@ public class Queen extends Card implements Picture {
         return this.canMove;
     }
 
-    public void setCanMove() {
-        this.canMove = true;
+    public void setCanMove(boolean value) {
+        this.canMove = value;
     }
 
     // move queen card.
@@ -42,7 +42,7 @@ public class Queen extends Card implements Picture {
         newLocation.calculatePower(p1);
 
         // set queen's move to false. it cant move anymore.
-        this.canMove = false;
+        setCanMove(false);
     }
 
     // console representation of queen card
