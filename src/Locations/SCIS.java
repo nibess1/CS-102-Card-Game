@@ -9,6 +9,7 @@ public class SCIS extends Location {
         super.setDescription("All spade cards here gain a power increase of 2.");
     }
 
+    @Override
     public void placeCard(Card cardToBePlaced, boolean p1) {
 
         if(cardToBePlaced.getSuite() == 'S'){

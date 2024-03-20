@@ -16,24 +16,19 @@ public class Location {
     //
     private String name;
     private String description;
-    private int p1Power;
-    private int p2Power;
-    private ArrayList<Card> p1LiveCards;
-    private ArrayList<Card> p1DestroyedCards;
-    private ArrayList<Card> p2LiveCards;
-    private ArrayList<Card> p2DestroyedCards;
+    private int p1Power = 0;
+    private int p2Power = 0;
+    private ArrayList<Card> p1LiveCards = new ArrayList<>();
+    private ArrayList<Card> p1DestroyedCards = new ArrayList<>();
+    private ArrayList<Card> p2LiveCards = new ArrayList<>();
+    private ArrayList<Card> p2DestroyedCards = new ArrayList<>();
 
     public Location(String location) {
         this.name = location;
     }
 
     public Location() {
-        this.p1Power = 0;
-        this.p2Power = 0;
-        this.p1LiveCards = new ArrayList<>();
-        this.p1DestroyedCards = new ArrayList<>();
-        this.p2LiveCards = new ArrayList<>();
-        this.p2DestroyedCards = new ArrayList<>();
+
     }
 
     public void calculatePower(boolean p1) {
@@ -45,6 +40,7 @@ public class Location {
 
         if (p1) {
             p1Power = totalPower;
+            return;
         }
         p2Power = totalPower;
     }
@@ -79,6 +75,7 @@ public class Location {
         if (p1) {
             p1LiveCards.remove(card);
             p1DestroyedCards.add(card);
+            return;
         }
         p2LiveCards.remove(card);
         p2DestroyedCards.add(card);
@@ -89,11 +86,12 @@ public class Location {
         if (p1) {
             cardToRemove = p1LiveCards.get(index);
             p1LiveCards.remove(index);
-
-        } else {
+        }
+        else{
             cardToRemove = p2LiveCards.get(index);
             p2LiveCards.remove(index);
         }
+
         calculatePower(p1);
         return cardToRemove;
     }

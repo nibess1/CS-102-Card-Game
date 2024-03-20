@@ -6,6 +6,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 public class Main {
+    public int turn;
 
     // meant to prompt user for choices
     public static int[] promptUserInput(Scanner sc) {
@@ -30,7 +31,7 @@ public class Main {
 
     // logic to calculate enemy (PC) on where to play it's cards
     // current logic: Put highest power card on hand at lowest power location
-    public static void pcTurn(Location location1, Location location2, Location location3, Hand pcHand, Deck deck) {
+    public static void pcTurn(Location location1, Location location2, Location location3, Player pcHand, Deck deck) {
         int indexOfHighestPowerCard = 0;
         for (int i = 1; i < pcHand.getHand().size(); i++) {
             if (pcHand.getHand().get(i).getPower() > pcHand.getHand().get(indexOfHighestPowerCard).getPower()) {
@@ -55,14 +56,15 @@ public class Main {
             locationDecider(pcChoices, location1, location2, location3, pcHand, false, deck);
         } catch (IndexOutOfBoundsException e) {
             System.out.println("PC DOES NOT HAVE THIS CARD");
-            Hand.getHandCards(pcHand);
+            Player.getHandCards(pcHand);
         }
 
     }
 
     // to decide where to place the card at.
     public static void locationDecider(int[] userChoices, Location location1, Location location2, Location location3,
-            Hand hand, boolean p1, Deck deck) {
+            Player hand, boolean p1, Deck deck) {
+                
             try {
                 switch (userChoices[1]) {
                     case 1:
@@ -80,42 +82,42 @@ public class Main {
             }
     }
 
-    public static void nextTurn(Scanner sc, Hand pcHand, Hand userHand, Deck deck, Location location1,
+    public static void nextTurn(Scanner sc, Player pcHand, Player userHand, Deck deck, Location location1,
             Location location2, Location location3) {
 
+
+        //display location status
+
+        System.out.println("Drawing cards ...");
         // user draws
-        for (int i = 0; i < userHand.getNumberOfCards(); i++) {
+        for (int i = 0; i < userHand.getNumberOfCardsPerTurn(); i++) {
             userHand.handDraw(deck);
         }
         // pc draws
-        for (int i = 0; i < pcHand.getNumberOfCards(); i++) {
+        for (int i = 0; i < pcHand.getNumberOfCardsPerTurn(); i++) {
             pcHand.handDraw(deck);
         }
-
-        System.out.println("Here are your cards after drawing a card for the next turn");
-        // display user cards
-        Hand.getHandCards(userHand);
-
+        
         // prompt user input and play his card based on his choice based on the number
         // of times he can
-        for (int i = 0; i < userHand.getNumberOfCards(); i++) {
+        for (int i = 0; i < userHand.getNumberOfCardsPerTurn(); i++) {
+            Location.getAllLocation(location1, location2, location3);
+            Player.getHandCards(userHand);
+            System.out.println("You have (" + (userHand.getNumberOfCardsPerTurn() - i) + ") cards left to play this turn");
             int userChoices[] = promptUserInput(sc);
             locationDecider(userChoices, location1, location2, location3, userHand, true, deck);
-            System.out.println("Here are your cards after your move");
-            Hand.getHandCards(userHand);
-
         }
 
         System.out.println("\nPC is making it's move...");
-        for (int i = 0; i < pcHand.getNumberOfCards(); i++) {
+        for (int i = 0; i < pcHand.getNumberOfCardsPerTurn(); i++) {
             pcTurn(location1, location2, location3, pcHand, deck);
         }
 
         // display changes.
         System.out.println("\nHere are the locations after the first turn");
         Location.getAllLocation(location1, location2, location3);
-        System.out.println("Here are your cards after your move");
-        Hand.getHandCards(userHand);
+// System.out.println("Here are your cards after your move");
+// Player.getHandCards(userHand);
     }
 
     public static void main(String[] args) {
@@ -133,6 +135,7 @@ public class Main {
         List<String> possibleLocations = new ArrayList<String>(
                 Arrays.asList("Locations.SCIS", "Locations.SOB", "Locations.SOA", "Locations.Admin", "Locations.CIS",
                         "Locations.SOE", "Locations.SOL", "Locations.SOSS"));
+
         Collections.shuffle(possibleLocations);
 
         Location[] location = new Location[3];
@@ -155,40 +158,39 @@ public class Main {
 
         System.out.println("Randomizing Locations...\n");
 
-        Hand userHand = new Hand();
-        Hand pcHand = new Hand();
-        pcHand.handDraw(deck);
-        userHand.handDraw(deck);
-        pcHand.handDraw(deck);
-        userHand.handDraw(deck);
-        pcHand.handDraw(deck);
-        userHand.handDraw(deck);
+        Player userHand = new Player();
+        Player pcHand = new Player();
+        for(int i = 0; i < 3; i++){
+            userHand.handDraw(deck);
+            pcHand.handDraw(deck);
+        }
+
         System.out.println("Handing out cards...\n");
 
         System.out.println("Here are the locations!");
         Location.getAllLocation(location1, location2, location3);
 
         System.out.println("Here are your cards!");
-        Hand.getHandCards(userHand);
+        Player.getHandCards(userHand);
 
-        nextTurn(sc, pcHand, userHand, deck, location1, location2, location3);
-        nextTurn(sc, pcHand, userHand, deck, location1, location2, location3);
-        nextTurn(sc, pcHand, userHand, deck, location1, location2, location3);
-        nextTurn(sc, pcHand, userHand, deck, location1, location2, location3);
-        nextTurn(sc, pcHand, userHand, deck, location1, location2, location3);
+        //Game start
+        for (int i = 0; i < 5; i++){
+            System.out.println("-------------------------- Turn " + (i + 1) + " --------------------------");
+            nextTurn(sc, pcHand, userHand, deck, location1, location2, location3);
+        }
 
         int playerWins = 0;
         String winningMessage = "";
         if (location1.playerWins()) {
-            winningMessage += "location 1 with " + location1.getLocationPower() + " power and";
+            winningMessage += "location 1 with " + location1.getLocationPower() + " power and ";
             playerWins++;
         }
         if (location2.playerWins()) {
-            winningMessage += "location 2 with " + location2.getLocationPower() + " power and";
+            winningMessage += "location 2 with " + location2.getLocationPower() + " power and ";
             playerWins++;
         }
         if (location3.playerWins()) {
-            winningMessage += "location 3 with " + location3.getLocationPower() + " power and";
+            winningMessage += "location 3 with " + location3.getLocationPower() + " power and ";
             playerWins++;
         }
         if (playerWins >= 2) {
