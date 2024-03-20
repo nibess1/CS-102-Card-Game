@@ -1,16 +1,19 @@
 package Cards;
-public class Jack extends Card implements Picture{
+
+public class Jack extends Card implements Picture {
     public static final String ability = "Gives all cards here with the same suite +2 power";
 
     public Jack(char suite) {
         super(7, suite);
     }
 
+    // console representation of jack
     @Override
-    public String toString(){
+    public String toString() {
         return "[power = " + super.getPower() + ", suite = " + super.getSuite() + ", ability = " + ability + "]";
     }
 
+    // check if the cards are equal
     @Override
     public boolean equals(Object obj) {
 

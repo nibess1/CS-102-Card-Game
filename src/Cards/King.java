@@ -7,11 +7,14 @@ public class King extends Card implements Picture{
         super(6, suite);
     }
 
+    // console representation of King card
     @Override
     public String toString(){
         return "[power = " + super.getPower() + ", suite = " + super.getSuite() + ", ability = " + ability + "]";
     }
 
+
+    // check if the cards are equal
     @Override
     public boolean equals(Object obj) {
 
