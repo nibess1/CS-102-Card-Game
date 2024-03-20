@@ -11,20 +11,18 @@ public class Main {
     public static int[] promptUserInput(Scanner sc) {
         int currentCard = 6;
         int currentLocation = 0;
-        while (currentCard > 5 || currentCard < 1){
-            try {
-                System.out.println("Which card would you like to place this turn? (Pick from 1 - 5)");
-                currentCard = sc.nextInt();
-                System.out.println("Where would you like to place this card at? (Pick from 1 - 3)");
-                currentLocation = sc.nextInt();
+        while (currentCard > 5 || currentCard < 1) {
 
-                if (currentCard > 5 || currentCard < 1 || currentLocation > 3 || currentLocation < 1){
-                    System.out.println("Please pick the correct range of numbers!");
-                }
+            System.out.println("Which card would you like to place this turn? (Pick from 1 - 5)");
+            currentCard = sc.nextInt();
+            System.out.println("Where would you like to place this card at? (Pick from 1 - 3)");
+            currentLocation = sc.nextInt();
 
-            } catch (LocationRejectionException e) {
-                System.out.println(e.getMessage());
+            if (currentCard > 5 || currentCard < 1 || currentLocation > 3 || currentLocation < 1) {
+                System.out.println("Please pick the correct range of numbers!");
+                System.out.println("");
             }
+
         }
         int test[] = { currentCard - 1, currentLocation };
         return test;
@@ -65,21 +63,21 @@ public class Main {
     // to decide where to place the card at.
     public static void locationDecider(int[] userChoices, Location location1, Location location2, Location location3,
             Hand hand, boolean p1, Deck deck) {
-        switch (userChoices[1]) {
-            case 1:
-                location1.placeCard(hand.getCard(userChoices[0]), p1);
-                break;
-            case 2:
-                location2.placeCard(hand.getCard(userChoices[0]), p1);
-                break;
-            case 3:
-                location3.placeCard(hand.getCard(userChoices[0]), p1);
-                break;
-            default:
-                System.out.println("Error has occured attempting to place a card");
-                break;
-        }
-
+            try {
+                switch (userChoices[1]) {
+                    case 1:
+                        location1.placeCard(hand.getCard(userChoices[0]), p1);
+                        break;
+                    case 2:
+                        location2.placeCard(hand.getCard(userChoices[0]), p1);
+                        break;
+                    case 3:
+                        location3.placeCard(hand.getCard(userChoices[0]), p1);
+                        break;
+                }
+            } catch (LocationRejectionException e) {
+                e.getMessage();
+            }
     }
 
     public static void nextTurn(Scanner sc, Hand pcHand, Hand userHand, Deck deck, Location location1,
