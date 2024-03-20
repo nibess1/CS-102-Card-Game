@@ -41,7 +41,7 @@ public class Player {
         System.out.println("");
     }
 
-    public static int getCurrentNumberOfCards(Hand hand){
+    public static int getCurrentNumberOfCards(Player hand){
         int counterNumberCards = 0;
 
         for (int i = 0; i < hand.getHand().size(); i++){
