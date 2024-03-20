@@ -8,23 +8,27 @@ public class Deck {
     // create a deck of 53 cards
     public Deck() {
 
-        char[] suites = {'S', 'C', 'H', 'D'};
+        char[] suites = { 'S', 'C', 'H', 'D' };
 
-        for (char suite : suites){
-            for(int i = 2; i <= 10; i++){
+        // loop code 4 times, 1 time for each suite
+        for (char suite : suites) {
+            // create cards 2 to 10, non picture cards
+            for (int i = 2; i <= 10; i++) {
                 deck.add(new Card(i, suite));
             }
 
+            // create the 4 picture cards.
             deck.add(new Jack(suite));
             deck.add(new Queen(suite));
             deck.add(new King(suite));
             deck.add(new Ace(suite));
         }
 
+        // add the joker card for spicy gameplay
         deck.add(new Joker());
 
     }
-    
+
     // shuffle deck
     public void shuffle() {
         Collections.shuffle(deck);

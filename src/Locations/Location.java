@@ -16,24 +16,20 @@ public class Location {
     //
     private String name;
     private String description;
-    private int p1Power;
-    private int p2Power;
-    private ArrayList<Card> p1LiveCards;
-    private ArrayList<Card> p1DestroyedCards;
-    private ArrayList<Card> p2LiveCards;
-    private ArrayList<Card> p2DestroyedCards;
+    private int p1Power = 0;
+    private int p2Power = 0;
+    private ArrayList<Card> p1LiveCards = new ArrayList<>();
+    private ArrayList<Card> p1DestroyedCards = new ArrayList<>();
+    private ArrayList<Card> p2LiveCards = new ArrayList<>();
+    private ArrayList<Card> p2DestroyedCards = new ArrayList<>();
+    private boolean isDestroyed = false;
 
     public Location(String location) {
         this.name = location;
     }
 
     public Location() {
-        this.p1Power = 0;
-        this.p2Power = 0;
-        this.p1LiveCards = new ArrayList<>();
-        this.p1DestroyedCards = new ArrayList<>();
-        this.p2LiveCards = new ArrayList<>();
-        this.p2DestroyedCards = new ArrayList<>();
+
     }
 
     public void calculatePower(boolean p1) {
@@ -45,24 +41,39 @@ public class Location {
 
         if (p1) {
             p1Power = totalPower;
+            return;
         }
         p2Power = totalPower;
     }
 
     // to place the card at the location
     public void placeCard(Card cardToBePlaced, boolean p1) {
+        // if location is destroyed, throw error.
+        if (isDestroyed) {
+            throw new LocationRejectionException("Location is destroyed!");
+        }
 
-        if (cardToBePlaced instanceof Jack jackCard) {
-            for (Card card : (p1 ? p1LiveCards : p2LiveCards)) {
-                if (card.getSuite() == jackCard.getSuite()) {
-                    card.increasePower(2);
-                }
+        // only check the card's abilities if its a picture, to reduce load on all these
+        // checks
+        if (cardToBePlaced instanceof Picture) {
+
+            // jack ability
+            if (cardToBePlaced instanceof Jack j) {
+                Jack.triggerAbility(p1, j, this);
             }
-        } else if (cardToBePlaced instanceof King kingCard) {
-            for (Card card : (p1 ? p2LiveCards : p1LiveCards)) {
-                if (card.getPower() < kingCard.getPower()) {
-                    destroyCard(card, p1);
-                }
+            // king ability
+            else if (cardToBePlaced instanceof King k) {
+                King.triggerAbility(p1, k, this);
+            }
+            // ace abilities.
+            else if (cardToBePlaced instanceof Ace) {
+                Ace.triggerAbility(p1, this);
+            }
+
+            // if its a joker, set destroyed and quit function.
+            else if (cardToBePlaced instanceof Joker) {
+                this.isDestroyed = true;
+                return;
             }
         }
 
@@ -79,23 +90,20 @@ public class Location {
         if (p1) {
             p1LiveCards.remove(card);
             p1DestroyedCards.add(card);
+            return;
         }
         p2LiveCards.remove(card);
         p2DestroyedCards.add(card);
     }
 
-    public Card removeCard(int index, boolean p1) {
+    public void removeCard(Card card, boolean p1) {
         Card cardToRemove;
         if (p1) {
-            cardToRemove = p1LiveCards.get(index);
-            p1LiveCards.remove(index);
-
+            p1LiveCards.remove(card);
         } else {
-            cardToRemove = p2LiveCards.get(index);
-            p2LiveCards.remove(index);
+            p2LiveCards.remove(card);
         }
         calculatePower(p1);
-        return cardToRemove;
     }
 
     public ArrayList<Card> getCards(boolean p1) {
@@ -103,16 +111,6 @@ public class Location {
             return this.p1LiveCards;
         }
         return this.p2LiveCards;
-    }
-
-    // meant to initiate jack's abilities.
-    public void placeJack(Jack cardToBePlaced, boolean p1, Deck deck) {
-        Card newCard = deck.draw();
-        System.out.println("New card drawn is " + newCard);
-        cardToBePlaced.increasePower(newCard.getPower());
-        System.out.println("Jack's power is now " + cardToBePlaced.getPower());
-
-        this.placeCard(cardToBePlaced, p1);
     }
 
     // for AI to decide which location has the least power to place the card
@@ -123,9 +121,9 @@ public class Location {
         return false;
     }
 
-    // to check if player wins at this location
+    // to check if player wins at this location, and location is NOT destroyed.
     public boolean playerWins() {
-        if (p1Power > p2Power) {
+        if (p1Power > p2Power && !isDestroyed) {
             return true;
         }
         return false;
@@ -156,11 +154,23 @@ public class Location {
         return this.p2LiveCards.size();
     }
 
+    public boolean checkDestroyed() {
+        return this.isDestroyed;
+    }
+
     // meant to print the names, and power of each location
     public static void getAllLocation(Location location1, Location location2, Location location3) {
-        System.out.println("#1:" + location1.toString());
-        System.out.println("#2:" + location2.toString());
-        System.out.println("#3:" + location3.toString());
+        if (!location1.checkDestroyed()) {
+            System.out.println("#1:" + location1.toString());
+        }
+
+        if (!location2.checkDestroyed()) {
+            System.out.println("#2:" + location2.toString());
+        }
+
+        if (!location3.checkDestroyed()) {
+            System.out.println("#3:" + location3.toString());
+        }
         System.out.println("");
     }
 }

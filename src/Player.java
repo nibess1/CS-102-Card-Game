@@ -1,21 +1,21 @@
 import java.util.ArrayList;
 import Cards.*;
 
-public class Hand {
+public class Player {
     private ArrayList<Card> hand;
-    private int numberOfCards;
+    private int numberOfCardsPerTurn;
 
-    public Hand() {
+    public Player() {
         this.hand = new ArrayList<>();
-        this.numberOfCards = 2;
+        this.numberOfCardsPerTurn = 2;
     }
 
     public ArrayList<Card> getHand() {
         return this.hand;
     }
 
-    public int getNumberOfCards() {
-        return this.numberOfCards;
+    public int getNumberOfCardsPerTurn() {
+        return this.numberOfCardsPerTurn;
     }
 
     // to take the card from the hand. This is for placing card on locations.
@@ -34,9 +34,9 @@ public class Hand {
     }
 
     // meant to display all cards of a hand
-    public static void getHandCards(Hand hand) {
-        for (int i = 0; i < hand.getHand().size(); i++) {
-            System.out.println("Card #" + (i + 1) + " " + hand.getHand().get(i));
+    public static void getHandCards(Player player) {
+        for (int i = 0; i < player.getHand().size(); i++) {
+            System.out.println("Card #" + (i + 1) + " " + player.getHand().get(i));
         }
         System.out.println("");
     }

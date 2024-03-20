@@ -9,6 +9,7 @@ public class Admin extends Location {
         super.setDescription("You can only place one card here");
     }
 
+    @Override
     public void placeCard(Card cardToBePlaced, boolean p1) throws LocationRejectionException {
         int validPlace1 = getP1NumLiveCards();
         int validPlace2 = getP2NumLiveCards();

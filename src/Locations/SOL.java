@@ -2,7 +2,6 @@ package Locations;
 
 import Cards.*;
 import Exception.*;
-import java.util.*;
 
 public class SOL extends Location {
 
