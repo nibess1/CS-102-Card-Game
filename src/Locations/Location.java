@@ -91,18 +91,14 @@ public class Location {
         p2DestroyedCards.add(card);
     }
 
-    public Card removeCard(int index, boolean p1) {
+    public void removeCard(Card card, boolean p1) {
         Card cardToRemove;
         if (p1) {
-            cardToRemove = p1LiveCards.get(index);
-            p1LiveCards.remove(index);
+            p1LiveCards.remove(card);
         } else {
-            cardToRemove = p2LiveCards.get(index);
-            p2LiveCards.remove(index);
+            p2LiveCards.remove(card);
         }
-
         calculatePower(p1);
-        return cardToRemove;
     }
 
     public ArrayList<Card> getCards(boolean p1) {

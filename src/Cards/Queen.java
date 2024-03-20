@@ -28,23 +28,17 @@ public class Queen extends Card implements Picture {
             throw new LocationRejectionException("Unable to move to the same location!");
         }
 
-        // get index of queen
-        int indexOfQueen = -1;
+        // remove queen from old location
+        oldLocation.removeCard(this, p1);
 
-        for (int i = 0; i < oldLocation.getCards(p1).size(); i++) {
-            if (this.equals(oldLocation.getCards(p1).get(i))) {
-                indexOfQueen = i;
-            }
-        }
-
-        if (indexOfQueen == -1) {
-            throw new Exception("Error! queen can't be found");
-        }
-
-        newLocation.getCards(p1).add(oldLocation.removeCard(indexOfQueen, p1));
-
-        this.canMove = false;
+        // add queen into new location but DONT use placeCard function as i do not want
+        // the location abilities
+        // to affect queen.
+        newLocation.getCards(p1).add(this);
         newLocation.calculatePower(p1);
+
+        // set queen's move to false. it cant move anymore.
+        this.canMove = false;
     }
 
     // console representation of queen card
