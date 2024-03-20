@@ -10,7 +10,7 @@ public class Main {
 
     // meant to prompt user for choices
     public static int[] promptUserInput(Scanner sc) {
-        int currentCard = 6;
+        int currentCard = 0;
         int currentLocation = 0;
         while (currentCard > 5 || currentCard < 1) {
 
@@ -97,6 +97,8 @@ public class Main {
         for (int i = 0; i < player1.getNumberOfCardsPerTurn(); i++) {
             player1.handDraw(deck);
         }
+
+        Player.getHandCards(player1);
         // pc draws
         for (int i = 0; i < player2.getNumberOfCardsPerTurn(); i++) {
             player2.handDraw(deck);
@@ -104,25 +106,25 @@ public class Main {
         
         // prompt user input and play his card based on his choice based on the number
         // of times he can
-        int userHandBefore = Hand.getCurrentNumberOfCards(userHand);
+        int userHandBefore = Player.getCurrentNumberOfCards(player1);
         boolean invalidMove = true;
 
-        for (int i = 0; i < userHand.getNumberOfCards(); i++) {
+        for (int i = 0; i < player1.getNumberOfCardsPerTurn(); i++) {
             while (invalidMove) {
                 int userChoices[] = promptUserInput(sc);
-                locationDecider(userChoices, location1, location2, location3, userHand, true, deck);
+                locationDecider(userChoices, location1, location2, location3, player1, true, deck);
 
                 System.out.println("Here are your cards after your move");
-                Hand.getHandCards(userHand);
+                Player.getHandCards(player1);
                 
-                if (userHandBefore != Hand.getCurrentNumberOfCards(userHand)){
+                if (userHandBefore != Player.getCurrentNumberOfCards(player1)){
                     invalidMove = false;
                 } else{
                     System.out.println("You did an invalid move, please input the card in other place.");
                 }
             }
 
-            userHandBefore = Hand.getCurrentNumberOfCards(userHand);
+            userHandBefore = Player.getCurrentNumberOfCards(player1);
             invalidMove = true;
         }
 
