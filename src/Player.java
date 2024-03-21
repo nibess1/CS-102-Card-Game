@@ -33,6 +33,11 @@ public class Player {
         this.hand.add(deck.draw());
     }
 
+    //draw a specific card for testing edge cases
+    public void handDraw(Deck deck, Card c) {
+        this.hand.add(deck.draw(c));
+    }
+
     // meant to display all cards of a hand
     public static void getHandCards(Player player) {
         for (int i = 0; i < player.getHand().size(); i++) {

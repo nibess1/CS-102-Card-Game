@@ -6,8 +6,8 @@ import java.util.*;
 
 public class CIS extends Location {
 
-    private ArrayList<Card> p1LiveCards;
-    private ArrayList<Card> p2LiveCards;
+    private ArrayList<Card> p1LiveCards = new ArrayList<>();
+    private ArrayList<Card> p2LiveCards = new ArrayList<>();
 
     public CIS() {
         super.setName("CIS");

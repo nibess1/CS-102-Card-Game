@@ -64,33 +64,42 @@ public class Main {
     // to decide where to place the card at.
     public static void locationDecider(int[] userChoices, Location location1, Location location2, Location location3,
             Player hand, boolean p1, Deck deck) {
-                
-            try {
-                switch (userChoices[1]) {
-                    case 1:
-                        location1.placeCard(hand.getCard(userChoices[0]), p1);
-                        hand.removeCard(userChoices[0]);
-                        break;
-                    case 2:
-                        location2.placeCard(hand.getCard(userChoices[0]), p1);
-                        hand.removeCard(userChoices[0]);
-                        break;
-                    case 3:
-                        location3.placeCard(hand.getCard(userChoices[0]), p1);
-                        hand.removeCard(userChoices[0]);
-                        break;
-                }
-            } catch (LocationRejectionException e) {
-                e.getErrorMessage();
-                System.out.println();
+
+        try {
+            switch (userChoices[1]) {
+                case 1:
+                    location1.placeCard(hand.getCard(userChoices[0]), p1);
+                    hand.removeCard(userChoices[0]);
+                    break;
+                case 2:
+                    location2.placeCard(hand.getCard(userChoices[0]), p1);
+                    hand.removeCard(userChoices[0]);
+                    break;
+                case 3:
+                    location3.placeCard(hand.getCard(userChoices[0]), p1);
+                    hand.removeCard(userChoices[0]);
+                    break;
+            }
+        } catch (LocationRejectionException e) {
+            e.getErrorMessage();
+            System.out.println();
+        }
+    }
+
+    public static void pcTurnInitialiser(Location location1, Location location2, Location location3, Player player2, Deck deck){
+        if(Location.allLocationsUnavailable(location1, location2, location3, false)){
+            return;
+        }
+        System.out.println("\nPC is making it's move...");
+            for (int i = 0; i < player2.getNumberOfCardsPerTurn(); i++) {
+                pcTurn(location1, location2, location3, player2, deck);
             }
     }
 
     public static void nextTurn(Scanner sc, Player player1, Player player2, Deck deck, Location location1,
             Location location2, Location location3) {
 
-
-        //display location status
+        // display location status
 
         System.out.println("Drawing cards ...");
         // user draws
@@ -103,7 +112,19 @@ public class Main {
         for (int i = 0; i < player2.getNumberOfCardsPerTurn(); i++) {
             player2.handDraw(deck);
         }
-        
+
+        if (Location.allLocationsUnavailable(location1, location2, location3, true)) {
+            // PC turn if your locations are unavailable
+            pcTurnInitialiser(location1, location2, location3, player2, deck);
+
+            //end moves
+            System.out.println("\nHere are the locations after the first turn");
+            Location.getAllLocation(location1, location2, location3);
+
+            return;
+
+        }
+
         // prompt user input and play his card based on his choice based on the number
         // of times he can
         int userHandBefore = Player.getCurrentNumberOfCards(player1);
@@ -116,10 +137,10 @@ public class Main {
 
                 System.out.println("Here are your cards after your move");
                 Player.getHandCards(player1);
-                
-                if (userHandBefore != Player.getCurrentNumberOfCards(player1)){
+
+                if (userHandBefore != Player.getCurrentNumberOfCards(player1)) {
                     invalidMove = false;
-                } else{
+                } else {
                     System.out.println("You did an invalid move, please input the card in other place.");
                 }
             }
@@ -128,10 +149,7 @@ public class Main {
             invalidMove = true;
         }
 
-        System.out.println("\nPC is making it's move...");
-        for (int i = 0; i < player2.getNumberOfCardsPerTurn(); i++) {
-            pcTurn(location1, location2, location3, player2, deck);
-        }
+        pcTurnInitialiser(location1, location2, location3, player2, deck);
 
         // display changes.
         System.out.println("\nHere are the locations after the first turn");
@@ -171,7 +189,7 @@ public class Main {
             e.printStackTrace();
         }
 
-        Location location1 = location[0];
+        Location location1 = new Admin();
         Location location2 = location[1];
         Location location3 = location[2];
 
@@ -179,7 +197,7 @@ public class Main {
 
         Player player1 = new Player();
         Player player2 = new Player();
-        for(int i = 0; i < 3; i++){
+        for (int i = 0; i < 3; i++) {
             player1.handDraw(deck);
             player2.handDraw(deck);
         }
@@ -192,8 +210,8 @@ public class Main {
         System.out.println("Here are your cards!");
         Player.getHandCards(player1);
 
-        //Game start
-        for (int i = 0; i < 5; i++){
+        // Game start
+        for (int i = 0; i < 5; i++) {
             System.out.println("-------------------------- Turn " + (i + 1) + " --------------------------");
             nextTurn(sc, player1, player2, deck, location1, location2, location3);
         }

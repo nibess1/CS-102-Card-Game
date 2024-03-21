@@ -9,21 +9,18 @@ public class Admin extends Location {
         super.setDescription("You can only place one card here");
     }
 
+
     @Override
-    public void placeCard(Card cardToBePlaced, boolean p1) throws LocationRejectionException {
-        int validPlace1 = getP1NumLiveCards();
-        int validPlace2 = getP2NumLiveCards();
-
-        if (validPlace1 == 0){
-            super.placeCard(cardToBePlaced, p1);
+    public boolean isAvailable(boolean p1){
+        if(p1){
+            if(getP1NumLiveCards() == 0){
+                return true;
+            }
         } else{
-            throw new LocationRejectionException("You can only place one card here.");
+            if(getP2NumLiveCards() == 0){
+                return true;
+            }
         }
-
-        if (validPlace2 == 0){
-            super.placeCard(cardToBePlaced, !(p1));
-        } else{
-            throw new LocationRejectionException("You can only place one card here.");
-        }
+        return false;
     }
 }
