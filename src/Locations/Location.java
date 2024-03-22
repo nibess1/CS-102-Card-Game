@@ -63,7 +63,7 @@ public class Location {
             }
             // king ability
             else if (cardToBePlaced instanceof King k) {
-                //i pass !p1 because i want to destroy the opposite's cards.
+                // i pass !p1 because we want to destroy the opposition's cards.
                 King.triggerAbility(!p1, k, this);
             }
             // ace abilities.
@@ -97,8 +97,8 @@ public class Location {
         p2DestroyedCards.add(card);
     }
 
+    // for queen's move logic, and ace's ability logic.
     public void removeCard(Card card, boolean p1) {
-        Card cardToRemove;
         if (p1) {
             p1LiveCards.remove(card);
         } else {

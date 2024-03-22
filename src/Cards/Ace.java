@@ -13,6 +13,7 @@ public class Ace extends Card implements Picture {
     public static void triggerAbility(boolean p1, Location location) {
         // Card card : location.getCards(p1)
         ArrayList<Card> cards = location.getCards(p1);
+        //loop the livecards, starting from the last item.
         for (int i = cards.size() - 1; i >= 0; i--) {
             Card currentCard = cards.get(i);
             if (currentCard instanceof Picture) {
