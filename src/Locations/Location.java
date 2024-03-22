@@ -143,7 +143,8 @@ public class Location {
     }
 
     public String toString() {
-        return this.name + ", Your Power:" + this.p1Power + ", Enemy Power:" + this.p2Power;
+        return this.name + ", Your Power:" + this.p1Power + ", Enemy Power:" + this.p2Power + ", Description: "
+                + this.description;
     }
 
     public int getP1NumLiveCards() {
