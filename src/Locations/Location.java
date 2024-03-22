@@ -63,7 +63,8 @@ public class Location {
             }
             // king ability
             else if (cardToBePlaced instanceof King k) {
-                King.triggerAbility(p1, k, this);
+                //i pass !p1 because i want to destroy the opposite's cards.
+                King.triggerAbility(!p1, k, this);
             }
             // ace abilities.
             else if (cardToBePlaced instanceof Ace) {

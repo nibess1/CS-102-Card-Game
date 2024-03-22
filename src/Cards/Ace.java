@@ -1,6 +1,7 @@
 package Cards;
 
 import Locations.Location;
+import java.util.*;
 
 public class Ace extends Card implements Picture {
     public static final String ability = "Activate your picture abilities (Except Ace) once more.";
@@ -10,18 +11,21 @@ public class Ace extends Card implements Picture {
     }
 
     public static void triggerAbility(boolean p1, Location location) {
-        for (Card card : location.getCards(p1)) {
-            if (card instanceof Picture) {
-                if (card instanceof Queen q) {
+        // Card card : location.getCards(p1)
+        ArrayList<Card> cards = location.getCards(p1);
+        for (int i = cards.size() - 1; i >= 0; i--) {
+            Card currentCard = cards.get(i);
+            if (currentCard instanceof Picture) {
+                if (currentCard instanceof Queen q) {
                     q.setCanMove(true);
                 }
                 // if there's already an ace there, don't trigger ace.
-                else if (card instanceof Ace) {
+                else if (currentCard instanceof Ace) {
                     continue;
                 } else {
                     // remove and place the card again to retrigger effects
-                    location.removeCard(card, p1);
-                    location.placeCard(card, p1);
+                    location.removeCard(currentCard, p1);
+                    location.placeCard(currentCard, p1);
                 }
             }
         }
