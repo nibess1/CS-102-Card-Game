@@ -49,19 +49,21 @@ public class Location {
     // to place the card at the location
     public void placeCard(Card cardToBePlaced, boolean p1) {
         // if location is destroyed, throw error.
-        if (isDestroyed) {
-            throw new LocationRejectionException("Location is destroyed!");
-        }
 
-        if(!isAvailable(p1)){
-            int numCards = p1 ? p1LiveCards.size() : p2LiveCards.size();
-            //plural
-            if(numCards > 1){
-                throw new LocationRejectionException("Location is full! There are already "+ numCards + " cards at " + name);
-            } else {
-                
-                throw new LocationRejectionException("Location is full! There is already a card at "+ name);
+        try {
+            if (!isAvailable(p1)) {
+                int numCards = p1 ? p1LiveCards.size() : p2LiveCards.size();
+                // plural
+                if (numCards > 1) {
+                    throw new LocationRejectionException(
+                            "Location is full! There are already " + numCards + " cards at " + name);
+                } else {
+
+                    throw new LocationRejectionException("Location is full! There is already a card at " + name);
+                }
             }
+        } catch (LocationRejectionException e) {
+            throw e;
         }
 
         // only check the card's abilities if its a picture, to reduce load on all these
@@ -98,8 +100,12 @@ public class Location {
         calculatePower(p1);
     }
 
-    public boolean isAvailable(boolean p1){
-        if((p1 && p1LiveCards.size() >= 5) || (!p1 && p2LiveCards.size() >= 5)){
+    public boolean isAvailable(boolean p1) {
+        if (isDestroyed) {
+            throw new LocationRejectionException("Location is destroyed!");
+        }
+
+        if ((p1 && p1LiveCards.size() >= 5) || (!p1 && p2LiveCards.size() >= 5)) {
             return false;
         }
         return true;
@@ -193,18 +199,5 @@ public class Location {
         }
         System.out.println("");
     }
-
-    public static boolean allLocationsUnavailable(Location location1, Location location2, Location location3, boolean p1){
-        if(location1.isDestroyed && location2.isDestroyed && location3.isDestroyed){
-            return true;
-        } else {
-            if(!(location1.isAvailable(p1) || location2.isAvailable(p1)|| location3.isAvailable(p1))){
-                return true;
-            }
-        }
-        return false;
-    } 
-
-
 
 }

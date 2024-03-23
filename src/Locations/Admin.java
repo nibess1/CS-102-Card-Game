@@ -12,6 +12,9 @@ public class Admin extends Location {
 
     @Override
     public boolean isAvailable(boolean p1){
+        if (checkDestroyed()) {
+            throw new LocationRejectionException("Location is destroyed!");
+        }
         if(p1){
             if(getP1NumLiveCards() == 0){
                 return true;

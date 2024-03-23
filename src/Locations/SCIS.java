@@ -1,7 +1,6 @@
 package Locations;
 import Cards.*;
-import Exception.*;
-import java.util.*;
+
 
 public class SCIS extends Location {
     public SCIS(){
