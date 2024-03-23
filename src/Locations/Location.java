@@ -115,7 +115,6 @@ public class Location {
     }
 
     public void removeCard(Card card, boolean p1) {
-        Card cardToRemove;
         if (p1) {
             p1LiveCards.remove(card);
         } else {
