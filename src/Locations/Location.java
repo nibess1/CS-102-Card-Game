@@ -67,27 +67,29 @@ public class Location {
         }
 
         // only check the card's abilities if its a picture, to reduce load on all these
-        // checks
-        if (cardToBePlaced instanceof Picture) {
+        // only location CIS disables abilities, so check if it is CIS
+        if (!(this.name.equals("CIS"))) {
+            if (cardToBePlaced instanceof Picture) {
 
-            // jack ability
-            if (cardToBePlaced instanceof Jack j) {
-                Jack.triggerAbility(p1, j, this);
-            }
-            // king ability
-            else if (cardToBePlaced instanceof King k) {
-                // i pass !p1 because we want to destroy the opposition's cards.
-                King.triggerAbility(!p1, k, this);
-            }
-            // ace abilities.
-            else if (cardToBePlaced instanceof Ace) {
-                Ace.triggerAbility(p1, this);
-            }
+                // jack ability
+                if (cardToBePlaced instanceof Jack j) {
+                    Jack.triggerAbility(p1, j, this);
+                }
+                // king ability
+                else if (cardToBePlaced instanceof King k) {
+                    // i pass !p1 because we want to destroy the opposition's cards.
+                    King.triggerAbility(!p1, k, this);
+                }
+                // ace abilities.
+                else if (cardToBePlaced instanceof Ace) {
+                    Ace.triggerAbility(p1, this);
+                }
 
-            // if its a joker, set destroyed and quit function.
-            else if (cardToBePlaced instanceof Joker) {
-                this.isDestroyed = true;
-                return;
+                // if its a joker, set destroyed and quit function.
+                else if (cardToBePlaced instanceof Joker) {
+                    this.isDestroyed = true;
+                    return;
+                }
             }
         }
 
