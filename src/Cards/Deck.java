@@ -52,6 +52,21 @@ public class Deck {
         return cardToBeDrawn;
     }
 
+    //alternative overloaded method to draw a specific card for testing purposes
+
+    public Card draw(Card c) {
+        Card cardToBeDrawn = null;
+        try {
+            int cardIdx = deck.indexOf(c);
+            cardToBeDrawn = deck.get(cardIdx);
+            deck.remove(cardIdx);
+        } catch (Exception e) {
+            System.out.println("Card has already been drawn");
+        }
+
+        return cardToBeDrawn;
+    }
+
     // meant to test if the draw feature is working as intended
     public void deckTest() {
         for (int i = 1; i <= 53; i++) {
