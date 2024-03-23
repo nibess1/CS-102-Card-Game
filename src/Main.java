@@ -102,9 +102,8 @@ public class Main {
         }
     }
 
-    public static void pcTurnInitialiser(Location location1, Location location2, Location location3, Player player2,
-            Deck deck) {
-        if (Location.allLocationsUnavailable(location1, location2, location3, false)) {
+    public static void pcTurnInitialiser(Location location1, Location location2, Location location3, Player player2, Deck deck){
+        if(player2.toSkipTurn(location1, location2, location3, false)){
             return;
         }
         System.out.println("\nPC is making it's move...");
@@ -130,7 +129,7 @@ public class Main {
             player2.handDraw(deck);
         }
 
-        if (Location.allLocationsUnavailable(location1, location2, location3, true)) {
+        if (player1.toSkipTurn(location1, location2, location3, true)) {
             // PC turn if your locations are unavailable
             pcTurnInitialiser(location1, location2, location3, player2, deck);
 
