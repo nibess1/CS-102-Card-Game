@@ -21,7 +21,7 @@ public class Queen extends Card implements Picture {
     }
 
     // move queen card.
-    public void move(Location oldLocation, Location newLocation, boolean p1) throws Exception {
+    public void triggerAbility(Location oldLocation, Location newLocation, boolean p1) throws Exception {
         // check if queen has moved
         if (!canMove) {
             throw new Exception("Queen has already moved this game");

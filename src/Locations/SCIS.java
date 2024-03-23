@@ -17,8 +17,4 @@ public class SCIS extends Location {
         }  
         super.placeCard(cardToBePlaced, p1);
     }
-
-
-
-
 }

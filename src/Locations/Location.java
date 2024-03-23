@@ -74,7 +74,8 @@ public class Location {
             }
             // king ability
             else if (cardToBePlaced instanceof King k) {
-                King.triggerAbility(p1, k, this);
+                // i pass !p1 because we want to destroy the opposition's cards.
+                King.triggerAbility(!p1, k, this);
             }
             // ace abilities.
             else if (cardToBePlaced instanceof Ace) {
@@ -114,6 +115,7 @@ public class Location {
         p2DestroyedCards.add(card);
     }
 
+    // for queen's move logic, and ace's ability logic.
     public void removeCard(Card card, boolean p1) {
         if (p1) {
             p1LiveCards.remove(card);
@@ -160,7 +162,8 @@ public class Location {
     }
 
     public String toString() {
-        return this.name + ", Your Power:" + this.p1Power + ", Enemy Power:" + this.p2Power;
+        return this.name + ", Your Power:" + this.p1Power + ", Enemy Power:" + this.p2Power + ", Description: "
+                + this.description;
     }
 
     public int getP1NumLiveCards() {
