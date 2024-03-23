@@ -14,14 +14,14 @@ public class Location {
     // no abilities here
     // no pictures cards can be placed here
     //
-    private String name;
+    protected String name;
     private String description;
     private int p1Power = 0;
     private int p2Power = 0;
-    private ArrayList<Card> p1LiveCards = new ArrayList<>();
-    private ArrayList<Card> p1DestroyedCards = new ArrayList<>();
-    private ArrayList<Card> p2LiveCards = new ArrayList<>();
-    private ArrayList<Card> p2DestroyedCards = new ArrayList<>();
+    protected ArrayList<Card> p1LiveCards = new ArrayList<>();
+    protected ArrayList<Card> p1DestroyedCards = new ArrayList<>();
+    protected ArrayList<Card> p2LiveCards = new ArrayList<>();
+    protected ArrayList<Card> p2DestroyedCards = new ArrayList<>();
     private boolean isDestroyed = false;
 
     public Location(String location) {
