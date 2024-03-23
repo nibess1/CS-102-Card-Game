@@ -189,7 +189,7 @@ public class Main {
             e.printStackTrace();
         }
 
-        Location location1 = new Admin();
+        Location location1 = location[0];
         Location location2 = location[1];
         Location location3 = location[2];
 
