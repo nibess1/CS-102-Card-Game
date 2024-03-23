@@ -8,25 +8,38 @@ import java.util.*;
 public class Main {
     public int turn;
 
+    public static int getInput(Scanner sc) {
+        int toReturn = -1;
+        try {
+            toReturn = sc.nextInt();
+        } catch (InputMismatchException e) {
+            System.out.println("Please enter a number!");
+        }
+        sc.nextLine();
+        return toReturn;
+    }
+
     // meant to prompt user for choices
     public static int[] promptUserInput(Scanner sc, Player player1) {
         int currentCard = 0;
         int currentLocation = 0;
         int totalCardsOnHand = player1.getHand().size();
-        while (currentCard > totalCardsOnHand || currentCard < 1) {
 
-            System.out.println(
-                    "Which card would you like to place this turn? (Pick from 1 - " + totalCardsOnHand + ")");
-            currentCard = sc.nextInt();
-            System.out.println("Where would you like to place this card at? (Pick from 1 - 3)");
-            currentLocation = sc.nextInt();
-
-            if (totalCardsOnHand > 5 || currentCard < 1 || currentLocation > 3 || currentLocation < 1) {
-                System.out.println("Please pick the correct range of numbers!");
-                System.out.println("");
-            }
-
+        System.out.println(
+                "Which card would you like to place this turn? (Pick from 1 - " + totalCardsOnHand + ")");
+        currentCard = getInput(sc);
+        while (currentCard < 1 || currentCard > totalCardsOnHand) {
+            System.out.println("Please enter a number between 1 - " + totalCardsOnHand);
+            currentCard = getInput(sc);
         }
+
+        System.out.println("Where would you like to place this card at? (Pick from 1 - 3)");
+        currentLocation = getInput(sc);
+        while (currentLocation < 1 || currentLocation > 3) {
+            System.out.println("Please enter a number between 1 - 3");
+            currentLocation = getInput(sc);
+        }
+
         return new int[] { currentCard - 1, currentLocation };
     }
 
