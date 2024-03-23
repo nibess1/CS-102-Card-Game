@@ -14,14 +14,14 @@ public class Location {
     // no abilities here
     // no pictures cards can be placed here
     //
-    private String name;
+    protected String name;
     private String description;
     private int p1Power = 0;
     private int p2Power = 0;
-    private ArrayList<Card> p1LiveCards = new ArrayList<>();
-    private ArrayList<Card> p1DestroyedCards = new ArrayList<>();
-    private ArrayList<Card> p2LiveCards = new ArrayList<>();
-    private ArrayList<Card> p2DestroyedCards = new ArrayList<>();
+    protected ArrayList<Card> p1LiveCards = new ArrayList<>();
+    protected ArrayList<Card> p1DestroyedCards = new ArrayList<>();
+    protected ArrayList<Card> p2LiveCards = new ArrayList<>();
+    protected ArrayList<Card> p2DestroyedCards = new ArrayList<>();
     private boolean isDestroyed = false;
 
     public Location(String location) {
@@ -53,14 +53,16 @@ public class Location {
             throw new LocationRejectionException("Location is destroyed!");
         }
 
-        if(!isAvailable(p1)){
+        // check if location is full
+        if (!isAvailable(p1)) {
             int numCards = p1 ? p1LiveCards.size() : p2LiveCards.size();
-            //plural
-            if(numCards > 1){
-                throw new LocationRejectionException("Location is full! There are already "+ numCards + " cards at " + name);
+            // plural
+            if (numCards > 1) {
+                throw new LocationRejectionException(
+                        "Location is full! There are already " + numCards + " cards at " + name);
             } else {
-                
-                throw new LocationRejectionException("Location is full! There is already a card at "+ name);
+
+                throw new LocationRejectionException("Location is full! There is already a card at " + name);
             }
         }
 
@@ -98,8 +100,8 @@ public class Location {
         calculatePower(p1);
     }
 
-    public boolean isAvailable(boolean p1){
-        if((p1 && p1LiveCards.size() >= 5) || (!p1 && p2LiveCards.size() >= 5)){
+    public boolean isAvailable(boolean p1) {
+        if ((p1 && p1LiveCards.size() >= 5) || (!p1 && p2LiveCards.size() >= 5)) {
             return false;
         }
         return true;
@@ -194,17 +196,16 @@ public class Location {
         System.out.println("");
     }
 
-    public static boolean allLocationsUnavailable(Location location1, Location location2, Location location3, boolean p1){
-        if(location1.isDestroyed && location2.isDestroyed && location3.isDestroyed){
+    public static boolean allLocationsUnavailable(Location location1, Location location2, Location location3,
+            boolean p1) {
+        if (location1.isDestroyed && location2.isDestroyed && location3.isDestroyed) {
             return true;
         } else {
-            if(!(location1.isAvailable(p1) || location2.isAvailable(p1)|| location3.isAvailable(p1))){
+            if (!(location1.isAvailable(p1) || location2.isAvailable(p1) || location3.isAvailable(p1))) {
                 return true;
             }
         }
         return false;
-    } 
-
-
+    }
 
 }
