@@ -61,12 +61,12 @@ public class Player {
 
         // if location is SOL, hand must have non-picture cards
         if (loc instanceof SOL) {
-            return countPictureCard() > 0;
+            return countPictureCard() < hand.size();
         }
 
         // if location is CIS, hand must have picture cards
         if (loc instanceof CIS) {
-            return countPictureCard() < hand.size();
+            return countPictureCard() > 0;
         }
 
         return true;
