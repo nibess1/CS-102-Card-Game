@@ -102,8 +102,9 @@ public class Main {
         }
     }
 
-    public static void pcTurnInitialiser(Location location1, Location location2, Location location3, Player player2, Deck deck){
-        if(player2.toSkipTurn(location1, location2, location3, false)){
+    public static void pcTurnInitialiser(Location location1, Location location2, Location location3, Player player2,
+            Deck deck) {
+        if (player2.toSkipTurn(location1, location2, location3, false)) {
             return;
         }
         System.out.println("\nPC is making it's move...");
@@ -177,7 +178,21 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         Deck deck = new Deck();
 
-        System.out.println("----------------------------Welcome to Project Gambit!!----------------------------");
+        String menuInput;
+        do {
+            MenuPage.displayMenuPage();
+
+            do {
+                System.out.println("Type 'enter' to begin game");
+                System.out.println("Type 's' to configure game settings");
+                menuInput = sc.nextLine();
+            } while (!(menuInput.equals("enter") || menuInput.equals("s")));
+
+            if (menuInput.equals("s")) {
+                MenuPage.displaySettingsPage(sc);
+            }
+        } while (!(menuInput.equals("enter")));
+
         System.out.println("Deck starting with " + deck.getTotalCards() + " cards.");
 
         deck.shuffle();
