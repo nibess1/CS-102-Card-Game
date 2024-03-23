@@ -9,24 +9,25 @@ public class Main {
     public int turn;
 
     // meant to prompt user for choices
-    public static int[] promptUserInput(Scanner sc) {
+    public static int[] promptUserInput(Scanner sc, Player player1) {
         int currentCard = 0;
         int currentLocation = 0;
-        while (currentCard > 5 || currentCard < 1) {
+        int totalCardsOnHand = player1.getHand().size();
+        while (currentCard > totalCardsOnHand || currentCard < 1) {
 
-            System.out.println("Which card would you like to place this turn? (Pick from 1 - 5)");
+            System.out.println(
+                    "Which card would you like to place this turn? (Pick from 1 - " + totalCardsOnHand + ")");
             currentCard = sc.nextInt();
             System.out.println("Where would you like to place this card at? (Pick from 1 - 3)");
             currentLocation = sc.nextInt();
 
-            if (currentCard > 5 || currentCard < 1 || currentLocation > 3 || currentLocation < 1) {
+            if (totalCardsOnHand > 5 || currentCard < 1 || currentLocation > 3 || currentLocation < 1) {
                 System.out.println("Please pick the correct range of numbers!");
                 System.out.println("");
             }
 
         }
-        int test[] = { currentCard - 1, currentLocation };
-        return test;
+        return new int[] { currentCard - 1, currentLocation };
     }
 
     // logic to calculate enemy (PC) on where to play it's cards
@@ -79,6 +80,8 @@ public class Main {
                     location3.placeCard(hand.getCard(userChoices[0]), p1);
                     hand.removeCard(userChoices[0]);
                     break;
+                default:
+                    break;
             }
         } catch (LocationRejectionException e) {
             e.getErrorMessage();
@@ -86,14 +89,15 @@ public class Main {
         }
     }
 
-    public static void pcTurnInitialiser(Location location1, Location location2, Location location3, Player player2, Deck deck){
-        if(Location.allLocationsUnavailable(location1, location2, location3, false)){
+    public static void pcTurnInitialiser(Location location1, Location location2, Location location3, Player player2,
+            Deck deck) {
+        if (Location.allLocationsUnavailable(location1, location2, location3, false)) {
             return;
         }
         System.out.println("\nPC is making it's move...");
-            for (int i = 0; i < player2.getNumberOfCardsPerTurn(); i++) {
-                pcTurn(location1, location2, location3, player2, deck);
-            }
+        for (int i = 0; i < player2.getNumberOfCardsPerTurn(); i++) {
+            pcTurn(location1, location2, location3, player2, deck);
+        }
     }
 
     public static void nextTurn(Scanner sc, Player player1, Player player2, Deck deck, Location location1,
@@ -117,7 +121,7 @@ public class Main {
             // PC turn if your locations are unavailable
             pcTurnInitialiser(location1, location2, location3, player2, deck);
 
-            //end moves
+            // end moves
             System.out.println("\nHere are the locations after the first turn");
             Location.getAllLocation(location1, location2, location3);
 
@@ -132,7 +136,7 @@ public class Main {
 
         for (int i = 0; i < player1.getNumberOfCardsPerTurn(); i++) {
             while (invalidMove) {
-                int userChoices[] = promptUserInput(sc);
+                int userChoices[] = promptUserInput(sc, player1);
                 locationDecider(userChoices, location1, location2, location3, player1, true, deck);
 
                 System.out.println("Here are your cards after your move");
@@ -236,5 +240,8 @@ public class Main {
             System.out.println("You LOST");
         }
 
+        sc.close();
+
     }
+
 }
