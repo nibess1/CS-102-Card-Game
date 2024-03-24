@@ -13,7 +13,7 @@ public class Turn {
     }
 
     public static void locationDecider(int[] userChoices, Location location1, Location location2, Location location3,
-            Player hand, boolean p1, Deck deck) {
+            Player hand, boolean p1) {
 
         try {
             switch (userChoices[1]) {
@@ -72,7 +72,7 @@ public class Turn {
         for (int i = 0; i < player1.getNumberOfCardsPerTurn(); i++) {
             while (invalidMove) {
                 int userChoices[] = promptUserInput(sc, player1);
-                locationDecider(userChoices, location1, location2, location3, player1, true, deck);
+                locationDecider(userChoices, location1, location2, location3, player1, true);
 
                 System.out.println("Here are your cards after your move");
                 Player.getHandCards(player1);
