@@ -105,8 +105,6 @@ public class Player {
         for (int i = 0; i < getNumberOfCardsPerTurn(); i++) {
             move(location1, location2, location3, sc);
         }
-
-        
     }
 
     public void move(Location location1, Location location2, Location location3, Scanner sc) {

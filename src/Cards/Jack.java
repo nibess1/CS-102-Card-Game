@@ -1,7 +1,5 @@
 package cards;
 
-import java.util.*;
-
 import locations.Location;
 
 public class Jack extends Card implements Picture {

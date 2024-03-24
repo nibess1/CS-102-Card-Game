@@ -1,8 +1,5 @@
 package locations;
 import cards.*;
-import exception.*;
-
-import java.util.*;
 
 public class SOB extends Location {
 
