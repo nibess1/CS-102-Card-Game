@@ -79,6 +79,7 @@ public class Main {
             Turn.nextTurn(sc, player1, player2, deck, location1, location2, location3);
         }
 
+        //Game end
         int playerWins = 0;
         String winningMessage = "";
         if (location1.playerWins()) {
