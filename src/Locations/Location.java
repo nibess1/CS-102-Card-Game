@@ -1,7 +1,8 @@
-package Locations;
+package locations;
 
-import Cards.*;
-import Exception.*;
+import cards.*;
+import exception.*;
+
 import java.util.*;
 
 public class Location {

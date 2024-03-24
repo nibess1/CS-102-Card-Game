@@ -1,7 +1,7 @@
-package Locations;
+package locations;
 
-import Cards.*;
-import Exception.*;
+import cards.*;
+import exception.*;
 
 public class SOL extends Location {
 

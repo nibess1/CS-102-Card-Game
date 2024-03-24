@@ -1,8 +1,8 @@
-package Cards;
+package cards;
 
 import java.util.ArrayList;
 
-import Locations.Location;
+import locations.Location;
 
 public class King extends Card implements Picture {
     public static final String ability = "Destroys all enemy cards with power lower than this card at this location";

@@ -1,7 +1,8 @@
-package Cards;
+package cards;
 
-import Locations.Location;
 import java.util.*;
+
+import locations.Location;
 
 public class Ace extends Card implements Picture {
     public static final String ability = "Activate your picture abilities (Except Ace) once more.";

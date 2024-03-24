@@ -1,6 +1,7 @@
-package Locations;
-import Cards.*;
-import Exception.*;
+package locations;
+import cards.*;
+import exception.*;
+
 import java.util.*;
 
 public class SOE extends Location {

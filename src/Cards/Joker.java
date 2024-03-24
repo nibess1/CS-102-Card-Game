@@ -1,4 +1,4 @@
-package Cards;
+package cards;
 
 public class Joker extends Card implements Picture {
     public static final String ability = "Destroys the location this card is placed at.";

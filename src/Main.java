@@ -1,5 +1,5 @@
-import Cards.*;
-import Locations.*;
+import cards.*;
+import locations.*;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
@@ -14,16 +14,14 @@ public class Main {
         do {
             MenuPage.displayMenuPage();
 
-            do {
-                System.out.println("Type 'enter' to begin game");
-                System.out.println("Type 's' to configure game settings");
-                menuInput = sc.nextLine();
-            } while (!(menuInput.equals("enter") || menuInput.equals("s")));
+            System.out.println("Type 'start' to begin game");
+            System.out.println("Type 's' to configure game settings");
+            menuInput = sc.nextLine();
 
-            if (menuInput.equals("s")) {
+            if ("s".equals(menuInput)) {
                 MenuPage.displaySettingsPage(sc);
             }
-        } while (!(menuInput.equals("enter")));
+        } while (!"start".equals(menuInput));
 
         System.out.println("Deck starting with " + deck.getTotalCards() + " cards.");
 
@@ -33,8 +31,8 @@ public class Main {
         // Picking 3 distinct locations by shuffling an arraylist of all possible
         // locations and take the first 3.
         List<String> possibleLocations = new ArrayList<String>(
-                Arrays.asList("Locations.SCIS", "Locations.SOB", "Locations.SOA", "Locations.Admin", "Locations.CIS",
-                        "Locations.SOE", "Locations.SOL", "Locations.SOSS"));
+                Arrays.asList("locations.SCIS", "locations.SOB", "locations.SOA", "locations.Admin", "locations.CIS",
+                        "locations.SOE", "locations.SOL", "locations.SOSS"));
 
         Collections.shuffle(possibleLocations);
 

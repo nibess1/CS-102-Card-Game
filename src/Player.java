@@ -1,7 +1,8 @@
 import java.util.ArrayList;
-import Cards.*;
-import Exception.LocationRejectionException;
-import Locations.*;
+
+import cards.*;
+import exception.LocationRejectionException;
+import locations.*;
 
 public class Player {
     private ArrayList<Card> hand;

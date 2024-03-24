@@ -1,8 +1,8 @@
-package Cards;
+package cards;
 
 import java.util.*;
 
-import Locations.Location;
+import locations.Location;
 
 public class Jack extends Card implements Picture {
     public static final String ability = "Gives all cards here with the same suite +2 power";

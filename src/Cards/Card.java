@@ -1,4 +1,4 @@
-package Cards;
+package cards;
 
 public class Card {
     private int power; // the number on the card

@@ -1,9 +1,9 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import Cards.Deck;
-import Locations.*;
-import Exception.LocationRejectionException;
+import cards.Deck;
+import exception.LocationRejectionException;
+import locations.*;
 
 public class Turn {
 

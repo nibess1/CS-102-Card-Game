@@ -1,8 +1,8 @@
-package Locations;
+package locations;
 
-import Cards.*;
-import Exception.LocationRejectionException;
 // import java.util.*;
+import cards.*;
+import exception.LocationRejectionException;
 
 public class CIS extends Location {
 

@@ -1,5 +1,6 @@
-import Cards.*;
-import Locations.*;
+import cards.*;
+import locations.*;
+
 import java.util.*;
 
 public class Pc {

@@ -1,7 +1,7 @@
-package Cards;
+package cards;
 
-import Exception.LocationRejectionException;
-import Locations.Location;
+import exception.LocationRejectionException;
+import locations.Location;
 
 public class Queen extends Card implements Picture {
     private boolean canMove = true;
