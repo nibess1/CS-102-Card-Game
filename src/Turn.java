@@ -54,7 +54,7 @@ public class Turn {
         player2.turnInitialiser(location1, location2, location3, sc);
 
         // display changes.
-        System.out.println("\nHere are the locations after the first turn");
+        System.out.println("\nHere are the locations after the turn");
         Location.getAllLocation(location1, location2, location3);
 
     }
