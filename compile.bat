@@ -1,4 +1,4 @@
-javac -d Classes -cp src src/Cards/*.java
-javac -d Classes -cp src src/Exception/*.java
-javac -d Classes -cp src src/Locations/*.java
+javac -d Classes -cp src src/cards/*.java
+javac -d Classes -cp src src/exception/*.java
+javac -d Classes -cp src src/locations/*.java
 javac -d Classes -cp src src/*.java

@@ -3,30 +3,35 @@ import locations.*;
 
 import java.util.*;
 
-public class Pc {
+public class Pc extends Player{
     public static final int numLocs = 3;
-    public static void pcTurnInitialiser(Location location1, Location location2, Location location3, Player player2,
-            Deck deck) {
-        if (player2.toSkipTurn(location1, location2, location3, false)) {
+
+    public Pc(boolean p1){
+        super(p1);
+    }
+
+    @Override
+    public void turnInitialiser(Location location1, Location location2, Location location3, Scanner sc) {
+        if (toSkipTurn(location1, location2, location3, false)) {
             return;
         }
         System.out.println("\nPC is making it's move...");
-        for (int i = 0; i < player2.getNumberOfCardsPerTurn(); i++) {
-            pcTurn(location1, location2, location3, player2, deck);
+        for (int i = 0; i < getNumberOfCardsPerTurn(); i++) {
+            move(location1, location2, location3);
         }
     }
 
-    public static void pcTurn(Location location1, Location location2, Location location3, Player player2, Deck deck) {
-        double[][] possiblePlays = calculatePlayValue(location1, location2, location3, player2);
+    public void move(Location location1, Location location2, Location location3) {
+        double[][] possiblePlays = calculatePlayValue(location1, location2, location3);
         int[] bestPlay = findBestPlay(possiblePlays);
 
         int pcChoices[] = { bestPlay[1], bestPlay[0] + 1};
 
         try {
-            Turn.locationDecider(pcChoices, location1, location2, location3, player2, false);
+            Turn.locationDecider(pcChoices, location1, location2, location3, this, false);
         } catch (IndexOutOfBoundsException e) {
             System.out.println("PC DOES NOT HAVE THIS CARD");
-            Player.getHandCards(player2);
+            getHandCards(this);
         }
 
     }
@@ -153,9 +158,9 @@ public class Pc {
         return cardPower;
     }
 
-    public static double[][] calculatePlayValue(Location loc1, Location loc2 , Location loc3, Player p){
+    public double[][] calculatePlayValue(Location loc1, Location loc2 , Location loc3){
         
-        ArrayList<Card> playerCards = p.getHand();        
+        ArrayList<Card> playerCards = getHand();        
         double[][] playValues = new double[numLocs][playerCards.size()];
 
 

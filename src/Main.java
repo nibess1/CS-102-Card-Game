@@ -23,6 +23,13 @@ public class Main {
             }
         } while (!"start".equals(menuInput));
 
+        String opponent;
+        do{
+            System.out.println("Type 'pc' to play against bot");
+            System.out.println("Type 'p' to play against real human");
+            opponent = sc.nextLine();
+        } while (!("p".equals(opponent) || "pc".equals(opponent)));
+
         System.out.println("Deck starting with " + deck.getTotalCards() + " cards.");
 
         deck.shuffle();
@@ -56,8 +63,17 @@ public class Main {
 
         System.out.println("Randomizing Locations...\n");
 
-        Player player1 = new Player();
-        Player player2 = new Player();
+        Player player1;
+        Player player2;
+        if ("pc".equals(opponent)){
+            player1 = new Player(true);
+            player2 = new Pc(false);
+        }
+        else{
+            player1 = new Player(true);
+            player2 = new Player(false);
+        }
+        
         for (int i = 0; i < 3; i++) {
             player1.handDraw(deck);
             player2.handDraw(deck);

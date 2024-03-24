@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import cards.*;
 import exception.LocationRejectionException;
@@ -7,8 +8,10 @@ import locations.*;
 public class Player {
     private ArrayList<Card> hand;
     private int numberOfCardsPerTurn;
+    private boolean p1;
 
-    public Player() {
+    public Player(boolean p1) {
+        this.p1 = p1;
         this.hand = new ArrayList<>();
         this.numberOfCardsPerTurn = 2;
     }
@@ -101,4 +104,36 @@ public class Player {
         return counterNumberCards;
     }
 
+    public void turnInitialiser(Location location1, Location location2, Location location3, Scanner sc) {
+        if (toSkipTurn(location1, location2, location3, false)) {
+            return;
+        }
+        for (int i = 0; i < getNumberOfCardsPerTurn(); i++) {
+            move(location1, location2, location3, sc);
+        }
+
+        
+    }
+
+    public void move(Location location1, Location location2, Location location3, Scanner sc) {
+        int userHandBefore = hand.size();
+        boolean invalidMove = true;
+
+        for (int i = 0; i < numberOfCardsPerTurn; i++) {
+            while (invalidMove) {
+                System.out.printf("Player %d's move, ", p1 ? 1 : 2);
+                int userChoices[] = Turn.promptUserInput(sc, this);
+                Turn.locationDecider(userChoices, location1, location2, location3, this, p1);
+
+                System.out.println("Here are your cards after your move");
+                Player.getHandCards(this);
+
+                if (userHandBefore != hand.size()) {
+                    invalidMove = false;
+                } else {
+                    System.out.println("You did an invalid move, please input the card in other place.");
+                }
+            }
+        }
+    }
 }

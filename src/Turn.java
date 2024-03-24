@@ -51,44 +51,9 @@ public class Turn {
         for (int i = 0; i < player2.getNumberOfCardsPerTurn(); i++) {
             player2.handDraw(deck);
         }
-
-        if (player1.toSkipTurn(location1, location2, location3, true)) {
-            // PC turn if your locations are unavailable
-            Pc.pcTurnInitialiser(location1, location2, location3, player2, deck);
-
-            // end moves
-            System.out.println("\nHere are the locations after the first turn");
-            Location.getAllLocation(location1, location2, location3);
-
-            return;
-
-        }
-
-        // prompt user input and play his card based on his choice based on the number
-        // of times he can
-        int userHandBefore = Player.getCurrentNumberOfCards(player1);
-        boolean invalidMove = true;
-
-        for (int i = 0; i < player1.getNumberOfCardsPerTurn(); i++) {
-            while (invalidMove) {
-                int userChoices[] = promptUserInput(sc, player1);
-                locationDecider(userChoices, location1, location2, location3, player1, true);
-
-                System.out.println("Here are your cards after your move");
-                Player.getHandCards(player1);
-
-                if (userHandBefore != Player.getCurrentNumberOfCards(player1)) {
-                    invalidMove = false;
-                } else {
-                    System.out.println("You did an invalid move, please input the card in other place.");
-                }
-            }
-
-            userHandBefore = Player.getCurrentNumberOfCards(player1);
-            invalidMove = true;
-        }
-
-        Pc.pcTurnInitialiser(location1, location2, location3, player2, deck);
+        
+        player1.turnInitialiser(location1, location2, location3, sc);
+        player2.turnInitialiser(location1, location2, location3, sc);
 
         // display changes.
         System.out.println("\nHere are the locations after the first turn");
