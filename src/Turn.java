@@ -6,23 +6,25 @@ import Locations.*;
 import Exception.LocationRejectionException;
 
 public class Turn {
-    
+
+    public static void place(int cardNum, Location loc, Player hand, boolean p1) {
+        loc.placeCard(hand.getCard(cardNum), p1);
+        hand.removeCard(cardNum);
+    }
+
     public static void locationDecider(int[] userChoices, Location location1, Location location2, Location location3,
             Player hand, boolean p1, Deck deck) {
 
         try {
             switch (userChoices[1]) {
                 case 1:
-                    location1.placeCard(hand.getCard(userChoices[0]), p1);
-                    hand.removeCard(userChoices[0]);
+                    place(userChoices[0], location1, hand, p1);
                     break;
                 case 2:
-                    location2.placeCard(hand.getCard(userChoices[0]), p1);
-                    hand.removeCard(userChoices[0]);
+                    place(userChoices[0], location2, hand, p1);
                     break;
                 case 3:
-                    location3.placeCard(hand.getCard(userChoices[0]), p1);
-                    hand.removeCard(userChoices[0]);
+                    place(userChoices[0], location3, hand, p1);
                     break;
                 default:
                     break;
@@ -33,8 +35,6 @@ public class Turn {
         }
     }
 
-    
-    
     public static void nextTurn(Scanner sc, Player player1, Player player2, Deck deck, Location location1,
             Location location2, Location location3) {
 
@@ -129,7 +129,5 @@ public class Turn {
         sc.nextLine();
         return toReturn;
     }
-
-
 
 }
