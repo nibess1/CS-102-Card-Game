@@ -95,13 +95,7 @@ public class Player {
     }
 
     public static int getCurrentNumberOfCards(Player hand) {
-        int counterNumberCards = 0;
-
-        for (int i = 0; i < hand.getHand().size(); i++) {
-            counterNumberCards++;
-        }
-
-        return counterNumberCards;
+        return hand.getHand().size();
     }
 
     public void turnInitialiser(Location location1, Location location2, Location location3, Scanner sc) {
