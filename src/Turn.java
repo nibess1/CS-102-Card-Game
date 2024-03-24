@@ -41,13 +41,11 @@ public class Turn {
         // display location status
 
         System.out.println("Drawing cards ...");
-        // user draws
+        // player 1 draws
         for (int i = 0; i < player1.getNumberOfCardsPerTurn(); i++) {
             player1.handDraw(deck);
         }
-
-        Player.getHandCards(player1);
-        // pc draws
+        // player 2 draws
         for (int i = 0; i < player2.getNumberOfCardsPerTurn(); i++) {
             player2.handDraw(deck);
         }

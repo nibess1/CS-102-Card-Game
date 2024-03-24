@@ -121,13 +121,11 @@ public class Player {
 
         for (int i = 0; i < numberOfCardsPerTurn; i++) {
             while (invalidMove) {
+                Player.getHandCards(this);
                 System.out.printf("Player %d's move, ", p1 ? 1 : 2);
                 int userChoices[] = Turn.promptUserInput(sc, this);
                 Turn.locationDecider(userChoices, location1, location2, location3, this, p1);
-
-                System.out.println("Here are your cards after your move");
-                Player.getHandCards(this);
-
+                
                 if (userHandBefore != hand.size()) {
                     invalidMove = false;
                 } else {
