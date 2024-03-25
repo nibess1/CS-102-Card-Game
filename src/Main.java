@@ -39,7 +39,7 @@ public class Main {
         // locations and take the first 3.
         List<String> possibleLocations = new ArrayList<String>(
                 Arrays.asList("locations.SCIS", "locations.SOB", "locations.SOA", "locations.Admin", "locations.CIS",
-                        "locations.SOE", "locations.SOL", "locations.SOSS", "locations.YeowLeongClassroom"));
+                        "locations.SOE", "locations.SOL", "locations.SOSS", "locations.YeowLeongClassroom", "locations.TJunction"));
 
         Collections.shuffle(possibleLocations);
 
@@ -102,7 +102,6 @@ public class Main {
                     p1Counter, p2Counter);
         }
         sc.close();
-
     }
 
 }
