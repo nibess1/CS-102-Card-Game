@@ -25,7 +25,7 @@ public class Main {
 
         String opponent;
         do{
-            System.out.println("Type 'pc' to play against bot");
+            System.out.println("\nType 'pc' to play against bot");
             System.out.println("Type 'p' to play against real human");
             opponent = sc.nextLine();
         } while (!("p".equals(opponent) || "pc".equals(opponent)));
