@@ -12,7 +12,7 @@ public class Pc extends Player{
 
     @Override
     public void turnInitialiser(Location location1, Location location2, Location location3, Scanner sc) {
-        if (toSkipTurn(location1, location2, location3, false)) {
+        if (toSkipTurn(location1, location2, location3, getIsPlayer1())) {
             return;
         }
         System.out.println("\nPC is making it's move...");
@@ -53,9 +53,9 @@ public class Pc extends Player{
     return location;
 }
 
-    public static double cardValueBonus(Location loc, Card card){
-        ArrayList<Card> locationCards = loc.getCards(false);
-        ArrayList<Card> enemyCards = loc.getCards(true);
+    public double cardValueBonus(Location loc, Card card){
+        ArrayList<Card> locationCards = loc.getCards(getIsPlayer1());
+        ArrayList<Card> enemyCards = loc.getCards(!getIsPlayer1());
     
         if(card instanceof Jack){
             int numMatchingSuite = 0;
@@ -94,11 +94,11 @@ public class Pc extends Player{
         return card.getPower() * 1.0;
     }
 
-    public static double calculatePlayStrength(Location primaryLocation, Location otherLocation1, Location otherLocation2, Card c){
+    public double calculatePlayStrength(Location primaryLocation, Location otherLocation1, Location otherLocation2, Card c){
 
         double cardPower = cardValueBonus(primaryLocation, c);
         
-        if(!primaryLocation.isAvailable(false)){
+        if(!primaryLocation.isAvailable(getIsPlayer1())){
             return 0.0;
         }
 
@@ -122,7 +122,7 @@ public class Pc extends Player{
         
         if(primaryLocation instanceof SOE){
             //if other locations are available, return 0.0, else return inverse
-            if(otherLocation1.isAvailable(false) || otherLocation2.isAvailable(false)){
+            if(otherLocation1.isAvailable(getIsPlayer1()) || otherLocation2.isAvailable(getIsPlayer1())){
                 return 0.0;
             }
             return 1.0 / cardPower;
@@ -161,7 +161,7 @@ public class Pc extends Player{
 
     public double[][] calculatePlayValue(Location location1, Location location2 , Location location3){
         
-        ArrayList<Card> playerCards = getHand();        
+        ArrayList<Card> playerCards = getHand();
         double[][] playValues = new double[numLocs][playerCards.size()];
 
 
