@@ -159,22 +159,22 @@ public class Pc extends Player{
         return cardPower;
     }
 
-    public double[][] calculatePlayValue(Location loc1, Location loc2 , Location loc3){
+    public double[][] calculatePlayValue(Location location1, Location location2 , Location location3){
         
         ArrayList<Card> playerCards = getHand();        
         double[][] playValues = new double[numLocs][playerCards.size()];
 
 
         for(int i = 0; i < playerCards.size(); i++){
-            playValues[0][i] = calculatePlayStrength(loc1, loc2, loc3, playerCards.get(i));
+            playValues[0][i] = calculatePlayStrength(location1, location2, location3, playerCards.get(i));
         }
 
         for(int i = 0; i < playerCards.size(); i++){
-            playValues[1][i] = calculatePlayStrength(loc2, loc1, loc3, playerCards.get(i));
+            playValues[1][i] = calculatePlayStrength(location1, location2, location3, playerCards.get(i));
         }
 
         for(int i = 0; i < playerCards.size(); i++){
-            playValues[2][i] = calculatePlayStrength(loc3, loc2, loc1, playerCards.get(i));
+            playValues[2][i] = calculatePlayStrength(location1, location2, location3, playerCards.get(i));
         }
 
         return playValues;

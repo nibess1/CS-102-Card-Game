@@ -11,7 +11,6 @@ public class CIS extends Location {
         super.setDescription("Only picture cards can be placed here. Their powers will be neutralised.");
     }
 
-    // tried changing it, will this work?
     @Override
     public void placeCard(Card cardToBePlaced, boolean p1) {
 
