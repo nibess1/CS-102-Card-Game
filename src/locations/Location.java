@@ -150,11 +150,13 @@ public class Location {
     }
 
     // to check if player wins at this location, and location is NOT destroyed.
-    public boolean playerWins() {
+    public int playerWins() {
         if (p1Power > p2Power && !isDestroyed) {
-            return true;
+            return 1;
+        } else if (p1Power < p2Power && !isDestroyed){
+            return 0;
         }
-        return false;
+        return 2;
     }
 
     // get current location power for player
@@ -164,6 +166,10 @@ public class Location {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void setDescription(String description) {

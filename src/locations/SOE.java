@@ -8,8 +8,14 @@ public class SOE extends Location {
     }
 
     @Override
-    public boolean playerWins() {
-        return !super.playerWins();
+    public int playerWins() {
+        if(super.playerWins() == 1){
+            return 0;
+        } else if (super.playerWins() == 0){
+            return 1;
+        } else{
+            return 2;
+        }
     }
 
 }
