@@ -37,34 +37,31 @@ public class Main {
 
         // Picking 3 distinct locations by shuffling an arraylist of all possible
         // locations and take the first 3.
-        List<String> possibleLocations = new ArrayList<String>(
-                Arrays.asList("locations.SCIS", "locations.SOB", "locations.SOA", "locations.Admin", "locations.CIS",
-                        "locations.SOE", "locations.SOL", "locations.SOSS", "locations.YeowLeongClassroom", "locations.TJunction"));
+        List<Location> possibleLocations = new ArrayList<>();
+        possibleLocations.add(new CIS());
+        possibleLocations.add(new Admin());
+        possibleLocations.add(new SCIS());
+        possibleLocations.add(new SOA());
+        possibleLocations.add(new SOB());
+        possibleLocations.add(new SOE());
+        possibleLocations.add(new SOL());
+        possibleLocations.add(new SOSS());
+        possibleLocations.add(new TJunction());
+        possibleLocations.add(new YeowLeongClassroom());
+        possibleLocations.add(new SCIS());
+        
 
         Collections.shuffle(possibleLocations);
 
-        Location[] location = new Location[3];
-
-        // Instantiating locations
-        try {
-            for (int i = 0; i < 3; i++) {
-                Class<?> className = Class.forName(possibleLocations.get(i));
-                Object instance = className.getDeclaredConstructor().newInstance();
-                location[i] = (Location) instance;
-            }
-        } catch (ClassNotFoundException | NoSuchMethodException | InstantiationException | IllegalAccessException
-                | InvocationTargetException e) {
-            e.printStackTrace();
-        }
-
-        Location location1 = location[0];
-        Location location2 = location[1];
-        Location location3 = location[2];
+        Location location1 = possibleLocations.get(0);
+        Location location2 = possibleLocations.get(1);
+        Location location3 = possibleLocations.get(2);
 
         System.out.println("Randomizing Locations...\n");
 
         Player player1;
         Player player2;
+
         if ("pc".equals(opponent)) {
             player1 = new Player(true);
             player2 = new Pc(false);
@@ -77,18 +74,7 @@ public class Main {
             player1.handDraw(deck);
             player2.handDraw(deck);
         }
-
-        boolean randomizer = new Random().nextBoolean();
-        if (randomizer){
-            Player temp = player1;
-            player1 = player2;
-            player2 = temp;
-        }
-
-        if ("pc".equals(opponent)){
-            System.out.println("You're playing as player " + (randomizer ? 2 : 1) + "\n");
-        }
-
+        
         System.out.println("Handing out cards...\n");
 
         System.out.println("Here are the locations!");
@@ -114,5 +100,5 @@ public class Main {
         }
         sc.close();
     }
-
 }
+
