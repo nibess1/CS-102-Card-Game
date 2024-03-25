@@ -5,21 +5,21 @@ public class ResultCalculator{
     public static void comparePowerPC(Location location1, Location location2, Location location3, String winningMessageP1, int p1Counter, int p2Counter){
         //if versus pc
         if (location1.playerWins() == 1){
-            winningMessageP1 += location1.getName() + " with " + location1.getLocationPower() + " power and ";
+            winningMessageP1 += location1.getName() + " with " + location1.getP1LocationPower() + " power and ";
             p1Counter++;
         } else if (location1.playerWins() == 0){
             p2Counter++;
         }
 
         if (location2.playerWins() == 1){
-            winningMessageP1 += location2.getName() + " with " + location2.getLocationPower() + " power and ";
+            winningMessageP1 += location2.getName() + " with " + location2.getP1LocationPower() + " power and ";
             p1Counter++;
         } else if (location2.playerWins() == 0){
             p2Counter++;
         }
 
         if (location3.playerWins() == 1){
-            winningMessageP1 += location3.getName() + " with " + location3.getLocationPower() + " power";
+            winningMessageP1 += location3.getName() + " with " + location3.getP1LocationPower() + " power";
             p1Counter++;
         } else if (location3.playerWins() == 0){
             p2Counter++;
@@ -31,26 +31,26 @@ public class ResultCalculator{
     public static void comparePowerPlayer(Location location1, Location location2, Location location3, String winningMessageP1, String winningMessageP2, int p1Counter, int p2Counter){
         //if versus player
         if (location1.playerWins() == 1){
-            winningMessageP1 += location1.getName() + " with " + location1.getLocationPower() + " power and ";
+            winningMessageP1 += location1.getName() + " with " + location1.getP1LocationPower() + " power and ";
             p1Counter++;
         } else if (location1.playerWins() == 0){
-            winningMessageP2 += location1.getName() + " with " + location1.getLocationPower() + " power and ";
+            winningMessageP2 += location1.getName() + " with " + location1.getP2LocationPower() + " power and ";
             p2Counter++;
         }
 
         if (location2.playerWins() == 1){
-            winningMessageP1 += location2.getName() + " with " + location2.getLocationPower() + " power and ";
+            winningMessageP1 += location2.getName() + " with " + location2.getP1LocationPower() + " power and ";
             p1Counter++;
         } else if (location2.playerWins() == 0){
-            winningMessageP2 += location2.getName() + " with " + location2.getLocationPower() + " power and ";
+            winningMessageP2 += location2.getName() + " with " + location2.getP2LocationPower() + " power and ";
             p2Counter++;
         }
 
         if (location3.playerWins() == 1){
-            winningMessageP1 += location3.getName() + " with " + location3.getLocationPower() + " power";
+            winningMessageP1 += location3.getName() + " with " + location3.getP1LocationPower() + " power";
             p1Counter++;
         } else if (location3.playerWins() == 0){
-            winningMessageP2 += location3.getName() + " with " + location3.getLocationPower() + " power";
+            winningMessageP2 += location3.getName() + " with " + location3.getP2LocationPower() + " power";
             p2Counter++;
         }
 

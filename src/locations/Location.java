@@ -160,8 +160,12 @@ public class Location {
     }
 
     // get current location power for player
-    public int getLocationPower() {
+    public int getP1LocationPower() {
         return this.p1Power;
+    }
+
+    public int getP2LocationPower() {
+        return this.p2Power;
     }
 
     public void setName(String name) {
