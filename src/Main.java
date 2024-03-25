@@ -5,7 +5,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 public class Main {
-    
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         Deck deck = new Deck();
@@ -24,7 +24,7 @@ public class Main {
         } while (!"start".equals(menuInput));
 
         String opponent;
-        do{
+        do {
             System.out.println("\nType 'pc' to play against bot");
             System.out.println("Type 'p' to play against real human");
             opponent = sc.nextLine();
@@ -39,7 +39,7 @@ public class Main {
         // locations and take the first 3.
         List<String> possibleLocations = new ArrayList<String>(
                 Arrays.asList("locations.SCIS", "locations.SOB", "locations.SOA", "locations.Admin", "locations.CIS",
-                        "locations.SOE", "locations.SOL", "locations.SOSS"));
+                        "locations.SOE", "locations.SOL", "locations.SOSS", "locations.YeowLeongClassroom", "locations.TJunction"));
 
         Collections.shuffle(possibleLocations);
 
@@ -65,18 +65,28 @@ public class Main {
 
         Player player1;
         Player player2;
-        if ("pc".equals(opponent)){
+        if ("pc".equals(opponent)) {
             player1 = new Player(true);
             player2 = new Pc(false);
-        }
-        else{
+        } else {
             player1 = new Player(true);
             player2 = new Player(false);
         }
-        
+
         for (int i = 0; i < 3; i++) {
             player1.handDraw(deck);
             player2.handDraw(deck);
+        }
+
+        boolean randomizer = new Random().nextBoolean();
+        if (randomizer){
+            Player temp = player1;
+            player1 = player2;
+            player2 = temp;
+        }
+
+        if ("pc".equals(opponent)){
+            System.out.println("You're playing as player " + (randomizer ? 2 : 1) + "\n");
         }
 
         System.out.println("Handing out cards...\n");
@@ -84,28 +94,25 @@ public class Main {
         System.out.println("Here are the locations!");
         Location.getAllLocation(location1, location2, location3);
 
-        System.out.println("Here are your cards!");
-        Player.getHandCards(player1);
-
         // Game start
         for (int i = 0; i < 5; i++) {
             System.out.println("-------------------------- Turn " + (i + 1) + " --------------------------");
             Turn.nextTurn(sc, player1, player2, deck, location1, location2, location3);
         }
 
-        //Game end
+        // Game end
         int p1Counter = 0;
         int p2Counter = 0;
         String winningMessageP1 = "";
         String winningMessageP2 = "";
 
-        if(player2 instanceof Pc){
+        if (player2 instanceof Pc) {
             ResultCalculator.comparePowerPC(location1, location2, location3, winningMessageP1, p1Counter, p2Counter);
-        } else{
-            ResultCalculator.comparePowerPlayer(location1, location2, location3, winningMessageP1, winningMessageP2, p1Counter, p2Counter);
+        } else {
+            ResultCalculator.comparePowerPlayer(location1, location2, location3, winningMessageP1, winningMessageP2,
+                    p1Counter, p2Counter);
         }
         sc.close();
-
     }
 
 }

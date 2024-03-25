@@ -25,6 +25,11 @@ public class Card {
         return this.suite;
     }
 
+    // set power of card
+    public void setPower(int powerToSet) {
+        this.power = powerToSet;
+    }
+
     // increase power of card.
     public void increasePower(int numberToIncrease) {
         this.power += numberToIncrease;
