@@ -7,10 +7,10 @@ public class Joker extends Card implements Picture {
         super(1, '\0');
     }
 
-    // console representation of jack card
+    // console representation of joker card
     @Override
     public String toString() {
-        return "[power = " + super.getPower() + ", suite = " + super.getSuite() + ", ability = " + ability + "]";
+        return "[power = " + super.getPower() + ", ability = " + ability + "]";
     }
 
     // check if cards are equal
