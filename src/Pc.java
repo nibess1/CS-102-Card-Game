@@ -174,11 +174,11 @@ public class Pc extends Player{
         }
 
         for(int i = 0; i < playerCards.size(); i++){
-            playValues[1][i] = calculatePlayStrength(location1, location2, location3, playerCards.get(i));
+            playValues[1][i] = calculatePlayStrength(location2, location1, location3, playerCards.get(i));
         }
 
         for(int i = 0; i < playerCards.size(); i++){
-            playValues[2][i] = calculatePlayStrength(location1, location2, location3, playerCards.get(i));
+            playValues[2][i] = calculatePlayStrength(location3, location2, location1, playerCards.get(i));
         }
 
         return playValues;
