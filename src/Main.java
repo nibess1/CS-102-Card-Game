@@ -94,26 +94,16 @@ public class Main {
         }
 
         //Game end
-        int playerWins = 0;
-        String winningMessage = "";
-        if (location1.playerWins()) {
-            winningMessage += "location 1 with " + location1.getLocationPower() + " power and ";
-            playerWins++;
-        }
-        if (location2.playerWins()) {
-            winningMessage += "location 2 with " + location2.getLocationPower() + " power and ";
-            playerWins++;
-        }
-        if (location3.playerWins()) {
-            winningMessage += "location 3 with " + location3.getLocationPower() + " power and ";
-            playerWins++;
-        }
-        if (playerWins >= 2) {
-            System.out.println("You WON at " + winningMessage + ", Congrats!!");
-        } else {
-            System.out.println("You LOST");
-        }
+        int p1Counter = 0;
+        int p2Counter = 0;
+        String winningMessageP1 = "";
+        String winningMessageP2 = "";
 
+        if(player2 instanceof Pc){
+            ResultCalculator.comparePowerPC(location1, location2, location3, winningMessageP1, p1Counter, p2Counter);
+        } else{
+            ResultCalculator.comparePowerPlayer(location1, location2, location3, winningMessageP1, winningMessageP2, p1Counter, p2Counter);
+        }
         sc.close();
 
     }
