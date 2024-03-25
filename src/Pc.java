@@ -49,6 +49,7 @@ public class Pc {
 
     public static double cardValueBonus(Location loc, Card c){
         ArrayList<Card> locationCards = loc.getCards(false);
+        ArrayList<Card> enemyCards = loc.getCards(true);
     
         if(c instanceof Jack){
             int numMatchingSuite = 0;
@@ -63,13 +64,13 @@ public class Pc {
 
         if(c instanceof King){
             int numBelowKing = 0;
-            for (Card locC : locationCards){
-                if(locC.getPower() < c.getPower()){
+            for (Card locC : enemyCards){
+                if(locC.getPower() > c.getPower()){
                     numBelowKing++;
                 }
             }
 
-            return numBelowKing * 0.2 + c.getPower() * 0.9;
+            return numBelowKing * 0.3 + c.getPower() * 0.9;
         }
 
         if(c instanceof Ace){
