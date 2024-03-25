@@ -84,9 +84,6 @@ public class Main {
         System.out.println("Here are the locations!");
         Location.getAllLocation(location1, location2, location3);
 
-        System.out.println("Here are your cards!");
-        Player.getHandCards(player1);
-
         // Game start
         for (int i = 0; i < 5; i++) {
             System.out.println("-------------------------- Turn " + (i + 1) + " --------------------------");
