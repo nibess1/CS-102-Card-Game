@@ -5,7 +5,7 @@ import locations.Location;
 
 public class Queen extends Card implements Picture {
     private boolean canMove = true;
-    public static final String ability = "Destroys all enemy cards with power 4 and below at this location";
+    public static final String ability = "This card is able to move once (Simply click on this card and the location you desire to move it to.)";
 
     public Queen(char suite) {
         super(7, suite);
