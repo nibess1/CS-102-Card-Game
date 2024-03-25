@@ -65,6 +65,7 @@ public class Main {
 
         Player player1;
         Player player2;
+
         if ("pc".equals(opponent)){
             player1 = new Player(true);
             player2 = new Pc(false);
@@ -77,6 +78,17 @@ public class Main {
         for (int i = 0; i < 3; i++) {
             player1.handDraw(deck);
             player2.handDraw(deck);
+        }
+
+        boolean randomizer = new Random().nextBoolean();
+        if (randomizer){
+            Player temp = player1;
+            player1 = player2;
+            player2 = temp;
+        }
+
+        if ("pc".equals(opponent)){
+            System.out.println("You're playing as player " + (randomizer ? 2 : 1) + "\n");
         }
 
         System.out.println("Handing out cards...\n");
