@@ -12,14 +12,14 @@ public class ResultCalculator{
         }
 
         if (location2.playerWins() == 1){
-            winningMessageP1 += location1.getName() + " with " + location1.getLocationPower() + " power and ";
+            winningMessageP1 += location2.getName() + " with " + location2.getLocationPower() + " power and ";
             p1Counter++;
         } else if (location2.playerWins() == 0){
             p2Counter++;
         }
 
         if (location3.playerWins() == 1){
-            winningMessageP1 += location1.getName() + " with " + location1.getLocationPower() + " power";
+            winningMessageP1 += location3.getName() + " with " + location3.getLocationPower() + " power";
             p1Counter++;
         } else if (location3.playerWins() == 0){
             p2Counter++;
