@@ -8,7 +8,7 @@ public class King extends Card implements Picture {
     public static final String ability = "Destroys all enemy cards with power lower than this card at this location";
 
     public King(char suite) {
-        super(6, suite);
+        super(8, suite);
     }
 
     public static void triggerAbility(boolean p1, King k, Location location) {
@@ -16,7 +16,7 @@ public class King extends Card implements Picture {
         ArrayList<Card> cards = location.getCards(p1);
         for (int i = cards.size() - 1; i >= 0; i--) {
             Card currentCard = cards.get(i);
-            if (currentCard.getPower() < k.getPower()) {
+            if (currentCard.getPower() > k.getPower()) {
                 location.destroyCard(currentCard, p1);
             }
         }
