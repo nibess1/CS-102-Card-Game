@@ -25,6 +25,10 @@ public class Pc extends Player{
         double[][] possiblePlays = calculatePlayValue(location1, location2, location3);
         int[] bestPlay = findBestPlay(possiblePlays);
 
+        for(int i = 0; i < possiblePlays.length; i++){
+            System.out.println(Arrays.toString(possiblePlays[i]));
+        }
+
         int pcChoices[] = { bestPlay[1], bestPlay[0] + 1};
 
         try {
