@@ -86,17 +86,8 @@ public class Main {
         }
 
         // Game end
-        int p1Counter = 0;
-        int p2Counter = 0;
-        String winningMessageP1 = "";
-        String winningMessageP2 = "";
 
-        if (player2 instanceof Pc) {
-            ResultCalculator.comparePowerPC(location1, location2, location3, winningMessageP1, p1Counter, p2Counter);
-        } else {
-            ResultCalculator.comparePowerPlayer(location1, location2, location3, winningMessageP1, winningMessageP2,
-                    p1Counter, p2Counter);
-        }
+        ResultCalculator.printWinningMessage(player1, player2, location1, location2,location3);
         sc.close();
     }
 }
