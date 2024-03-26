@@ -28,8 +28,7 @@ public class ResultCalculator {
         boolean p1Win = p1Counter > p2Counter;
 
         Player winner = p1Win ? p1 : p2;
-        Player loser = p1Win ? p2 : p1;
-
+        
         String winningMessage = "";
         winningMessage += p1Win ? "Player 1 " : "Player 2 ";
 

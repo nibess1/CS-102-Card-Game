@@ -7,14 +7,21 @@ public class TJunction extends Location{
     }
 
     @Override
-    public int playerWins() {
-        
-        if (Math.abs(getP1LocationPower() - 21) > Math.abs(getP2LocationPower()- 21) && !checkDestroyed()) {
+    public int getWinningPlayer() {
+        if(checkDestroyed()){
             return 0;
-        } else if (Math.abs(getP1LocationPower() - 21) < Math.abs(getP2LocationPower() - 21) && !checkDestroyed()){
-            return 1;
         }
-        return 2;
+
+        int diffPlayer1 = Math.abs(21 - getLocationPower(true));
+        int diffPlayer2 = Math.abs(21 - getLocationPower(false));
+
+        if (diffPlayer1 == diffPlayer2) {
+            return 0; 
+        } else if (diffPlayer1 < diffPlayer2) {
+            return 1;
+        } else {
+            return 2;
+        }
     }
 
 }
