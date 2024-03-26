@@ -163,6 +163,10 @@ public class Location {
         return p1 ? p1Power : p2Power;
     }
 
+    public int getP2LocationPower() {
+        return this.p2Power;
+    }
+
     public void setName(String name) {
         this.name = name;
     }

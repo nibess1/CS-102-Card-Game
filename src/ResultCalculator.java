@@ -23,6 +23,7 @@ public class ResultCalculator {
         if (p1Counter == p2Counter) {
             System.out.println("Both players are TIED!");
             return;
+
         }
         boolean p1Win = p1Counter > p2Counter;
 
@@ -43,6 +44,7 @@ public class ResultCalculator {
             winningMessage += getWinnerMessage(player1WinningLocations, winner);
         } else {
             winningMessage += getWinnerMessage(player2WinningLocations, winner);
+
         }
 
         System.out.println(winningMessage);
