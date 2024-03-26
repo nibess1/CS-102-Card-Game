@@ -37,8 +37,9 @@ public class ResultCalculator {
             winningMessage += "(Bot) ";
         } else {
             System.out.println("Congratulations!");
+            winningMessage += "(Challenger) "; 
         }
-
+        winningMessage += "won at ";
         if (p1Win) {
             winningMessage += getWinnerMessage(player1WinningLocations, winner);
         } else {
@@ -55,7 +56,7 @@ public class ResultCalculator {
         for (int i = 0; i < WinningLocations.size() - 1; i++) {
             Location current = WinningLocations.get(i);
             result += "location " + current.getName() + " with " + current.getLocationPower(player.getIsPlayer1())
-                    + " power and at ";
+                    + " power, and at ";
         }
 
         Location last = WinningLocations.getLast();
