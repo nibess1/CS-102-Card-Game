@@ -61,7 +61,7 @@ public class ResultCalculator{
         if (p1Counter > p2Counter) {
             System.out.println("Player one WON at " + winningMessageP1 + ", Congrats!!");
         } else if (p2Counter > p1Counter){
-            System.out.println("PLayer two WON at " + winningMessageP2 + ", Congrats!!");
+            System.out.println("Player two WON at " + winningMessageP2 + ", Congrats!!");
         } else{
             System.out.println("It's a DRAW");
         }
