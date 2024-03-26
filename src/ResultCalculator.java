@@ -1,79 +1,67 @@
 import locations.*;
+import java.util.*;
 
-public class ResultCalculator{
+public class ResultCalculator {
 
-    public static void comparePowerPC(Location location1, Location location2, Location location3, String winningMessageP1, int p1Counter, int p2Counter){
-        //if versus pc
-        if (location1.playerWins() == 1){
-            winningMessageP1 += location1.getName() + " with " + location1.getP1LocationPower() + " power and ";
-            p1Counter++;
-        } else if (location1.playerWins() == 0){
-            p2Counter++;
+    private static int p1Counter;
+    private static int p2Counter;
+    private static List<Location> player1WinningLocations = new ArrayList<>();
+    private static List<Location> player2WinningLocations = new ArrayList<>();
+
+    public static void printWinningMessage(Player p1, Player p2, Location... locations) {
+
+        for (Location location : locations) {
+            if (location.getWinningPlayer() == 1) {
+                p1Counter++;
+                player1WinningLocations.add(location);
+            } else if (location.getWinningPlayer() == 2) {
+                p2Counter++;
+                player2WinningLocations.add(location);
+            }
         }
 
-        if (location2.playerWins() == 1){
-            winningMessageP1 += location2.getName() + " with " + location2.getP1LocationPower() + " power and ";
-            p1Counter++;
-        } else if (location2.playerWins() == 0){
-            p2Counter++;
+        if (p1Counter == p2Counter) {
+            System.out.println("Both players are TIED!");
+            return;
+
+        }
+        boolean p1Win = p1Counter > p2Counter;
+
+        Player winner = p1Win ? p1 : p2;
+        Player loser = p1Win ? p2 : p1;
+
+        String winningMessage = "";
+        winningMessage += p1Win ? "Player 1 " : "Player 2 ";
+
+        if (winner instanceof Pc) {
+            System.out.println("You Lost :( ");
+            winningMessage += "(Bot) ";
+        } else {
+            System.out.println("Congratulations!");
         }
 
-        if (location3.playerWins() == 1){
-            winningMessageP1 += location3.getName() + " with " + location3.getP1LocationPower() + " power";
-            p1Counter++;
-        } else if (location3.playerWins() == 0){
-            p2Counter++;
+        if (p1Win) {
+            winningMessage += getWinnerMessage(player1WinningLocations, winner);
+        } else {
+            winningMessage += getWinnerMessage(player2WinningLocations, winner);
+
         }
 
-        resultPrintPC(p1Counter, p2Counter, winningMessageP1);
+        System.out.println(winningMessage);
+
     }
 
-    public static void comparePowerPlayer(Location location1, Location location2, Location location3, String winningMessageP1, String winningMessageP2, int p1Counter, int p2Counter){
-        //if versus player
-        if (location1.playerWins() == 1){
-            winningMessageP1 += location1.getName() + " with " + location1.getP1LocationPower() + " power and ";
-            p1Counter++;
-        } else if (location1.playerWins() == 0){
-            winningMessageP2 += location1.getName() + " with " + location1.getP2LocationPower() + " power and ";
-            p2Counter++;
+    public static String getWinnerMessage(List<Location> WinningLocations, Player player) {
+        String result = "";
+        for (int i = 0; i < WinningLocations.size() - 1; i++) {
+            Location current = WinningLocations.get(i);
+            result += "location " + current.getName() + " with " + current.getLocationPower(player.getIsPlayer1())
+                    + " power and at ";
         }
 
-        if (location2.playerWins() == 1){
-            winningMessageP1 += location2.getName() + " with " + location2.getP1LocationPower() + " power and ";
-            p1Counter++;
-        } else if (location2.playerWins() == 0){
-            winningMessageP2 += location2.getName() + " with " + location2.getP2LocationPower() + " power and ";
-            p2Counter++;
-        }
+        Location last = WinningLocations.getLast();
+        result += "location " + last.getName() + " with " + last.getLocationPower(player.getIsPlayer1()) + " power.";
 
-        if (location3.playerWins() == 1){
-            winningMessageP1 += location3.getName() + " with " + location3.getP1LocationPower() + " power";
-            p1Counter++;
-        } else if (location3.playerWins() == 0){
-            winningMessageP2 += location3.getName() + " with " + location3.getP2LocationPower() + " power";
-            p2Counter++;
-        }
-
-        resultPrint(p1Counter, p2Counter, winningMessageP1, winningMessageP2);
-    }
-
-    public static void resultPrint(int p1Counter, int p2Counter, String winningMessageP1, String winningMessageP2){
-        if (p1Counter > p2Counter) {
-            System.out.println("Player one WON at " + winningMessageP1 + ", Congrats!!");
-        } else if (p2Counter > p1Counter){
-            System.out.println("PLayer two WON at " + winningMessageP2 + ", Congrats!!");
-        } else{
-            System.out.println("It's a DRAW");
-        }
-    }
-
-    public static void resultPrintPC(int p1Counter, int p2Counter, String winningMessageP1){
-        if (p1Counter > p2Counter) {
-            System.out.println("Player one WON at " + winningMessageP1 + ", Congrats!!");
-        } else if (p2Counter > p1Counter){
-            System.out.println("You LOST!");
-        } else{
-            System.out.println("It's a DRAW");
-        }
+        return result;
     }
 }

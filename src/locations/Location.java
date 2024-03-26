@@ -150,18 +150,17 @@ public class Location {
     }
 
     // to check if player wins at this location, and location is NOT destroyed.
-    public int playerWins() {
-        if (p1Power > p2Power && !isDestroyed) {
-            return 1;
-        } else if (p1Power < p2Power && !isDestroyed){
+    public int getWinningPlayer() {
+        if(isDestroyed|| p1Power == p2Power){
             return 0;
         }
-        return 2;
+        
+        return p1Power > p2Power ? 1 : 2;
     }
 
     // get current location power for player
-    public int getP1LocationPower() {
-        return this.p1Power;
+    public int getLocationPower(boolean p1) {
+        return p1 ? p1Power : p2Power;
     }
 
     public int getP2LocationPower() {
