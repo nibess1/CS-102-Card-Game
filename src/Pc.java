@@ -174,6 +174,35 @@ public class Pc extends Player {
             return cardPower * 0.8;
         }
 
+        if (primaryLocation instanceof YeowLeongClassroom) {
+            if (c instanceof Jack) {
+                return cardPower - 0.8 * c.getPower();
+            } else {
+                // compete with the players'num cards
+                if (primaryLocation.getCards(!getIsPlayer1()).size() > primaryLocation.getCards(getIsPlayer1())
+                        .size()) {
+                    return (1 / cardPower) * 10 + 1;
+                } else {
+                    // make sure this location can still be played by the bot if nothing else can be
+                    return 1.0;
+                }
+            }
+        }
+
+        if(primaryLocation instanceof TJunction){
+            int currentLocationPower = primaryLocation.getLocationPower(getIsPlayer1());
+            if(currentLocationPower > 21){
+                return 0.01;
+            }
+            int difference = 21 - currentLocationPower - c.getPower();
+            //play of the card gets exponentially worse if it goes above
+            if(difference > 0){
+                return cardPower;
+            } else {
+                return cardPower * Math.exp((double) difference);
+            }
+
+        }
 
         return cardPower;
     }
