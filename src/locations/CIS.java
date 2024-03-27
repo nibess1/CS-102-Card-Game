@@ -15,7 +15,7 @@ public class CIS extends Location {
     public void placeCard(Card cardToBePlaced, boolean p1) {
 
         if (!Card.isPictureCard(cardToBePlaced)) {
-            throw new LocationRejectionException("This card is not a picture card.");
+            throw new LocationRejectionException("ERROR: This card is not a picture card.");
         }
         super.placeCard(cardToBePlaced, p1);
 

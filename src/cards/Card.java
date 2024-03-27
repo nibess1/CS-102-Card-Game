@@ -39,7 +39,7 @@ public class Card {
     // console representation of the card
     @Override
     public String toString() {
-        return "[power = " + power + ", suite = " + suite + " ]";
+        return "Normal\t[power = " + power + "\tsuite = " + suite + "]";
     }
 
     // check if the cards are the same card.

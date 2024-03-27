@@ -26,7 +26,7 @@ public class King extends Card implements Picture {
     // console representation of King card
     @Override
     public String toString() {
-        return "[power = " + super.getPower() + ", suite = " + super.getSuite() + ", ability = " + ability + "]";
+        return "King\t[power = " + super.getPower() + "\tsuite = " + super.getSuite() + "\tability = " + ability + "]";
     }
 
     // check if the cards are equal

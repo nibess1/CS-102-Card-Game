@@ -12,7 +12,7 @@ public class Joker extends Card implements Picture {
     // console representation of joker card
     @Override
     public String toString() {
-        return "[power = " + super.getPower() + ", ability = " + ability + "]";
+        return "Joker\t[power = " + super.getPower() + "\t\tability = " + ability + "]";
     }
 
     // check if cards are equal

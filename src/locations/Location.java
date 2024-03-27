@@ -105,12 +105,12 @@ public class Location {
 
     public boolean isAvailable(boolean p1) {
         if (checkDestroyed()) {
-            throw new LocationRejectionException("Location is destroyed!");
+            throw new LocationRejectionException("ERROR: Location is destroyed!");
         }
 
         if (checkIfFull(p1)) {
             throw new LocationRejectionException(
-                    "Location is full! There are already " + (p1 ? p1LiveCards.size()
+                    "ERROR: Location is full! There are already " + (p1 ? p1LiveCards.size()
                             : p2LiveCards.size()) + " card(s) at " + name);
 
         }

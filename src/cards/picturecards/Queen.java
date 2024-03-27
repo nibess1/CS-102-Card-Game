@@ -25,12 +25,12 @@ public class Queen extends Card implements Picture {
     public void triggerAbility(Location oldLocation, Location newLocation, boolean p1) throws Exception {
         // check if queen has moved
         if (!canMove) {
-            throw new Exception("Queen has already moved this game");
+            throw new Exception("ERROR: Queen has already moved this game");
         }
 
         // check if the locations are the same
         if (oldLocation.equals(newLocation)) {
-            throw new LocationRejectionException("Unable to move to the same location!");
+            throw new LocationRejectionException("ERROR: Unable to move to the same location!");
         }
 
         // remove queen from old location
@@ -49,7 +49,7 @@ public class Queen extends Card implements Picture {
     // console representation of queen card
     @Override
     public String toString() {
-        return "[power = " + super.getPower() + ", suite = " + super.getSuite() + ", ability = " + ability + "]";
+        return "Queen\t[power = " + super.getPower() + "\tsuite = " + super.getSuite() + "\tability = " + ability + "]";
     }
 
     // check if cards are equal

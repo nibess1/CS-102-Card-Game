@@ -36,7 +36,7 @@ public class Ace extends Card implements Picture {
 
     @Override
     public String toString() {
-        return "[power = " + super.getPower() + ", suite = " + super.getSuite() + ", ability = " + ability + "]";
+        return "Ace\t[power = " + super.getPower() + "\tsuite = " + super.getSuite() + "\tability = " + ability + "]";
     }
 
     @Override
