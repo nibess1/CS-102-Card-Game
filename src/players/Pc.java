@@ -178,10 +178,10 @@ public class Pc extends Player {
 
         if (primaryLocation instanceof YeowLeongClassroom) {
             if (c instanceof Jack) {
-                return cardPower - 0.8 * c.getPower();
+                return cardPower;
             } else {
                 // compete with the players'num cards
-                if (primaryLocation.getCards(!getIsPlayer1()).size() > primaryLocation.getCards(getIsPlayer1())
+                if (primaryLocation.getCards(!getIsPlayer1()).size() >= primaryLocation.getCards(getIsPlayer1())
                         .size()) {
                     return (1 / cardPower) * 10 + 1;
                 } else {
