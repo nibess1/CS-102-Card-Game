@@ -41,8 +41,10 @@ public class Main {
 
         // Picking 3 distinct locations by shuffling an arraylist of all possible
         // locations and take the first 3.
-        List<Location> possibleLocations = new ArrayList<>(Arrays.asList(new CIS(), new Admin(), new SCIS(), new SOA(), new SOB(), new SOE(), new SOL(), new SOSS(), new TJunction(), new YeowLeongClassroom()));
-   
+        List<Location> possibleLocations = new ArrayList<>(Arrays.asList(
+                new CIS(), new Admin(), new SCIS(), new SOA(),
+                new SOB(), new SOE(), new SOL(), new SOSS(),
+                new TJunction(), new YeowLeongClassroom()));
 
         Collections.shuffle(possibleLocations);
 
