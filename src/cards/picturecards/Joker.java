@@ -12,7 +12,7 @@ public class Joker extends Card implements Picture {
     // console representation of joker card
     @Override
     public String toString() {
-        return "Joker\t[power = " + super.getPower() + "\t\tability = " + ability + "]";
+        return "Joker\t[ power = " + super.getPower() + "\t\t| ability = " + ability + "]";
     }
 
     // check if cards are equal
@@ -25,9 +25,6 @@ public class Joker extends Card implements Picture {
 
         Joker card = (Joker) obj;
 
-        if (card.getPower() == getPower() && card.getSuite() == getSuite()) {
-            return true;
-        }
-        return false;
+        return card.getPower() == getPower() && card.getSuite() == getSuite();
     }
 }

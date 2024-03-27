@@ -13,4 +13,10 @@ public class YeowLeongClassroom extends Location {
         cardToBePlaced.setPower(1);
         super.placeCard(cardToBePlaced, p1);
     }
+
+    @Override
+    public String toString() {
+        return getName() + "\t| Your Power:" + getLocationPower(true) + "\t| Enemy Power:" + getLocationPower(false) + "\t| Description: "
+                + getDescription();
+    }
 }

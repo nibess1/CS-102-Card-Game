@@ -36,7 +36,7 @@ public class Ace extends Card implements Picture {
 
     @Override
     public String toString() {
-        return "Ace\t[power = " + super.getPower() + "\tsuite = " + super.getSuite() + "\tability = " + ability + "]";
+        return "Ace\t[ power = " + super.getPower() + "\t| suite = " + super.getSuite() + "\t| ability = " + ability + " ]";
     }
 
     @Override
@@ -48,9 +48,6 @@ public class Ace extends Card implements Picture {
 
         Ace card = (Ace) obj;
 
-        if (card.getPower() == getPower() && card.getSuite() == getSuite()) {
-            return true;
-        }
-        return false;
+        return card.getPower() == getPower() && card.getSuite() == getSuite();
     }
 }

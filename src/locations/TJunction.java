@@ -24,5 +24,11 @@ public class TJunction extends Location{
         }
     }
 
+    @Override
+    public String toString() {
+        return getName() + "\t| Your Power:" + getLocationPower(true) + "\t| Enemy Power:" + getLocationPower(false) + "\t| Description:"
+                + getDescription();
+    }
+
 }
 

@@ -49,7 +49,7 @@ public class Queen extends Card implements Picture {
     // console representation of queen card
     @Override
     public String toString() {
-        return "Queen\t[power = " + super.getPower() + "\tsuite = " + super.getSuite() + "\tability = " + ability + "]";
+        return "Queen\t[ power = " + super.getPower() + "\t| suite = " + super.getSuite() + "\t| ability = " + ability + " ]";
     }
 
     // check if cards are equal
@@ -62,9 +62,6 @@ public class Queen extends Card implements Picture {
 
         Queen card = (Queen) obj;
 
-        if (card.getPower() == getPower() && card.getSuite() == getSuite()) {
-            return true;
-        }
-        return false;
+        return card.getPower() == getPower() && card.getSuite() == getSuite();
     }
 }

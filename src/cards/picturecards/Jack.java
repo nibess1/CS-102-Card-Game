@@ -21,7 +21,7 @@ public class Jack extends Card implements Picture {
     // console representation of jack
     @Override
     public String toString() {
-        return "Jack\t[power = " + super.getPower() + "\tsuite = " + super.getSuite() + "\tability = " + ability + "]";
+        return "Jack\t[ power = " + super.getPower() + "\t| suite = " + super.getSuite() + "\t| ability = " + ability + " ]";
     }
 
     // check if the cards are equal
@@ -34,9 +34,6 @@ public class Jack extends Card implements Picture {
 
         Jack card = (Jack) obj;
 
-        if (card.getPower() == getPower() && card.getSuite() == getSuite()) {
-            return true;
-        }
-        return false;
+        return card.getPower() == getPower() && card.getSuite() == getSuite();
     }
 }

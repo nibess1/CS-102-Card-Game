@@ -69,7 +69,7 @@ public class Location {
 
         // only check the card's abilities if its a picture, to reduce load on all these
         // only location CIS disables abilities, so check if it is CIS
-        if (!(this.name.equals("CIS"))) {
+        if (!"CIS".equals(name)) {
             if (cardToBePlaced instanceof Picture) {
 
                 // jack ability
@@ -150,10 +150,7 @@ public class Location {
 
     // for AI to decide which location has the least power to place the card
     public boolean isLessThan(Location location) {
-        if (this.p2Power < location.p2Power) {
-            return true;
-        }
-        return false;
+        return this.p2Power < location.p2Power;
     }
 
     // to check if player wins at this location, and location is NOT destroyed.
@@ -178,12 +175,16 @@ public class Location {
         return name;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     public void setDescription(String description) {
         this.description = description;
     }
 
     public String toString() {
-        return this.name + ", Your Power:" + this.p1Power + ", Enemy Power:" + this.p2Power + ", Description: "
+        return this.name + "\t\t\t\t| Your Power:" + this.p1Power + "\t| Enemy Power:" + this.p2Power + "\t| Description: "
                 + this.description;
     }
 

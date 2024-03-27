@@ -39,7 +39,7 @@ public class Card {
     // console representation of the card
     @Override
     public String toString() {
-        return "Normal\t[power = " + power + "\tsuite = " + suite + "]";
+        return "Normal\t[ power = " + power + "\t| suite = " + suite + " ]";
     }
 
     // check if the cards are the same card.
@@ -51,10 +51,7 @@ public class Card {
 
         Card card = (Card) obj;
 
-        if (card.getPower() == this.power && card.getSuite() == this.suite && !isPictureCard(card)) {
-            return true;
-        }
-        return false;
+        return card.getPower() == this.power && card.getSuite() == this.suite && !isPictureCard(card);
     }
 
 }

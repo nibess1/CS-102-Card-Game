@@ -77,7 +77,7 @@ public class Main {
 
         // Game start
         for (int i = 0; i < 5; i++) {
-            System.out.println("-------------------------- Turn " + (i + 1) + " --------------------------");
+            System.out.println("------------------------------------- round " + (i + 1) + " -------------------------------------");
             Turn.nextTurn(sc, player1, player2, deck, location1, location2, location3);
         }
 
