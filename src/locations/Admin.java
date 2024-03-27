@@ -1,6 +1,5 @@
 package locations;
 
-import exception.*;
 
 public class Admin extends Location {
     public Admin() {
