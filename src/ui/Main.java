@@ -3,6 +3,7 @@ package ui;
 import java.util.*;
 
 import cards.*;
+import cards.picturecards.Joker;
 import locations.*;
 import players.Pc;
 import players.Player;
@@ -46,9 +47,9 @@ public class Main {
 
         Collections.shuffle(possibleLocations);
 
-        Location location1 = possibleLocations.get(0);
-        Location location2 = possibleLocations.get(1);
-        Location location3 = possibleLocations.get(2);
+        Location location1 = new Admin();
+        Location location2 = new SOA();
+        Location location3 = new Admin();
 
         System.out.println("Randomizing Locations...\n");
 
@@ -62,6 +63,7 @@ public class Main {
             player1 = new Player(true);
             player2 = new Player(false);
         }
+        player1.handDraw(deck, new Joker());
 
         for (int i = 0; i < 3; i++) {
             player1.handDraw(deck);
