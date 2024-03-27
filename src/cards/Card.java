@@ -1,5 +1,4 @@
 package cards;
-
 import cards.picturecards.*;
 
 public class Card {
@@ -40,21 +39,6 @@ public class Card {
     // console representation of the card
     @Override
     public String toString() {
-        //this check is for front end
-        if (this instanceof Picture) {
-            if (this instanceof Jack j) {
-                return j.toString();
-            } else if (this instanceof Queen q) {
-                return q.toString();
-            } else if (this instanceof King k) {
-                return k.toString();
-            } else if (this instanceof Ace a) {
-                return a.toString();
-            } else if (this instanceof Joker joker) {
-                return joker.toString();
-            }
-        }
-
         return "[power = " + power + ", suite = " + suite + " ]";
     }
 
