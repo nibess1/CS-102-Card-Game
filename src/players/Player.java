@@ -105,10 +105,11 @@ public class Player {
     }
 
     public void turnInitialiser(Location location1, Location location2, Location location3, Scanner sc) {
-        if (toSkipTurn(location1, location2, location3, p1)) {
-            return;
-        }
+        
         for (int i = 0; i < getNumberOfCardsPerTurn(); i++) {
+            if (toSkipTurn(location1, location2, location3, p1)) {
+                return;
+            }
             move(location1, location2, location3, sc);
         }
     }
