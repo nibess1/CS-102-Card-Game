@@ -108,6 +108,7 @@ public class Player {
         
         for (int i = 0; i < getNumberOfCardsPerTurn(); i++) {
             if (toSkipTurn(location1, location2, location3, p1)) {
+                System.out.println("Turn is skipped because there are no playable cards!");
                 return;
             }
             move(location1, location2, location3, sc);
