@@ -197,9 +197,9 @@ public class Pc extends Player {
             int difference = 21 - currentLocationPower - c.getPower();
             //play of the card gets exponentially worse if it goes above
             if(difference > 0){
-                return cardPower;
+                return 10.0 * c.getPower() / difference; 
             } else {
-                return cardPower * Math.exp((double) difference);
+                return 10.0 * Math.exp((double) difference);
             }
 
         }
