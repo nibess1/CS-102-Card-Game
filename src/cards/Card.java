@@ -1,4 +1,5 @@
 package cards;
+import cards.picturecards.*;
 
 public class Card {
     private int power; // the number on the card

@@ -1,7 +1,8 @@
-package cards;
+package cards.picturecards;
 
 import java.util.*;
 
+import cards.*;
 import locations.Location;
 
 public class Ace extends Card implements Picture {

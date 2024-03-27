@@ -1,8 +1,10 @@
-import cards.*;
+package players;
+import java.util.*;
+
+import cards.Card;
+import cards.picturecards.*;
 import exception.LocationRejectionException;
 import locations.*;
-
-import java.util.*;
 
 public class Pc extends Player {
     public static final int numLocs = 3;

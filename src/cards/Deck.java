@@ -2,6 +2,8 @@ package cards;
 
 import java.util.*;
 
+import cards.picturecards.*;
+
 public class Deck {
     public ArrayList<Card> deck = new ArrayList<>();
 

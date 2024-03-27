@@ -1,7 +1,10 @@
-import locations.*;
+package ui;
 import java.util.*;
 
-public class ResultCalculator {
+import locations.*;
+import players.*;
+
+public class ResultPrinter {
 
     private static int p1Counter;
     private static int p2Counter;

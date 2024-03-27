@@ -1,7 +1,7 @@
 package locations;
 
-// import java.util.*;
 import cards.*;
+import cards.picturecards.*;
 import exception.LocationRejectionException;
 
 public class CIS extends Location {

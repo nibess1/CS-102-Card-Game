@@ -1,5 +1,6 @@
-package cards;
+package cards.picturecards;
 
+import cards.*;
 import exception.LocationRejectionException;
 import locations.Location;
 

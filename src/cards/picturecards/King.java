@@ -1,7 +1,8 @@
-package cards;
+package cards.picturecards;
 
 import java.util.ArrayList;
 
+import cards.*;
 import locations.Location;
 
 public class King extends Card implements Picture {

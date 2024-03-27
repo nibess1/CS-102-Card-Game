@@ -1,5 +1,6 @@
-package cards;
+package cards.picturecards;
 
+import cards.*;
 import locations.Location;
 
 public class Jack extends Card implements Picture {

@@ -1,7 +1,9 @@
+package players;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 import cards.*;
+import cards.picturecards.*;
 import exception.LocationRejectionException;
 import locations.*;
 

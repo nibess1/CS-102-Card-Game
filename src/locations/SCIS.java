@@ -1,7 +1,6 @@
 package locations;
 import cards.*;
 
-
 public class SCIS extends Location {
     public SCIS(){
         super.setName("SCIS");

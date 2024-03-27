@@ -1,7 +1,11 @@
+package ui;
+import java.util.*;
+
 import cards.*;
 import locations.*;
-
-import java.util.*;
+import players.Pc;
+import players.Player;
+import players.Turn;
 
 public class Main {
 
@@ -87,7 +91,7 @@ public class Main {
 
         // Game end
 
-        ResultCalculator.printWinningMessage(player1, player2, location1, location2,location3);
+        ResultPrinter.printWinningMessage(player1, player2, location1, location2,location3);
         sc.close();
     }
 }
