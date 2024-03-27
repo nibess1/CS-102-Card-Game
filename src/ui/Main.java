@@ -1,4 +1,5 @@
 package ui;
+
 import java.util.*;
 
 import cards.*;
@@ -52,7 +53,6 @@ public class Main {
         possibleLocations.add(new TJunction());
         possibleLocations.add(new YeowLeongClassroom());
         possibleLocations.add(new SCIS());
-        
 
         Collections.shuffle(possibleLocations);
 
@@ -77,7 +77,7 @@ public class Main {
             player1.handDraw(deck);
             player2.handDraw(deck);
         }
-        
+
         System.out.println("Handing out cards...\n");
 
         System.out.println("Here are the locations!");
@@ -91,8 +91,7 @@ public class Main {
 
         // Game end
 
-        ResultPrinter.printWinningMessage(player1, player2, location1, location2,location3);
+        ResultPrinter.printWinningMessage(player1, player2, location1, location2, location3);
         sc.close();
     }
 }
-

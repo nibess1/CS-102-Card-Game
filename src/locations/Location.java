@@ -25,6 +25,7 @@ public class Location {
     protected ArrayList<Card> p2LiveCards = new ArrayList<>();
     protected ArrayList<Card> p2DestroyedCards = new ArrayList<>();
     private boolean isDestroyed = false;
+    private int cardLimit = 5;
 
     public Location(String location) {
         this.name = location;
@@ -32,6 +33,14 @@ public class Location {
 
     public Location() {
 
+    }
+
+    public void setCardLimit(int cardLimit) {
+        this.cardLimit = cardLimit;
+    }
+
+    public int getCardLimit() {
+        return this.cardLimit;
     }
 
     public void calculatePower(boolean p1) {
@@ -50,20 +59,10 @@ public class Location {
 
     // to place the card at the location
     public void placeCard(Card cardToBePlaced, boolean p1) {
-        // if location is destroyed, throw error.
-
+        
+        // check if location is available
         try {
-            if (!isAvailable(p1)) {
-                int numCards = p1 ? p1LiveCards.size() : p2LiveCards.size();
-                // plural
-                if (numCards > 1) {
-                    throw new LocationRejectionException(
-                            "Location is full! There are already " + numCards + " cards at " + name);
-                } else {
-
-                    throw new LocationRejectionException("Location is full! There is already a card at " + name);
-                }
-            }
+            isAvailable(p1);
         } catch (LocationRejectionException e) {
             throw e;
         }
@@ -105,14 +104,21 @@ public class Location {
     }
 
     public boolean isAvailable(boolean p1) {
-        if (isDestroyed) {
+        if (checkDestroyed()) {
             throw new LocationRejectionException("Location is destroyed!");
         }
 
-        if ((p1 && p1LiveCards.size() >= 5) || (!p1 && p2LiveCards.size() >= 5)) {
-            return false;
+        if (checkIfFull(p1)) {
+            throw new LocationRejectionException(
+                    "Location is full! There are already " + (p1 ? p1LiveCards.size()
+                            : p2LiveCards.size()) + " card(s) at " + name);
+
         }
         return true;
+    }
+
+    public boolean checkIfFull(boolean p1) {
+        return p1 ? p1LiveCards.size() >= cardLimit : p2LiveCards.size() >= cardLimit;
     }
 
     public void destroyCard(Card card, boolean p1) {
@@ -152,10 +158,10 @@ public class Location {
 
     // to check if player wins at this location, and location is NOT destroyed.
     public int getWinningPlayer() {
-        if(isDestroyed|| p1Power == p2Power){
+        if (isDestroyed || p1Power == p2Power) {
             return 0;
         }
-        
+
         return p1Power > p2Power ? 1 : 2;
     }
 
@@ -163,7 +169,6 @@ public class Location {
     public int getLocationPower(boolean p1) {
         return p1 ? p1Power : p2Power;
     }
-
 
     public void setName(String name) {
         this.name = name;
