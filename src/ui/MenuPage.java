@@ -9,18 +9,14 @@ public class MenuPage {
     public static void displayMenuPage() {
 
         final int verticalHeight = 10;
-        final int horizontalHeight = 100;
 
         for (int i = 0; i < verticalHeight; i++) {
             if (i == verticalHeight / 2) {
                 System.out
                         .println("----------------------------Welcome to Project Gambit!!----------------------------");
 
-            } else {
-                for (int j = 0; j < horizontalHeight; j++) {
-                    System.out.print("");
-                }
             }
+
             System.out.print("\n");
         }
     }
@@ -56,11 +52,11 @@ public class MenuPage {
 
         do {
             System.out.println("Type 'exit' to return to main menu");
-            System.out.println("Type a value to configure game volume");
+            System.out.println("Type a value between 1 to 10 to configure game volume");
             settingsInput = sc.nextLine();
             try {
                 volumeValue = Integer.parseInt(settingsInput);
-            } catch (Exception e) {
+            } catch (NumberFormatException e) {
                 System.out.println("Please enter 'exit' or a value between 0 to 10!");
             }
             if (volumeValue >= 0 && volumeValue <= 10) {
