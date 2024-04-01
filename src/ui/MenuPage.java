@@ -21,6 +21,7 @@ public class MenuPage {
         }
     }
 
+    //Create or overwrite settings
     public static void saveSettings(int volumeValue) {
         try (PrintStream out = new PrintStream(new FileOutputStream("settings.txt", false));) {
             out.println("Settings");
@@ -38,7 +39,6 @@ public class MenuPage {
             System.out.println("Game volume: " + toRead.nextLine());
 
         } catch (FileNotFoundException e) {
-            // e.printStackTrace();
             try (PrintStream out = new PrintStream(new FileOutputStream("settings.txt", false));) {
                 out.println("Settings");
                 out.println("5");
@@ -51,17 +51,27 @@ public class MenuPage {
         int volumeValue = -1;
 
         do {
-            System.out.println("Type 'exit' to return to main menu");
-            System.out.println("Type a value between 1 to 10 to configure game volume");
+            System.out
+                    .println("Type 'exit' to return to main menu or a value between 1 to 10 to configure game volume");
             settingsInput = sc.nextLine();
+            
+            if ("exit".equals(settingsInput)){
+                break;
+            }
+
             try {
                 volumeValue = Integer.parseInt(settingsInput);
+
+                if (volumeValue < 0 || volumeValue > 10) {
+                    //This is exception is thrown just to jump to the catch block
+                    throw new NumberFormatException();
+                }
             } catch (NumberFormatException e) {
                 System.out.println("Please enter 'exit' or a value between 0 to 10!");
+                continue;
             }
-            if (volumeValue >= 0 && volumeValue <= 10) {
-                MenuPage.saveSettings(volumeValue);
-            }
-        } while (!(settingsInput.equals("exit")));
+
+            MenuPage.saveSettings(volumeValue);
+        } while (true);
     }
 }

@@ -11,6 +11,12 @@ public class SOSS extends Location {
     }
 
     @Override
+    public String toString() {
+        return getName() + "\t\t\t| Your Power:" + getLocationPower(true) + "\t| Enemy Power:" + getLocationPower(false) + "\t| Description: "
+                + getDescription();
+    }
+
+    @Override
     public void placeCard(Card cardToBePlaced, boolean p1) {
         // check if location is available
         try {

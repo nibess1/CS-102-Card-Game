@@ -56,13 +56,13 @@ public class Player {
     }
 
     // check if player can place a card in a specific location
-    public boolean isPlayableLocation(Location loc, boolean p1) {
-        if (hand.size() == 0) {
+    public boolean isPlayableLocation(Location location, boolean p1) {
+        if (hand.isEmpty()) {
             return false;
         }
 
         try {
-            if (!loc.isAvailable(p1)) {
+            if (!location.isAvailable(p1)) {
                 return false;
             }
         } catch (LocationRejectionException e) {
@@ -70,12 +70,12 @@ public class Player {
         }
 
         // if location is SOL, hand must have non-picture cards
-        if (loc instanceof SOL) {
+        if (location instanceof SOL) {
             return countPictureCard() < hand.size();
         }
 
         // if location is CIS, hand must have picture cards
-        if (loc instanceof CIS) {
+        if (location instanceof CIS) {
             return countPictureCard() > 0;
         }
 
@@ -83,8 +83,13 @@ public class Player {
     }
 
     // player to Skip Turn boolean
-    public boolean toSkipTurn(Location loc1, Location loc2, Location loc3, boolean p1) {
-        return !(isPlayableLocation(loc1, p1) || isPlayableLocation(loc2, p1) || isPlayableLocation(loc3, p1));
+    public boolean toSkipTurn(boolean p1, Location... locations) {
+        for (Location location : locations){
+            if (isPlayableLocation(location, p1)){
+                return false;
+            }
+        }
+        return true;
     }
 
     // draw a specific card for testing edge cases
@@ -97,25 +102,25 @@ public class Player {
         for (int i = 0; i < player.getHand().size(); i++) {
             System.out.println("Card #" + (i + 1) + " " + player.getHand().get(i));
         }
-        System.out.println("");
+        System.out.println();
     }
 
     public static int getCurrentNumberOfCards(Player hand) {
         return hand.getHand().size();
     }
 
-    public void turnInitialiser(Location location1, Location location2, Location location3, Scanner sc) {
+    public void turnInitialiser(Scanner sc, Location... locations) {
         
         for (int i = 0; i < getNumberOfCardsPerTurn(); i++) {
-            if (toSkipTurn(location1, location2, location3, p1)) {
+            if (toSkipTurn(p1, locations)) {
                 System.out.println("Turn is skipped because there are no playable cards!");
                 return;
             }
-            move(location1, location2, location3, sc);
+            move(sc, locations);
         }
     }
 
-    public void move(Location location1, Location location2, Location location3, Scanner sc) {
+    public void move(Scanner sc, Location... locations) {
         int userHandBefore = hand.size();
         boolean invalidMove = true;
 
@@ -124,7 +129,7 @@ public class Player {
                 Player.getHandCards(this);
                 System.out.printf("Player %d's move, ", p1 ? 1 : 2);
                 int userChoices[] = Turn.promptUserInput(sc, this);
-                Turn.locationDecider(userChoices, location1, location2, location3, this, p1);
+                Turn.locationDecider(userChoices, this, p1, locations);
                 
                 if (userHandBefore != hand.size()) {
                     invalidMove = false;

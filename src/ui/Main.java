@@ -12,8 +12,9 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        Deck deck = new Deck();
 
+
+        //Start game or configure settings
         String menuInput;
         do {
             MenuPage.displayMenuPage();
@@ -27,32 +28,14 @@ public class Main {
             }
         } while (!"start".equals(menuInput));
 
+
+        //Choose who to play against
         String opponent;
         do {
             System.out.println("\nType 'pc' to play against bot");
             System.out.println("Type 'p' to play against real human");
             opponent = sc.nextLine();
         } while (!("p".equals(opponent) || "pc".equals(opponent)));
-
-        System.out.println("Deck starting with " + deck.getTotalCards() + " cards.");
-
-        deck.shuffle();
-        System.out.println("Shuffling deck...\n");
-
-        // Picking 3 distinct locations by shuffling an arraylist of all possible
-        // locations and take the first 3.
-        List<Location> possibleLocations = new ArrayList<>(Arrays.asList(
-                new CIS(), new Admin(), new SCIS(), new SOA(),
-                new SOB(), new SOE(), new SOL(), new SOSS(),
-                new TJunction(), new YeowLeongClassroom()));
-
-        Collections.shuffle(possibleLocations);
-
-        Location location1 = possibleLocations.get(0);
-        Location location2 = possibleLocations.get(1);
-        Location location3 = possibleLocations.get(2);
-
-        System.out.println("Randomizing Locations...\n");
 
         Player player1;
         Player player2;
@@ -65,13 +48,34 @@ public class Main {
             player2 = new Player(false);
         }
 
+
+        //Prepare deck
+        Deck deck = new Deck();
+        System.out.println("Deck starting with " + deck.getTotalCards() + " cards.");
+        deck.shuffle();
+        System.out.println("Shuffling deck...\n");
+
+
+        System.out.println("Randomizing Locations...\n");
+        List<Location> possibleLocations = new ArrayList<>(Arrays.asList(
+                new CIS(), new Admin(), new SCIS(), new SOA(),
+                new SOB(), new SOE(), new SOL(), new SOSS(),
+                new TJunction(), new YeowLeongClassroom()));
+
+        Collections.shuffle(possibleLocations);
+
+        Location location1 = possibleLocations.get(0);
+        Location location2 = possibleLocations.get(1);
+        Location location3 = possibleLocations.get(2);
+
+
+        System.out.println("Handing out cards...\n");
         for (int i = 0; i < 3; i++) {
             player1.handDraw(deck);
             player2.handDraw(deck);
         }
 
-        System.out.println("Handing out cards...\n");
-
+        
         System.out.println("Here are the locations!");
         Location.getAllLocation(location1, location2, location3);
 

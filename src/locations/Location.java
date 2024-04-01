@@ -201,19 +201,13 @@ public class Location {
     }
 
     // meant to print the names, and power of each location
-    public static void getAllLocation(Location location1, Location location2, Location location3) {
-        if (!location1.checkDestroyed()) {
-            System.out.println("#1:" + location1.toString());
-        }
-
-        if (!location2.checkDestroyed()) {
-            System.out.println("#2:" + location2.toString());
-        }
-
-        if (!location3.checkDestroyed()) {
-            System.out.println("#3:" + location3.toString());
-        }
-        System.out.println("");
+    public static void getAllLocation(Location... locations) {
+        for (int i = 0; i < locations.length; i++){
+            if (!locations[i].checkDestroyed()){
+                System.out.printf("#%d: %s\n", i + 1, locations[i].toString());
+            }
+        }     
+        System.out.println();
     }
 
 }

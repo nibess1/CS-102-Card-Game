@@ -14,13 +14,13 @@ public class Pc extends Player {
     }
 
     @Override
-    public void turnInitialiser(Location location1, Location location2, Location location3, Scanner sc) {
-        if (toSkipTurn(location1, location2, location3, getIsPlayer1())) {
+    public void turnInitialiser(Scanner sc, Location... locations) {
+        if (toSkipTurn(getIsPlayer1(), locations)) {
             return;
         }
         System.out.println("\nPC is making it's move...");
         for (int i = 0; i < getNumberOfCardsPerTurn(); i++) {
-            move(location1, location2, location3);
+            move(locations[0], locations[1], locations[2]);
         }
     }
 
@@ -35,7 +35,7 @@ public class Pc extends Player {
         int pcChoices[] = { bestPlay[1], bestPlay[0] + 1 };
 
         try {
-            Turn.locationDecider(pcChoices, location1, location2, location3, this, false);
+            Turn.locationDecider(pcChoices, this, false, location1, location2, location3);
         } catch (IndexOutOfBoundsException e) {
             System.out.println("PC DOES NOT HAVE THIS CARD");
             getHandCards(this);
@@ -60,7 +60,8 @@ public class Pc extends Player {
         return location;
     }
 
-    public double cardValueBonus(Location loc, Card card) {
+    //calculate bonus based on picture or not picture card
+    private double cardValueBonus(Location loc, Card card) {
         ArrayList<Card> locationCards = loc.getCards(getIsPlayer1());
         ArrayList<Card> enemyCards = loc.getCards(!getIsPlayer1());
 
@@ -100,7 +101,8 @@ public class Pc extends Player {
         return card.getPower() * 1.0;
     }
 
-    public double calculatePlayStrength(Location primaryLocation, Location otherLocation1, Location otherLocation2,
+    //calculate value based on location
+    private double calculatePlayStrength(Location primaryLocation, Location otherLocation1, Location otherLocation2,
             Card c) {
 
         double cardPower = cardValueBonus(primaryLocation, c);
@@ -199,7 +201,10 @@ public class Pc extends Player {
             int difference = 21 - currentLocationPower - c.getPower();
             //play of the card gets exponentially worse if it goes above
             if(difference > 0){
-                return 10.0 * c.getPower() / difference; 
+                
+            else if {
+                
+            }
             } else {
                 return 10.0 * Math.exp((double) difference);
             }
@@ -209,11 +214,11 @@ public class Pc extends Player {
         return cardPower;
     }
 
-    public double[][] calculatePlayValue(Location location1, Location location2, Location location3) {
+    private double[][] calculatePlayValue(Location location1, Location location2, Location location3) {
 
         ArrayList<Card> playerCards = getHand();
         double[][] playValues = new double[numLocs][playerCards.size()];
-
+        
         for (int i = 0; i < playerCards.size(); i++) {
             playValues[0][i] = calculatePlayStrength(location1, location2, location3, playerCards.get(i));
         }
